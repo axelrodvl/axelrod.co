@@ -29,6 +29,7 @@ const translations: Record<Locale, {
     };
   };
   footer: {
+    name: string;
     tagline: string;
   };
   articles: {
@@ -73,6 +74,7 @@ const translations: Record<Locale, {
       },
     },
     footer: {
+      name: "Vadim Axelrod",
       tagline:
         "gpt-5-codex created this entire website, and all it received in return was a fleeting mention in the footer.",
     },
@@ -120,6 +122,7 @@ const translations: Record<Locale, {
       },
     },
     footer: {
+      name: "Вадим Аксельрод",
       tagline:
         "gpt-5-codex сделал весь этот сайт и получил за это лишь короткое упоминание в футере.",
     },

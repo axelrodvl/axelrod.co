@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { getDictionary, isLocale, locales } from "@/lib/i18n";
 import { notFound } from "next/navigation";
 
@@ -37,17 +38,7 @@ export default async function LocaleLayout({
           >
             {dictionary.header.title}
           </Link>
-          <nav className="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-white/40">
-            {locales.map((code) => (
-              <Link
-                key={code}
-                href={`/${code}`}
-                className={`transition hover:text-emerald-300/90 ${code === locale ? "text-emerald-200" : "text-white/40"}`}
-              >
-                {code}
-              </Link>
-            ))}
-          </nav>
+          <LocaleSwitcher activeLocale={locale} />
         </div>
       </header>
       <main className="relative z-10">
@@ -57,7 +48,7 @@ export default async function LocaleLayout({
       </main>
       <footer className="relative z-10 border-t border-white/10 bg-black/60/80 bg-opacity-60 backdrop-blur-sm">
         <div className="mx-auto max-w-4xl px-6 py-6 text-[10px] uppercase tracking-[0.4em] text-white/40">
-          <p>© {new Date().getFullYear()} Vadim Axelrod</p>
+          <p>© {new Date().getFullYear()} {dictionary.footer.name}</p>
           <p className="mt-2 text-white/30">{dictionary.footer.tagline}</p>
         </div>
       </footer>
