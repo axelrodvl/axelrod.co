@@ -1,16 +1,16 @@
-title: Лакх и крор
+title: Lakh and Crore
 date: 11.03.2023
-tags: Путешествия, Индия
+tags: Travel, India
 
 ---
 
-В индийской системе счисления используются ступени, разделяющие число по два порядка вместо привычных нам трех (00 вместо 000):
-- 1,00,000 = 1 лакх (сто тысяч)
-- 10,00,000 = 10 лакх (миллион)
-- 1,00,00,000 = 1 крор (десять миллионов)
-- 10,00,00,000 = 10 крор (сто миллионов)
+In the Indian numbering system, numbers are grouped in steps of two digits instead of the familiar three (00 instead of 000):
+- 1,00,000 = 1 lakh (one hundred thousand)
+- 10,00,000 = 10 lakh (one million)
+- 1,00,00,000 = 1 crore (ten million)
+- 10,00,00,000 = 10 crore (one hundred million)
 
-Несмотря на то, что существуют также дробные ступени (тысяча - хазар, миллиард - араб), индусы предпочитают использовать только лакх и крор.
+Although fractional steps also exist (thousand - hazar, billion - arab), Indians prefer to use only lakh and crore.
 
-Например, на этом плакате: 3 лакх крор, то есть «трижды сто тысяч раз по десять миллионов»:
-![Плакат](lakh-crore/ad.jpeg)
+For example, on this poster: 3 lakh crore, that is "three times one hundred thousand times ten million":
+![Poster](lakh-crore/ad.jpeg)
