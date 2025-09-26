@@ -1,94 +1,73 @@
-title: Собираем домашнюю метеостанцию с Telegram ботом на Raspberry Pi
+title: Building a Home Weather Station with a Telegram Bot on Raspberry Pi
 date: 02.06.2019
-tags: Разработка, Raspberry Pi
+tags: Development, Raspberry Pi
 
 ---
 
-### Чем занять Raspberry Pi
+### How to Use a Raspberry Pi
 
-У многих из нас на полках пылится купленный однажды про запас Raspberry Pi.
+Many of us have a Raspberry Pi gathering dust on a shelf, bought as a spare one day.
 
+Using a weak computer with very slow I/O as a desktop or server is not the most enjoyable thing, although I did keep it for a while as a CI server, a thin RDP client, and even ran a full IntelliJ IDEA on it (**spoiler — it works like a clock, but extremely slowly**).
 
-Использовать в качестве десктопа или сервера слабый компьютер с очень медленным I/O — удовольствие не из приятных, хотя я и держал его некоторое время как CI сервер, тонкий клиент для RDP и даже запускал на нем полноценную IntelliJ IDEA (**спойлер — она работает как часы, но максимально неторопливо**).
+But as a base for small sensors — it's perfect. Let Arduino rule the market of followers, cheap boards, and modules. Raspberry Pi, however, has a full Linux system and more power, which means there are no software limitations. Most hardware works just fine on both platforms.
 
+Sensors for many simple and fun things, like [light](http://amperka.ru/product/troyka-light-sensor), [water level](http://amperka.ru/product/water-level-sensor-straight), [temperature](http://amperka.ru/product/troyka-temperature-sensor), [motion](http://amperka.ru/product/zelo-motion-sensor), and even [alcohol](http://amperka.ru/product/troyka-mq3-gas-sensor), are sold for around 150–600 rubles each.
 
-А вот в качестве базы для мелких датчиков — прекрасно. Пусть Arduino правит бал в числе последователей, доступных плат и модулей. Зато у Rasberry Pi полноценный Linux и много больше мощности, а значит в выборе софта ограничений никаких. Большинство железа прекрасно себя чувствует на обеих платформах.
+For myself, I built a home weather station with a Telegram interface, and I unexpectedly got a lot of fun out of it.
 
+So, let’s dust off the Pi.
 
-Датчики для множества простых и занимательных вещей, вроде [освещенности](http://amperka.ru/product/troyka-light-sensor), [уровня воды](http://amperka.ru/product/water-level-sensor-straight), [температуры](http://amperka.ru/product/troyka-temperature-sensor), [движения](http://amperka.ru/product/zelo-motion-sensor) и даже [алкоголя](http://amperka.ru/product/troyka-mq3-gas-sensor) продаются в среднем по 150-600 рублей за штуку.
+### The Bot to the Rescue
+Accessing a home Linux machine over SSH is inconvenient, unsafe, and requires too much fiddling with the network.
 
+But a bot is the perfect option both for providing an interface and for giving access to the hardware inside a closed network segment:
 
-Для себя я собрал домашнюю метеостанцию с интерфейсом в Telegram, получив от этого неожиданно много фана.
+![Telegram bot](raspberry-pi-meteo/i-am-at-home-bot.png)
 
+It’s simple. One big button “Make it good”.
 
-Итак, сдуем пыль с малины.
+Feel free to visit! Right now at my home: http://telegram.me/i_am_at_home_bot.
 
+### Shopping
+In my case, I used a [high-precision weather sensor](http://amperka.ru/product/troyka-meteo-sensor?utm_source=man&utm_campaign=troyka-meteo-sensor) based on the [SHT3x-DIS](https://www.sensirion.com/en/environmental-sensors/humidity-sensors/digital-humidity-sensors-for-various-applications) chip, working on the I²C bus, in a module from [Amperka](http://amperka.ru), nicely laid out:
 
-### Бот в помощь
-Ходить по SSH на домашнюю Linux машину неудобно, небезопасно и требует много лишних телодвижений с сетью.
+![Telegram bot](raspberry-pi-meteo/amperka-meteo-sensor.jpg)
 
+Google shows options to buy this sensor as a bare board — practice soldering pins if you want.
 
-Бот же — идеальный вариант как для выставления интерфейса, так и для предоставления доступа к железу из закрытого сегмента сети:
+In Amperka’s variant, the sensor comes with the necessary wiring included. Nothing except the sensor itself needs to be purchased in the minimal setup. But if you want to assemble it more neatly than a handful of wires and a bare board, you can also get the [Troyka #Structor](http://amperka.ru/product/structor-troyka).
 
-![Telegram бот](raspberry-pi-meteo/i-am-at-home-bot.png)
+We assume you already have a Raspberry Pi with Raspbian installed (I believe other distros should work fine too). 
 
-
-Все просто. Одна большая кнопка «Сделать хорошо».
-
-
-Заходите в гости! У меня дома прямо сейчас: http://telegram.me/i_am_at_home_bot.
-
-### Закупаемся
-В моем случае используется [высокоточный метеодатчик](http://amperka.ru/product/troyka-meteo-sensor?utm_source=man&utm_campaign=troyka-meteo-sensor) на сенсоре [SHT3x-DIS](https://www.sensirion.com/en/environmental-sensors/humidity-sensors/digital-humidity-sensors-for-various-applications), работающий на шине I²C в сборке от компании [Амперка](http://amperka.ru), собранный с удобной разводкой:
-
-![Telegram бот](raspberry-pi-meteo/amperka-meteo-sensor.jpg)
-
-
-Гугление дает варианты покупки этого датчика и в виде голой платы — попрактикуйтесь в пайке ножек, если есть желание.
-
-
-В варианте Амперки датчик приходит сразу с необходимой проводкой. Ничего, кроме самого датчика, в минимальном варианте покупать не нужно. Но если хочется собрать все аккуратнее, чем ворох проводов и голая плата — докупите [Troyka #Структор](http://amperka.ru/product/structor-troyka).
-
-
-Исходим из того, что Raspberry Pi у нас уже в наличии и на нем установлена Raspbian (полагаю, что и с другими дистрибутивами проблем быть не должно). 
-
-
-Если же Pi нет, но вдруг очень захотелось, можно докинуть в корзину прямо в Амперке:
+If you don’t yet have a Pi, but suddenly want one, you can add to your cart directly at Amperka:
 
 - [Raspberry Pi 3 Model B+](http://amperka.ru/product/raspberry-pi-3-model-b-plus)
-- [Прозрачный корпус](http://amperka.ru/product/rpi-case-clear)
-- [SD карта на 16 Гб с установленной Raspbian](http://amperka.ru/product/raspbian-micro-sd-card) (вариант не лучший, так как карта медленная и дорогая для 16 Гб, но зато сразу подготовленная)
-- [Блок питания](http://amperka.ru/product/usb-power-plug-3a)
+- [Clear case](http://amperka.ru/product/rpi-case-clear)
+- [16GB SD card with Raspbian preinstalled](http://amperka.ru/product/raspbian-micro-sd-card) (not the best option, since the card is slow and expensive for 16GB, but it’s ready to use right away)
+- [Power supply](http://amperka.ru/product/usb-power-plug-3a)
 
+On Yandex.Market you can assemble everything a bit cheaper with a [nicer original case](https://www.raspberrypi.org/products/raspberry-pi-3-case) and [power supply](https://www.raspberrypi.org/products/raspberry-pi-universal-power-supply), plus get a faster microSD card (recommend UHS Speed Class 1 or higher).
 
-На Яндекс.Маркете можно собрать необходимое чуть дешевле вместе с [более симпатичным оригинальным корпусом](https://www.raspberrypi.org/products/raspberry-pi-3-case) и [блоком питания](https://www.raspberrypi.org/products/raspberry-pi-universal-power-supply), а также взять быструю microSD карту (советую не ниже UHS Speed Class 1).
+It is important not to skimp on the power supply. While the Raspberry Pi can run off a power bank or any charger, under normal loads the kernel will regularly complain about undervoltage.
 
+### Connecting the Sensor
+From the required pins (and with Amperka’s setup), the sensor has:
 
-Важно не сэкономить на блоке питания. Хотя Raspberry Pi может работать и от power bank, и от любой зарядки — при вполне обычных нагрузках ядро начнет регулярно ругаться на undervoltage.
+- power (**04 DC Power 5v**),
+- ground (**06 Ground**),
+- data input/output pin (**03 SDA**),
+- bus clock pin (**05 SCL**). 
 
-
-### Подключаем датчик
-Из обязательной распиновки (и в сборке от Амперки) датчик имеет:
-
-- питание (**04 DC Power 5v**),
-- землю (**06 Ground**),
-- пин ввода/вывода данных (**03 SDA**),
-- пин тактирования шины (**05 SCL**). 
-
-
-В стандартной разводке Raspberry Pi датчик получится подключить двумя трехпроводными шлейфами, либо четырьмя одинарными проводами «мама-папа»:
+In a standard Raspberry Pi layout, the sensor can be connected either with two three-wire cables or four single male-to-female wires:
 
 ![GPIO](raspberry-pi-meteo/pi3gpio-meteo.png)
 
-
-В собранном виде:
+Assembled:
 
 ![GPIO](raspberry-pi-meteo/rpi-meteo.jpg)
 
-
-
-
-Подключаемся к Pi по SSH и включаем шину I²C:
+Connect to the Pi via SSH and enable the I²C bus:
 ```
 sudo raspi-config
 # Далее в интерфейсе:
@@ -97,10 +76,10 @@ P5 I2C — Enable/Disable automatic loading of I2C kernel module
 Would you like the ARM I2C interface to be enabled? — Yes
 ```
 
-### Проверяем корректность подключения
-Копируем скрипт [meteoSensor.py](https://gist.github.com/axelrodvl/d1ce721c2851c8aaa413f337bff418f5) на Pi
+### Checking the Connection
+Copy the script [meteoSensor.py](https://gist.github.com/axelrodvl/d1ce721c2851c8aaa413f337bff418f5) to the Pi.
 
-При правильном подключении получаем данные:
+With a proper connection you’ll get:
 ```
 ➜  python meteoSensor.py 
 Temperature in Celsius is : 17.80 C
@@ -108,59 +87,54 @@ Temperature in Fahrenheit is : 64.05 F
 Relative Humidity is : 27.78 %RH
 ```
 
-### Создаем Telegram бота
-Открываем Telegram и добавляем бота [BotFather](https://core.telegram.org/bots#3-how-do-i-create-a-bot).
 
+### Creating a Telegram Bot
+Open Telegram and add the [BotFather](https://core.telegram.org/bots#3-how-do-i-create-a-bot).
 
-При создании нового бота необходимо выбрать ему имя и адрес, добавить в контакты и сохранить полученный Access Token вида: 
+When creating a new bot you need to choose its name and username, add it to contacts, and save the received Access Token like this:
 ```
 111111111:XXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-### Устанавливаем (или разрабатываем) необходимый софт
-Для работы с железом на Raspberry Pi часто используют Python, но под все популярные языки программирования обязательно есть удобная библиотека для работы либо с GPIO конкретно Raspberry Pi, либо для работы с конкретной шиной (нам нужна I²C).
 
+### Installing (or Developing) the Software
+People often use Python to work with Raspberry Pi hardware, but almost every popular programming language has convenient libraries either specifically for Raspberry Pi GPIO or for the bus you need (in our case, I²C).
 
-Особо отмечу [Control Everything Community](https://github.com/ControlEverythingCommunity) — замечательный сборник примеров работы с огромным числом различных чипов, притом сразу на нескольких популярных языках и под большинство популярных платформ помимо Rasbperry Pi. 
+I especially recommend [Control Everything Community](https://github.com/ControlEverythingCommunity) — a great collection of examples for a huge number of chips, in several popular languages, and for most major platforms beyond Raspberry Pi. 
 
+I built a solution in Java using:
 
+- [Spring Boot](https://spring.io/projects/spring-boot) — needs no introduction (if it does, then Java most likely isn’t your thing)
+- [Telegram Bot Java Library](https://github.com/rubenlagus/TelegramBots) — easy and convenient bot library
+- [Pi4J :: Java I/O Library for Raspberry Pi](https://github.com/Pi4J/pi4j) — the Swiss Army knife for Raspberry Pi buses
+- [Control Everything Community / SHT31](https://github.com/ControlEverythingCommunity/SHT31/blob/master/Java/SHT31.java) — working with the sensor
 
-Я разработал решение на Java с использованием:
+### Running
 
-- [Spring Boot](https://spring.io/projects/spring-boot) — в представлении не нуждается (а если нуждается, то Java вам скорее всего совсем не близка)
-- [Telegram Bot Java Library](https://github.com/rubenlagus/TelegramBots) — удобная и простая библиотека для ботов
-- [Pi4J :: Java I/O Library for Raspberry Pi](https://github.com/Pi4J/pi4j) — швейцарский нож для шин Raspberry Pi
-- [Control Everything Community / SHT31](https://github.com/ControlEverythingCommunity/SHT31/blob/master/Java/SHT31.java) — работа с датчиком
-
-
-
-
-### Запускаем
-
-#### 1. Бинарник:
-- Загружаем [сборку](article/raspberry-pi-meteo/raspberry-pi-meteo-bot.jar) и копируем на Raspberry Pi
-- Устанавливаем Java
+#### 1. Binary:
+- Download the [build](article/raspberry-pi-meteo/raspberry-pi-meteo-bot.jar) and copy it to Raspberry Pi
+- Install Java
 
 	```
 	sudo apt-get update
 	sudo apt-get install -y galternatives openjdk-8-jdk
 	```
-- Запускаем, подставив в параметры ранее полученный Access Token бота в Telegram:
+- Run by inserting into the parameters the previously obtained Telegram bot Access Token:
 
 	```
 	java -jar raspberry-pi-meteo-bot.jar --telegram.bot.token=111111111:XXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	```
-- Открываем Telegram и наслаждаемся!
+- Open Telegram and enjoy!
 
-#### 2. Из исходников:
-- Копируем [репозиторий](https://github.com/axelrodvl/raspberry-pi-meteo-bot.git) с GitHub:
+#### 2. From Source:
+- Clone the [repository](https://github.com/axelrodvl/raspberry-pi-meteo-bot.git) from GitHub:
 	
 	```
 	git clone -b sht3x_only https://github.com/axelrodvl/raspberry-pi-meteo-bot.git
 	cd raspberry-pi-meteo-bot
 	```
-- В `src/main/resources/application.properties` можно при желании сразу вставить нужный `telegram.bot.token`
-- Собираем, копируем и запускаем:
+- In `src/main/resources/application.properties` you can optionally insert your `telegram.bot.token`
+- Build, copy, and run:
 
 	```
 	mvn clean install
@@ -168,7 +142,6 @@ Relative Humidity is : 27.78 %RH
 	ssh pi@address 'nohup java -jar raspberry-pi-meteo-bot-0.1.0.jar &> meteo-bot.out&'
 	```
 
-	В качестве бонуса — в master ветке репозитория бот расширен поддержкой датчика углекислого газа. 
+	As a bonus — in the master branch of the repository the bot also supports a carbon dioxide sensor. 
 
-
-Погодная станция готова, приятного использования!
+The weather station is ready, enjoy using it!
