@@ -1,26 +1,31 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import type { Locale } from "@/lib/i18n";
-import { getDictionary, locales } from "@/lib/i18n";
+import { getDictionary, isLocale, locales } from "@/lib/i18n";
+import { notFound } from "next/navigation";
 
 type LocaleLayoutProps = {
   children: ReactNode;
-  params: {
-    locale: Locale;
-  };
+  params: Promise<{
+    locale: string;
+  }>;
 };
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: LocaleLayoutProps) {
-  const { locale } = params;
-  const t = getDictionary(locale);
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    notFound();
+  }
+
+  const dictionary = getDictionary(locale);
 
   return (
     <div className="bg-[#040609] text-[#e4f1ff]">
@@ -30,7 +35,7 @@ export default function LocaleLayout({
             href={`/${locale}`}
             className="text-sm font-semibold uppercase tracking-[0.6em] text-emerald-200 transition hover:text-emerald-100"
           >
-            {t.header.title}
+            {dictionary.header.title}
           </Link>
           <nav className="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-white/40">
             {locales.map((code) => (
@@ -53,7 +58,7 @@ export default function LocaleLayout({
       <footer className="relative z-10 border-t border-white/10 bg-black/60/80 bg-opacity-60 backdrop-blur-sm">
         <div className="mx-auto max-w-4xl px-6 py-6 text-[10px] uppercase tracking-[0.4em] text-white/40">
           <p>© {new Date().getFullYear()} Vadim Axelrod</p>
-          <p className="mt-2 text-white/30">{t.footer.tagline}</p>
+          <p className="mt-2 text-white/30">{dictionary.footer.tagline}</p>
         </div>
       </footer>
     </div>

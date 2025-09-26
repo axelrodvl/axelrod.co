@@ -15,12 +15,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://axelrod.co"),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get("x-invoke-path") ?? "";
   const [, potentialLocale] = pathname.split("/");
   const locale = isLocale(potentialLocale) ? potentialLocale : defaultLocale;

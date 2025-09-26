@@ -1,5 +1,6 @@
 import { createElement } from "react";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithRef, ComponentPropsWithoutRef } from "react";
+import type { JSX } from "react/jsx-runtime";
 import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -63,9 +64,9 @@ function createComponents(baseImagePath: string): Components {
         {...props}
       />
     ),
-    code: (props) => <Code {...props} />, // biome-ignore lint/suspicious/noExplicitAny: React-markdown types include `any`
-    pre: (props) => <Pre {...props} />, // biome-ignore lint/suspicious/noExplicitAny: React-markdown types include `any`
-    img: (props) => <MarkdownImage basePath={baseImagePath} {...props} />, // biome-ignore lint/suspicious/noExplicitAny: React-markdown types include `any`
+    code: (props) => <Code {...props} />,
+    pre: (props) => <Pre {...props} />,
+    img: (props) => <MarkdownImage basePath={baseImagePath} {...props} />,
     table: (props) => (
       <div className="mt-6 overflow-x-auto">
         <Element
@@ -89,36 +90,35 @@ function createComponents(baseImagePath: string): Components {
   } satisfies Components;
 }
 
-type ElementProps<T extends keyof JSX.IntrinsicElements> = ComponentPropsWithoutRef<T> & {
+type ElementProps<T extends keyof JSX.IntrinsicElements> = {
   node?: unknown;
-};
+} & ComponentPropsWithoutRef<T>;
 
-function Heading<T extends keyof JSX.IntrinsicElements>({
-  tag,
-  className,
-  ...props
-}: ElementProps<T> & { tag: T }) {
-  return Element({ tag, className, ...props });
+function Heading<T extends keyof JSX.IntrinsicElements>(props: ElementProps<T> & { tag: T }) {
+  return Element(props);
 }
 
 function Element<T extends keyof JSX.IntrinsicElements>({
   tag,
   className,
-  ...props
+  ...restProps
 }: ElementProps<T> & { tag: T }) {
-  const { node: _unusedNode, className: incoming, ...rest } = props;
+  const {
+    node: _unusedNode,
+    className: incomingClassName,
+    ...rest
+  } = restProps as ElementProps<T> & { className?: string };
   void _unusedNode;
 
   return createElement(tag, {
     ...rest,
-    className: mergeClassNames(className, incoming),
+    className: mergeClassNames(className, incomingClassName),
   });
 }
 
-type CodeProps = ComponentPropsWithoutRef<"code"> & {
+type CodeProps = ComponentPropsWithRef<"code"> & {
   inline?: boolean;
   node?: unknown;
-  children: ReactNode;
 };
 
 function Code({ inline, className, children, node: _unusedNode, ...props }: CodeProps) {
@@ -152,7 +152,7 @@ type ImageProps = ElementProps<"img"> & {
 function MarkdownImage({ basePath, src, alt, className, node: _unusedNode, ...props }: ImageProps) {
   void _unusedNode;
 
-  const resolvedSrc = resolveImageSrc(src, basePath);
+  const resolvedSrc = resolveImageSrc(typeof src === "string" ? src : undefined, basePath);
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
