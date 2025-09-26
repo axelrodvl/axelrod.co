@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { formatDate } from "@/lib/utils";
 import { readArticles, readProjects } from "@/lib/content";
 
 export default function HomePage() {
@@ -136,10 +135,18 @@ export default function HomePage() {
                     href={`/article/${article.slug}`}
                     className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
                   >
-                    <div>
-                      <h3 className="text-lg font-semibold text-neutral-900">
-                        {article.title}
-                      </h3>
+                    <div className="space-y-2">
+                      <div>
+                        <time
+                          dateTime={article.publishedAt.toISOString()}
+                          className="text-sm font-medium uppercase tracking-wide text-neutral-500"
+                        >
+                          {article.date}
+                        </time>
+                        <h3 className="mt-1 text-lg font-semibold text-neutral-900">
+                          {article.title}
+                        </h3>
+                      </div>
                       {article.tagsList.length > 0 && (
                         <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-blue-700">
                           {article.tagsList.map((tag) => (
@@ -153,12 +160,21 @@ export default function HomePage() {
                         </ul>
                       )}
                     </div>
-                    <time
-                      dateTime={article.date}
-                      className="text-sm font-medium text-neutral-500"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden
+                      className="h-5 w-5 text-neutral-400"
                     >
-                      {formatDate(article.publishedAt)}
-                    </time>
+                      <path
+                        d="m9 18 6-6-6-6"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </Link>
                 </li>
               ))}

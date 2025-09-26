@@ -65,7 +65,7 @@ export function readArticles(): Article[] {
 
   return files
     .map(({ file, content }) => {
-      const { data } = matter(content);
+      const { data } = parseMarkdown(content);
       const publishedAt = parseDate(data.date ?? "01.01.1970");
 
       return {
@@ -88,7 +88,7 @@ export function readArticle(slug: string): ArticleDetail | null {
   }
 
   const raw = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(raw);
+  const { data, content } = parseMarkdown(raw);
   const publishedAt = parseDate(data.date ?? "01.01.1970");
 
   return {
@@ -119,5 +119,31 @@ function normaliseTags(input: unknown): string[] {
   }
 
   return [];
+}
+
+function parseMarkdown(raw: string) {
+  const trimmed = raw.trimStart();
+
+  if (trimmed.startsWith("---")) {
+    return matter(raw);
+  }
+
+  const delimiterIndex = raw.indexOf("\n---");
+
+  if (delimiterIndex === -1) {
+    return matter(`---\n---\n${raw}`);
+  }
+
+  const frontmatter = raw.slice(0, delimiterIndex).trim();
+  let remainderStart = delimiterIndex + 4; // skip "\n---"
+
+  while (remainderStart < raw.length && /\s/.test(raw[remainderStart])) {
+    remainderStart += 1;
+  }
+
+  const body = raw.slice(remainderStart);
+  const synthetic = `---\n${frontmatter}\n---\n${body}`;
+
+  return matter(synthetic);
 }
 
