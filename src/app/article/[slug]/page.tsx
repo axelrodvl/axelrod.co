@@ -1,0 +1,78 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import { Markdown } from "@/components/markdown";
+import { readArticle, readArticles } from "@/lib/content";
+import { formatDate } from "@/lib/utils";
+
+type ArticlePageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export function generateStaticParams() {
+  const articles = readArticles();
+  return articles.map((article) => ({ slug: article.slug }));
+}
+
+export function generateMetadata({ params }: ArticlePageProps): Metadata {
+  const article = readArticle(params.slug);
+
+  if (!article) {
+    return {
+      title: "Article not found — Vadim Axelrod",
+    } satisfies Metadata;
+  }
+
+  const description = article.frontmatter.tags
+    ? `Topics: ${article.frontmatter.tags}`
+    : "Article from Vadim Axelrod's personal site.";
+
+  return {
+    title: `${article.frontmatter.title} — Vadim Axelrod`,
+    description,
+    alternates: {
+      canonical: `/article/${article.slug}`,
+    },
+  } satisfies Metadata;
+}
+
+export default function ArticlePage({ params }: ArticlePageProps) {
+  const article = readArticle(params.slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  const { frontmatter, content, tagsList, publishedAt } = article;
+
+  return (
+    <article className="space-y-8">
+      <header className="space-y-3">
+        <Link href="/article" className="text-sm font-medium text-blue-600 hover:text-blue-500">
+          ← Back to articles
+        </Link>
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          {frontmatter.title}
+        </h1>
+        <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-500">
+          <time dateTime={frontmatter.date}>{formatDate(publishedAt)}</time>
+          {tagsList.length > 0 && (
+            <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-blue-700">
+              {tagsList.map((tag) => (
+                <li key={`${params.slug}-${tag}`} className="rounded-full bg-blue-50 px-3 py-1">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </header>
+
+      <Markdown baseImagePath={`/article/${params.slug}/`}>{content}</Markdown>
+    </article>
+  );
+}
+
