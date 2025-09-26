@@ -2,23 +2,33 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import type { Locale } from "@/lib/i18n";
+import { getDictionary, locales } from "@/lib/i18n";
 import { Markdown } from "@/components/markdown";
 import { readArticle, readArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 
+
 type ArticlePageProps = {
   params: {
+    locale: Locale;
     slug: string;
   };
 };
 
+
 export function generateStaticParams() {
-  const articles = readArticles();
-  return articles.map((article) => ({ slug: article.slug }));
+  return locales.flatMap((locale) =>
+    readArticles(locale).map((article) => ({
+      locale,
+      slug: article.slug,
+    })),
+  );
 }
 
+
 export function generateMetadata({ params }: ArticlePageProps): Metadata {
-  const article = readArticle(params.slug);
+  const article = readArticle(params.locale, params.slug);
 
   if (!article) {
     return {
@@ -34,32 +44,34 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
     title: `${article.frontmatter.title} — Vadim Axelrod`,
     description,
     alternates: {
-      canonical: `/article/${article.slug}`,
+      canonical: `/${params.locale}/article/${article.slug}`,
     },
   } satisfies Metadata;
 }
 
+
 export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = readArticle(params.slug);
+  const article = readArticle(params.locale, params.slug);
 
   if (!article) {
     notFound();
   }
 
   const { frontmatter, content, tagsList, publishedAt } = article;
+  const t = getDictionary(params.locale);
 
   return (
     <article className="space-y-8">
       <header className="space-y-4 border-b border-white/10 pb-6">
         <Link
-          href="/article"
+          href={`/${params.locale}/article`}
           className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
         >
-          ← Back to articles
+          {t.articleDetail.backToArticles}
         </Link>
         <div className="mt-4 space-y-3">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
-            {formatDate(publishedAt)}
+            {formatDate(publishedAt, params.locale === "ru" ? "ru-RU" : "en-GB")}
           </p>
           <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             {frontmatter.title}
@@ -76,8 +88,9 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         )}
       </header>
 
-      <Markdown baseImagePath={`/article/${params.slug}/`}>{content}</Markdown>
+      <Markdown baseImagePath={`/article/image/${params.slug}/`}>
+        {content}
+      </Markdown>
     </article>
   );
 }
-

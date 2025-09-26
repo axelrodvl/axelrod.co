@@ -35,8 +35,8 @@ export type ArticleDetail = {
   publishedAt: Date;
 };
 
-export function readProjects(): Project[] {
-  const filePath = path.join(PROJECTS_PATH, "projects.md");
+export function readProjects(locale: string): Project[] {
+  const filePath = path.join(PROJECTS_PATH, locale, "projects.md");
   const file = fs.readFileSync(filePath, "utf8");
   const entries = file
     .split(/\n---\n+/)
@@ -54,13 +54,13 @@ export function readProjects(): Project[] {
   });
 }
 
-export function readArticles(): Article[] {
+export function readArticles(locale: string): Article[] {
   const files = fs
-    .readdirSync(ARTICLES_PATH)
+    .readdirSync(path.join(ARTICLES_PATH, locale))
     .filter((file) => file.endsWith(".md"))
     .map((file) => ({
       file,
-      content: fs.readFileSync(path.join(ARTICLES_PATH, file), "utf8"),
+      content: fs.readFileSync(path.join(ARTICLES_PATH, locale, file), "utf8"),
     }));
 
   return files
@@ -80,8 +80,8 @@ export function readArticles(): Article[] {
     .sort((a, b) => Number(b.publishedAt) - Number(a.publishedAt));
 }
 
-export function readArticle(slug: string): ArticleDetail | null {
-  const fullPath = path.join(ARTICLES_PATH, `${slug}.md`);
+export function readArticle(locale: string, slug: string): ArticleDetail | null {
+  const fullPath = path.join(ARTICLES_PATH, locale, `${slug}.md`);
 
   if (!fs.existsSync(fullPath)) {
     return null;
