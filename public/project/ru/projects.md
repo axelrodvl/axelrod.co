@@ -5,6 +5,13 @@ tags: Vibe Coding, Cursor, LLM, React
 
 ---
 
+name: No GC WebSocket/LMAX Disruptor
+link: https://github.com/axelrodvl/websocket-client-with-disruptor-no-gc
+description: Демо WebSocket клиента для LMAX Disruptor с полным No GC
+tags: Java
+
+---
+
 name: L'Atelier de Macaron
 link: https://macaron.ge/
 description: Сайт пекарни с CRM и приёмом платежей
