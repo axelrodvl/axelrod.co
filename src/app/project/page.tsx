@@ -14,60 +14,88 @@ export default function ProjectsPage() {
   return (
     <div className="bg-[#040609] text-[#e4f1ff]">
       <div className="mx-auto min-h-screen max-w-4xl px-6 pb-16 pt-14 sm:px-12">
-        <div className="sticky top-[60px] z-20 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
-          <header className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h1 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
-                Projects
-              </h1>
-              <p className="mt-1 max-w-2xl text-xs uppercase tracking-[0.3em] text-white/40">
-                A mix of client work and personal initiatives across web platforms, automation, and integrations.
-              </p>
-            </div>
-            <Link
-              href="/"
-              className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-            >
-              ← Back to home
-            </Link>
-          </header>
-        </div>
+        <header className="border-b border-white/10 pb-8">
+          <Link
+            href="/"
+            className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
+          >
+            ← Back to home
+          </Link>
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            Projects
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/60">
+            A selection of client and personal initiatives spanning web platforms, automation, and integrations.
+          </p>
+        </header>
 
-        <main className="mt-10 space-y-6">
-          {projects.map((project) => (
-            <article
-              key={project.name}
-              className="rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
-            >
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="flex flex-col gap-4"
+        <main>
+          <div className="sticky top-[60px] z-20 mb-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
+                  Projects
+                </h2>
+              </div>
+              <Link
+                href="/"
+                className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
               >
-                <header>
-                  <h2 className="text-xl font-semibold text-white">
-                    {project.name}
-                  </h2>
-                </header>
-                <p className="text-sm leading-relaxed text-white/60">
-                  {project.description}
-                </p>
-                {project.tags.length > 0 && (
-                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
-                    {project.tags.map((tag) => (
-                      <li
-                        key={`${project.name}-${tag}`}
-                        className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </a>
-            </article>
+                ← Back to home
+              </Link>
+            </div>
+          </div>
+
+          <ul className="space-y-6">
+          {projects.map((project) => (
+              <li key={project.name}>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+                >
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="space-y-2">
+                      <h2 className="text-lg font-semibold text-white">
+                        {project.name}
+                      </h2>
+                      <p className="text-sm leading-relaxed text-white/60">
+                        {project.description}
+                      </p>
+                      {project.tags.length > 0 && (
+                        <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+                          {project.tags.map((tag) => (
+                            <li
+                              key={`${project.name}-${tag}`}
+                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      aria-hidden
+                      className="h-5 w-5 text-emerald-400/60 transition group-hover:text-emerald-200"
+                    >
+                      <path
+                        d="m9 18 6-6-6-6"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </a>
+              </li>
           ))}
+          </ul>
         </main>
       </div>
     </div>
