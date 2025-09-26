@@ -53,6 +53,14 @@ export default function RootLayout({
           </div>
         </header>
         <main className="relative z-10">{children}</main>
+        <footer className="relative z-10 border-t border-white/10 bg-black/60/80 bg-opacity-60 backdrop-blur-sm">
+          <div className="mx-auto max-w-5xl px-6 py-6 text-[10px] uppercase tracking-[0.4em] text-white/40 sm:px-12">
+            <p>© {new Date().getFullYear()} Vadim Axelrod</p>
+            <p className="mt-2 text-white/30">
+            gpt-5-codex created this entire website, and all it received in return was a fleeting mention in the footer.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
