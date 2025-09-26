@@ -43,7 +43,7 @@ export default function RootLayout({
       >
         <div className="noise" aria-hidden />
         <header className="sticky top-0 z-50 border-b border-white/10 bg-black/60/80 bg-opacity-60 backdrop-blur-sm">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 text-[#e4f1ff] sm:px-12">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 text-[#e4f1ff]">
             <Link
               href="/"
               className="text-sm font-semibold uppercase tracking-[0.6em] text-emerald-200 transition hover:text-emerald-100"
@@ -54,7 +54,7 @@ export default function RootLayout({
         </header>
         <main className="relative z-10">{children}</main>
         <footer className="relative z-10 border-t border-white/10 bg-black/60/80 bg-opacity-60 backdrop-blur-sm">
-          <div className="mx-auto max-w-5xl px-6 py-6 text-[10px] uppercase tracking-[0.4em] text-white/40 sm:px-12">
+          <div className="mx-auto max-w-5xl px-6 py-6 text-[10px] uppercase tracking-[0.4em] text-white/40">
             <p>© {new Date().getFullYear()} Vadim Axelrod</p>
             <p className="mt-2 text-white/30">
             gpt-5-codex created this entire website, and all it received in return was a fleeting mention in the footer.

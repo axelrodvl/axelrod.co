@@ -13,7 +13,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="bg-[#040609] text-[#e4f1ff]">
-      <div className="mx-auto min-h-screen max-w-4xl px-6 pb-16 pt-14 sm:px-12">
+      <div className="mx-auto min-h-screen max-w-5xl px-6 pb-6 pt-6">
         <header className="border-b border-white/10 pb-8">
           <Link
             href="/"
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
         </header>
 
         <main>
-          <div className="sticky top-[60px] z-20 mb-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
+          <div className="sticky top-[60px] z-20 mb-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
@@ -46,7 +46,7 @@ export default function ProjectsPage() {
             </div>
           </div>
 
-          <ul className="space-y-6">
+          <ul className="space-y-5">
           {projects.map((project) => (
               <li key={project.name}>
                 <a

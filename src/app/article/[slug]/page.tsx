@@ -57,7 +57,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         >
           ← Back to articles
         </Link>
-        <div className="space-y-3">
+        <div className="mt-4 space-y-3">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
             {formatDate(publishedAt)}
           </p>

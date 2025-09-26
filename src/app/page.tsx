@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <div className="relative bg-[#040609] text-[#e4f1ff]">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/40 via-sky-500/60 to-emerald-500/40" aria-hidden />
-      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-16 pt-14 sm:px-12">
+      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-6 pt-6">
         <header className="flex flex-col gap-6 border-b border-white/10 pb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
@@ -54,9 +54,9 @@ export default function HomePage() {
           </dl>
         </header>
 
-        <main className="mt-6 flex flex-1 flex-col gap-16">
+        <main className="mt-4 flex flex-1 flex-col gap-12">
           <section className="relative">
-            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
+            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
               <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
                 Projects
               </h2>
@@ -68,7 +68,7 @@ export default function HomePage() {
                 View all projects
               </Link>
             </div>
-            <ul className="mt-4 grid gap-6 md:grid-cols-2">
+            <ul className="mt-3 grid gap-5 md:grid-cols-2">
               {projects.map((project) => (
                 <li
                   key={project.name}
@@ -105,7 +105,7 @@ export default function HomePage() {
           </section>
 
           <section className="relative">
-            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
+            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
               <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
                 Articles
               </h2>
@@ -117,7 +117,7 @@ export default function HomePage() {
                 Browse all articles
               </Link>
             </div>
-            <ul className="mt-4 overflow-hidden rounded-3xl border border-white/10 bg-black/30">
+            <ul className="mt-3 overflow-hidden rounded-3xl border border-white/10 bg-black/30">
               {articles.map((article) => (
                 <li key={article.slug} className="border-b border-white/10 last:border-none">
                   <Link
