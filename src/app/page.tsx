@@ -7,55 +7,48 @@ export default function HomePage() {
   const articles = readArticles();
 
   return (
-    <div className="bg-neutral-50 text-neutral-900">
-      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-16 pt-12 sm:px-10">
-        <header className="flex flex-col gap-6 border-b border-neutral-200 pb-12 sm:flex-row sm:items-end sm:justify-between">
+    <div className="relative bg-[#040609] text-[#e4f1ff]">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/40 via-sky-500/60 to-emerald-500/40" aria-hidden />
+      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-16 pt-14 sm:px-12">
+        <header className="flex flex-col gap-6 border-b border-white/10 pb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-emerald-300/80">status: online</p>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
               Vadim Axelrod – Software Engineer
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-600">
-              Building reliable solutions with TypeScript, Java, and modern web
-              platforms. I enjoy shipping products, optimizing developer
-              workflows, and writing about engineering practices.
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
+              Building reliable solutions with TypeScript, Java, and modern web platforms. I enjoy
+              shipping products, optimizing developer workflows, and writing about engineering practices.
             </p>
           </div>
 
-          <dl className="grid gap-4 text-sm text-neutral-600 sm:text-right">
-            <div>
-              <dt className="font-medium text-neutral-900">GitHub</dt>
+          <dl className="grid gap-4 text-xs uppercase tracking-[0.3em] text-white/40 sm:text-right">
+            <div className="transition hover:text-emerald-300/90">
+              <dt>github</dt>
               <dd>
-                <a
-                  href="https://github.com/axelrodvl"
-                  className="text-blue-600 transition hover:text-blue-500"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="https://github.com/axelrodvl" target="_blank" rel="noreferrer" className="text-sm tracking-normal text-white/80">
                   github.com/axelrodvl
                 </a>
               </dd>
             </div>
-            <div>
-              <dt className="font-medium text-neutral-900">Email</dt>
+            <div className="transition hover:text-emerald-300/90">
+              <dt>e-mail</dt>
               <dd>
-                <a
-                  href="mailto:vadim@axelrod.co"
-                  className="text-blue-600 transition hover:text-blue-500"
-                >
+                <a href="mailto:vadim@axelrod.co" className="text-sm tracking-normal text-white/80">
                   vadim@axelrod.co
                 </a>
               </dd>
             </div>
-            <div>
-              <dt className="font-medium text-neutral-900">CV</dt>
+            <div className="transition hover:text-emerald-300/90">
+              <dt>gpg/cv</dt>
               <dd>
                 <a
                   href="/cv/CV-Axelrod_Vadim.pdf"
-                  className="text-blue-600 transition hover:text-blue-500"
                   target="_blank"
                   rel="noreferrer"
+                  className="text-sm tracking-normal text-white/80"
                 >
-                  Download PDF
+                  CV-Axelrod_Vadim.pdf
                 </a>
               </dd>
             </div>
@@ -65,13 +58,13 @@ export default function HomePage() {
         <main className="mt-12 flex flex-1 flex-col gap-16">
           <section>
             <div className="flex flex-wrap items-center gap-4">
-              <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+              <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
                 Projects
               </h2>
-              <span className="hidden h-px flex-1 bg-neutral-200 sm:block" aria-hidden />
+              <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden />
               <Link
                 href="/project"
-                className="text-sm font-medium text-blue-600 transition hover:text-blue-500"
+                className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
               >
                 View all projects
               </Link>
@@ -80,7 +73,7 @@ export default function HomePage() {
               {projects.map((project) => (
                 <li
                   key={project.name}
-                  className="group rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-neutral-300 hover:shadow-lg"
+                  className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:-translate-y-1 hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
                 >
                   <a
                     href={project.link}
@@ -88,26 +81,26 @@ export default function HomePage() {
                     rel="noreferrer"
                     className="flex h-full flex-col"
                   >
-                    <h3 className="text-lg font-semibold text-neutral-900">
+                    <h3 className="text-lg font-semibold text-white">
                       {project.name}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                    <p className="mt-3 text-sm leading-relaxed text-white/60">
                       {project.description}
                     </p>
                     {project.tags.length > 0 && (
-                      <ul className="mt-4 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-blue-700">
+                      <ul className="mt-4 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
                         {project.tags.map((tag) => (
                           <li
                             key={`${project.name}-${tag}`}
-                            className="rounded-full bg-blue-50 px-3 py-1"
+                            className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
                           >
                             {tag}
                           </li>
                         ))}
                       </ul>
                     )}
-                    <span className="mt-auto pt-6 text-sm font-semibold text-blue-600 transition group-hover:text-blue-500">
-                      Visit project →
+                    <span className="mt-auto pt-6 text-sm font-semibold text-emerald-300/90 transition group-hover:text-emerald-200">
+                      Visit project ⇱
                     </span>
                   </a>
                 </li>
@@ -117,42 +110,42 @@ export default function HomePage() {
 
           <section>
             <div className="flex flex-wrap items-center gap-4">
-              <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
+              <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
                 Articles
               </h2>
-              <span className="hidden h-px flex-1 bg-neutral-200 sm:block" aria-hidden />
+              <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden />
               <Link
                 href="/article"
-                className="text-sm font-medium text-blue-600 transition hover:text-blue-500"
+                className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
               >
                 Browse all articles
               </Link>
             </div>
-            <ul className="mt-6 overflow-hidden rounded-3xl border border-neutral-200 bg-white">
+            <ul className="mt-6 overflow-hidden rounded-3xl border border-white/10 bg-black/30">
               {articles.map((article) => (
-                <li key={article.slug} className="border-b border-neutral-200 last:border-none">
+                <li key={article.slug} className="border-b border-white/10 last:border-none">
                   <Link
                     href={`/article/${article.slug}`}
-                    className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
+                    className="flex flex-col gap-3 border-white/10 bg-black/40 px-6 py-5 transition hover:border-emerald-400/40 hover:bg-black/60 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="space-y-2">
                       <div>
                         <time
                           dateTime={article.publishedAt.toISOString()}
-                          className="text-sm font-medium uppercase tracking-wide text-neutral-500"
+                          className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
                         >
                           {article.date}
                         </time>
-                        <h3 className="mt-1 text-lg font-semibold text-neutral-900">
+                        <h3 className="mt-1 text-lg font-semibold text-white">
                           {article.title}
                         </h3>
                       </div>
                       {article.tagsList.length > 0 && (
-                        <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-blue-700">
+                        <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
                           {article.tagsList.map((tag) => (
                             <li
                               key={`${article.slug}-${tag}`}
-                              className="rounded-full bg-blue-50 px-3 py-1"
+                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
                             >
                               {tag}
                             </li>
@@ -165,7 +158,7 @@ export default function HomePage() {
                       viewBox="0 0 24 24"
                       fill="none"
                       aria-hidden
-                      className="h-5 w-5 text-neutral-400"
+                      className="h-5 w-5 text-emerald-400/60 transition group-hover:text-emerald-200"
                     >
                       <path
                         d="m9 18 6-6-6-6"
@@ -182,8 +175,8 @@ export default function HomePage() {
           </section>
         </main>
 
-        <footer className="mt-20 border-t border-neutral-200 pt-6 text-sm text-neutral-500">
-          <p>© {new Date().getFullYear()} Vadim Axelrod. All rights reserved.</p>
+        <footer className="mt-20 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.4em] text-white/40">
+          <p>© {new Date().getFullYear()} Vadim Axelrod · compiled successfully</p>
         </footer>
       </div>
     </div>

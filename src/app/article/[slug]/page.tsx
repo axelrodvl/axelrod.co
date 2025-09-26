@@ -50,25 +50,30 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <article className="space-y-8">
-      <header className="space-y-3">
-        <Link href="/article" className="text-sm font-medium text-blue-600 hover:text-blue-500">
-          ← Back to articles
+      <header className="space-y-4 border-b border-white/10 pb-6">
+        <Link
+          href="/article"
+          className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
+        >
+          ← Back to archive
         </Link>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {frontmatter.title}
-        </h1>
-        <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-500">
-          <time dateTime={frontmatter.date}>{formatDate(publishedAt)}</time>
-          {tagsList.length > 0 && (
-            <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-blue-700">
-              {tagsList.map((tag) => (
-                <li key={`${params.slug}-${tag}`} className="rounded-full bg-blue-50 px-3 py-1">
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          )}
+        <div className="space-y-3">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
+            {formatDate(publishedAt)}
+          </p>
+          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            {frontmatter.title}
+          </h1>
         </div>
+        {tagsList.length > 0 && (
+          <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+            {tagsList.map((tag) => (
+              <li key={`${params.slug}-${tag}`} className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
       </header>
 
       <Markdown baseImagePath={`/article/${params.slug}/`}>{content}</Markdown>

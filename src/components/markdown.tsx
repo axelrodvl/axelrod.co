@@ -21,45 +21,45 @@ export function Markdown({ children, baseImagePath = "" }: MarkdownProps) {
 
 function createComponents(baseImagePath: string): Components {
   return {
-    h1: (props) => <Heading tag="h1" className="text-3xl font-semibold tracking-tight" {...props} />, // biome-ignore lint/suspicious/noExplicitAny: React-markdown types include `any`
+    h1: (props) => <Heading tag="h1" className="text-3xl font-semibold tracking-tight text-white" {...props} />, // biome-ignore lint/suspicious/noExplicitAny: React-markdown types include `any`
     h2: (props) => (
       <Heading
         tag="h2"
-        className="mt-10 border-b border-neutral-200 pb-2 text-2xl font-semibold tracking-tight"
+        className="mt-10 border-b border-white/10 pb-2 text-2xl font-semibold tracking-tight text-white"
         {...props}
       />
     ),
     h3: (props) => (
       <Heading
         tag="h3"
-        className="mt-8 text-xl font-semibold tracking-tight text-neutral-900"
+        className="mt-8 text-xl font-semibold tracking-tight text-emerald-200"
         {...props}
       />
     ),
     h4: (props) => (
       <Heading
         tag="h4"
-        className="mt-6 text-lg font-semibold tracking-tight text-neutral-900"
+        className="mt-6 text-lg font-semibold tracking-tight text-emerald-200/80"
         {...props}
       />
     ),
-    p: (props) => <Element tag="p" className="mt-5 text-base leading-8 text-neutral-700 first:mt-0" {...props} />,
+    p: (props) => <Element tag="p" className="mt-5 text-base leading-8 text-white/70 first:mt-0" {...props} />,
     a: (props) => (
       <Element
         tag="a"
-        className="font-medium text-blue-600 underline-offset-4 hover:text-blue-500 hover:underline"
+        className="font-medium text-emerald-300 underline-offset-4 hover:text-emerald-200 hover:underline"
         target="_blank"
         rel="noreferrer"
         {...props}
       />
     ),
-    ul: (props) => <Element tag="ul" className="mt-5 list-disc space-y-2 pl-6 marker:text-neutral-400" {...props} />,
-    ol: (props) => <Element tag="ol" className="mt-5 list-decimal space-y-2 pl-6 marker:text-neutral-400" {...props} />,
-    li: (props) => <Element tag="li" className="text-base leading-7 text-neutral-700" {...props} />,
+    ul: (props) => <Element tag="ul" className="mt-5 list-disc space-y-2 pl-6 marker:text-emerald-400/60" {...props} />,
+    ol: (props) => <Element tag="ol" className="mt-5 list-decimal space-y-2 pl-6 marker:text-emerald-400/60" {...props} />,
+    li: (props) => <Element tag="li" className="text-base leading-7 text-white/70" {...props} />,
     blockquote: (props) => (
       <Element
         tag="blockquote"
-        className="mt-6 border-l-4 border-blue-100 bg-blue-50/60 px-5 py-3 text-base italic text-neutral-700"
+        className="mt-6 border-l-2 border-emerald-400/40 bg-emerald-500/10 px-5 py-3 text-base italic text-white/70"
         {...props}
       />
     ),
@@ -128,10 +128,10 @@ function Code({ inline, className, children, node: _unusedNode, ...props }: Code
     return (
       <code
         {...props}
-        className={mergeClassNames(
-          "rounded bg-neutral-200 px-1 py-0.5 text-sm font-medium text-neutral-800",
-          className,
-        )}
+          className={mergeClassNames(
+            "rounded bg-black px-1 py-0.5 text-sm font-medium text-emerald-300",
+            className,
+          )}
       >
         {children}
       </code>
@@ -162,7 +162,7 @@ function MarkdownImage({ basePath, src, alt, className, node: _unusedNode, ...pr
       alt={alt ?? ""}
       loading="lazy"
       className={mergeClassNames(
-        "mt-6 w-full rounded-2xl border border-neutral-200 bg-neutral-100 object-cover",
+        "mt-6 w-full rounded-2xl border border-white/10 bg-black/40 object-cover",
         className,
       )}
     />
@@ -180,7 +180,7 @@ function Pre({ className, node: _unusedNode, ...props }: PreProps) {
     <pre
       {...props}
       className={mergeClassNames(
-        "mt-6 overflow-x-auto rounded-2xl bg-neutral-900 p-5 text-sm text-neutral-100 shadow-inner",
+        "mt-6 overflow-x-auto rounded-2xl border border-emerald-400/30 bg-black/60 p-5 text-sm text-emerald-100 shadow-[0_0_40px_rgba(16,185,129,0.08)]",
         className,
       )}
     />
