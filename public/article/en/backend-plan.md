@@ -1,78 +1,77 @@
-title: План вхождения в backend разработку
+title: Plan for Entering Backend Development
 date: 29.01.2021
-tags: Разработка, Backend, Обучение
+tags: Development, Backend, Learning
 
 ---
 
-Один мой друг с инженерным образованием спросил недавно, с чего начать изучение программирования с нуля и сразу начал узнавать за многочисленные курсы.
-В них у меня опыта нет, за исключением сухих официальных сертификаций за авторством IBM и Red Hat.
-Расписал по памяти собственный путь, который, разумеется, очень личный.
+A friend of mine with an engineering background recently asked where to start learning programming from scratch and immediately began looking into numerous courses.
+I don’t have experience with them, except for dry official certifications authored by IBM and Red Hat.
+I wrote out from memory my own path, which, of course, is very personal.
 
-**Интересно, насколько его сокращают курсы и сколько это все займет через них.**
+**I wonder how much courses shorten it and how long it all takes through them.**
 
-### Этап 1 — Войти в IT
-- Читаешь любую популярную книгу по интересующему языку (в моем случае это “Философия Java” Брюса Эккеля). Учишь классическое императивное программирование — функции, базовые типы данных, циклы, ветвление (if/else), рекурсию, парсинг ввода из терминала, форматирование вывода. Переходишь к структурам данных (массивы, стек, очередь, связанные списки, описание графов на списках и матрицах связности). При наличии управления памятью в языке (C и Go, например), учишь работу с указателями (передача аргументов по ссылке/по значению).
-- Практикуешься на математических задачах (например, ACMP), параллельно привыкая к синтаксису, учишься пользоваться IDE и дебагом.
-- Читаешь книгу далее, учишь ООП (полиморфизм, инкапсуляция, наследование), пробуешь работу с классами и методами.
-- Делаешь задачи на работу с классами и методами (наследование в первую очередь, дженерики и параметризация во вторую). Конструкторы, getter/setter, скрытие реализации (приватные и публичные поля и методы).
-- Читаешь книгу далее, учишь реализацию коллекций в языке (списки, хэш-таблицы, множества). Читаешь исходный код интерфейсов коллекций, читаешь исходный код имплементаций этих интерфейсов из стандартной библиотеки (для Java это List, Map, Set и ArrayList/LinkedList, HashMap/LinkedHashMap, HashSet соответственно). Желательно переписать эти исходники самостоятельно слово в слово.
-- Делаешь задачи на оперирование данными (сортировка, фильтрация, добавление и удаление), замеряешь скорость работы в зависимости от выбора структуры данных. Для языков с библиотекой с поточной обработкой коллекций (stream, например, в Java и JavaScript) повторяешь все те же задачи с использованием этих библиотек.
-- Пишешь первый pet project. Например, читаешь самую базовые документацию по какому-нибудь простому протоколу типа HTTP, пишешь простой веб-сервер с GET/POST на голых сокетах, открываешь страничку в браузере с собственного сервера — радуешься.
-- Понимаешь, что счастливой жизни без версионирования нет — идешь учить git, заводишь себе GitHub. Учишь базовые команды git — status, add, commit, stash, checkout, push, pull, blame. Учишь интерфейс IDE или утилиты для работы с git — SourceTree, например.
+### Stage 1 — Get into IT
+- Read any popular book on the language of interest (in my case it’s “Thinking in Java” by Bruce Eckel). Learn classical imperative programming — functions, basic data types, loops, branching (if/else), recursion, parsing input from the terminal, formatting output. Move on to data structures (arrays, stack, queue, linked lists, describing graphs using adjacency lists and matrices). If the language has manual memory management (C and Go, for example), learn working with pointers (pass-by-reference/pass-by-value). 
+- Practice on math problems (for example, ACMP), while getting used to the syntax, and learn to use an IDE and the debugger. 
+- Keep reading the book and learn OOP (polymorphism, encapsulation, inheritance); try working with classes and methods. 
+- Do exercises involving classes and methods (inheritance first, generics and parameterization second). Constructors, getters/setters, hiding implementation details (private and public fields and methods). 
+- Keep reading the book and learn the implementation of collections in the language (lists, hash tables, sets). Read the source code of the collection interfaces, read the source code of the implementations of these interfaces from the standard library (for Java, these are List, Map, Set and ArrayList/LinkedList, HashMap/LinkedHashMap, HashSet respectively). Ideally, rewrite these sources yourself word for word. 
+- Do tasks operating on data (sorting, filtering, adding and deleting), measure performance depending on the chosen data structure. For languages with a streaming/functional collection library (stream, for example, in Java and JavaScript), repeat all the same tasks using these libraries. 
+- Write the first pet project. For example, read the most basic documentation on some simple protocol like HTTP, write a simple web server with GET/POST on raw sockets, open a page in the browser from your own server — feel happy. 
+- Realize there is no happy life without version control — go learn git and create a GitHub account. Learn basic git commands — status, add, commit, stash, checkout, push, pull, blame. Learn the IDE interface or a utility for working with git — SourceTree, for example. 
 
-### Этап 2 — почти Junior
-- Понимаешь, что ты не знаешь ничего. Идешь и читаешь многопоточность (синхронизацию, volatile, потокобезопасность, пулы, конкурентные структуры данных), I/O (ввод/вывод из stdin/stdout, файлов, сокетов и т.п.), работу с памятью или принципы работы GC (в зависимости от языка), лямбды (функциональные возможности языка), профилирование запущенных приложений (увидеть, как именно и зачем запущенное приложение утилизирует CPU, память и ввод-вывод).
-- Переписываешь свой веб-сервер из pet project, чтобы он мог работать больше чем с одним запросом.
-- Начинаешь учить какой-нибудь популярный фреймворк — быстро выясняешь, что ты ни разу не подключал ни одну зависимость и вообще собирал проект без понимания, что это и как работает. Начинаешь разбираться с зависимостями, репозиториями (Maven, npm, NuGet), версионированием (SemVer) и системами сборки.
-- Разбираешься с зависимостями, переписываешь свой веб-сервер с готовыми библиотеками, оборачиваешь в систему сборки.
-- Продолжаешь учить фреймворк. Разбирешься с IoC/DI (Inversion of Control/Dependency Injection), аннотациями в языке и рефлексией (при наличии). Разбираешься с логированием и параметризацией. Разбираешься со стеком для работы с REST.
-- Пишешь заново веб-сервер с использованием DI контейнера и обработкой запросов средствами фреймворка.
-- Понимаешь, что обычно на вход приходит не строка и не массив байт, а JSON или XML, а парсить ввод вручную, токенизируя строчки — путь в ад. Учишь спецификации JSON и XML, по верхам проходишь по JSON Schema и XSD/XSLT. Узнаешь про плагины для генерации объектов сериализации/десериализации.
-- Добавляешь в сборку плагины для кодогенерации DTO из спецификаций.
-- Продолжая разбираться с фреймворком, изучаешь разные развлечения вроде аспектов, реактивного программирования, асинхронной обработки задач.
-- Пробуешь добавить все это в pet project, половину выбрасываешь по итогу.
+### Stage 2 — Almost Junior
+- Realize you know nothing. Go read about multithreading (synchronization, volatile, thread safety, pools, concurrent data structures), I/O (input/output from stdin/stdout, files, sockets, etc.), memory management or GC principles (depending on the language), lambdas (functional capabilities of the language), and profiling running applications (to see exactly how and why a running application utilizes CPU, memory, and I/O). 
+- Rewrite your pet project web server so it can handle more than one request. 
+- Start learning some popular framework — quickly discover that you’ve never connected a single dependency and have been building a project without understanding what it is and how it works. Begin to figure out dependencies, repositories (Maven, npm, NuGet), versioning (SemVer), and build systems. 
+- Sort out dependencies, rewrite your web server with ready-made libraries, wrap it in a build system. 
+- Keep learning the framework. Understand IoC/DI (Inversion of Control/Dependency Injection), annotations in the language, and reflection (if available). Figure out logging and configuration. Learn the stack for working with REST. 
+- Write the web server anew using a DI container and request handling via the framework’s tools. 
+- Realize that input is usually not a string or a byte array but JSON or XML, and that parsing input manually by tokenizing strings is the road to hell. Learn the JSON and XML specifications, skim JSON Schema and XSD/XSLT. Learn about plugins for generating serialization/deserialization objects. 
+- Add plugins to the build for generating DTOs from specifications. 
+- As you continue exploring the framework, study various fun things like aspects, reactive programming, and asynchronous task processing. 
+- Try adding all this to your pet project, end up throwing half of it away. 
 
-### Этап 3 — крепкий Junior
-- Выясняешь, что данные хранить негде. Идешь читать про базы данных, протоколы работы с ними, SQL/NoSQL, удивляешься количеству, берешь первую попавшуюся (для начала реляционную). Разбираешься с persistence в своем языке, концепцией ORM, сериализацией/десериализацией и маппингом типов данных между БД и языком, транзакционностью и уровнями изоляции, нормализацией данных в структуры, работой с ключами (ID, primary key, foreign key) и каскадными связями (один к одному, один ко многим, многие к одному). Разбираешься с механизмами индексации данных, играешься с EXPLAIN и построениями планов запросов. Разбираешься с кэшированием и возможными уровнями.
-- Разворачиваешь локально базу данных, пробуешь добавить в проект сохранение данных.
-- Выясняешь, что существуют еще объектные базы данных (Mongo), различные key-value (Redis, memcached), графовые (Neo4J) и так далее.
-- Пробуешь поиграться с ними, пробуешь шардирование и репликацию данных.
-- Выясняешь, что приложению нужно взаимодействовать с внешним миром. Читаешь протоколы (REST, HTTP, Kafka и т.п.), открываешь для себя контракты веб-сервисов (OpenAPI/Swagger/RESTDocs), открываешь для себя очереди сообщений.
-- Ставишь ActiveMQ или Kafka, разбираешься с очередями сообщений. Добавляешь документацию веб-сервиса в pet project.
+### Stage 3 — Solid Junior
+- Discover that there’s nowhere to store data. Go read about databases, their communication protocols, SQL/NoSQL, be amazed by the variety, pick the first one you come across (start with a relational one). Understand persistence in your language, the ORM concept, serialization/deserialization and mapping of data types between the DB and the language, transactions and isolation levels, normalization of data into structures, working with keys (ID, primary key, foreign key) and cascading relationships (one-to-one, one-to-many, many-to-one). Understand data indexing mechanisms, play with EXPLAIN and building query plans. Learn about caching and possible layers. 
+- Spin up a local database, try adding data persistence to the project. 
+- Find out there are also object databases (Mongo), various key-value stores (Redis, memcached), graph databases (Neo4J), and so on. 
+- Try playing with them, experiment with sharding and data replication. 
+- Realize that the application needs to interact with the outside world. Read about protocols (REST, HTTP, Kafka, etc.), discover web service contracts (OpenAPI/Swagger/RESTDocs), and message queues. 
+- Install ActiveMQ or Kafka, learn about message queues. Add web service documentation to the pet project. 
 
-### Этап 4 — Middle
-- Выясняешь, что твой pet project выглядит уже совсем плохо и надо все переделывать. Учишь рефакторинг, читаешь дядю Боба (Clean Code, Clean Coder), паттерны проектирования (GoF — Gang of four), принципы SOLID, концепты best practice и code smell, ставишь статический анализатор кода (SonarQube), снова начинаешь учиться кодить.
-- Переписываешь свой pet project красиво.
-- Задачи множатся и ширятся. Нужно где-то внятно записывать. Учишь Trello/Notion/JIRA, начинаешь трекать время (Toggl, например), ставишь себе эстимейты, не укладываешься, начинаешь расписывать все.
-- Понимаешь, что нюансов в проекте уже много. Начинаешь документировать все, читаешь Markdown и ADoc, делаешь себе README.md.
-- Понимаешь, что проект на соседней машине магически не работает и падает. Внесение изменений все ломает. Учишь тестирование кода, глушение зависимостей, поднятие тестового окружения, TDD и BDD.
-- Понимаешь, что ничего из уже написанного внятно в тесты не обернуть. Снова начинаешь рефакторить. Бросаешь, пишешь заново по TDD, пробуешь добиться test coverage.
-- Хочешь поставить свой pet project на сервер и не понимаешь, как. Идешь учить Linux, менеджеры пакетов, процессы, базовые syscall’ы, устройство системы инциализации (systemd), лимиты ядры (дескрипторы), файловые системы.
-- Начинаешь разбираться в системном софте и bash. Пишешь скрипты на bash, ставишь сервисы в systemd, разбираешься с конфигами системного софта (например, с nginx).
+### Stage 4 — Middle
+- Realize that your pet project now looks pretty bad and needs a full overhaul. Learn refactoring, read Uncle Bob (Clean Code, The Clean Coder), design patterns (GoF — Gang of Four), SOLID principles, best practices and code smells, set up a static code analyzer (SonarQube), and start learning to code all over again. 
+- Rewrite your pet project cleanly. 
+- Tasks multiply and expand. They need to be recorded properly somewhere. Learn Trello/Notion/JIRA, start time tracking (Toggl, for example), make estimates, miss them, start breaking everything down. 
+- Realize there are already many nuances in the project. Start documenting everything, read Markdown and ADoc, create a README.md. 
+- Realize that the project magically doesn’t work and crashes on the neighboring machine. Changes break everything. Learn code testing, mocking dependencies, spinning up a test environment, TDD and BDD. 
+- Realize that nothing already written can be neatly wrapped in tests. Start refactoring again. Give up, rewrite from scratch using TDD, try to achieve test coverage. 
+- Want to deploy your pet project to a server but don’t understand how. Go learn Linux, package managers, processes, basic syscalls, the init system (systemd), kernel limits (file descriptors), and file systems. 
+- Start figuring out system software and bash. Write bash scripts, set up services in systemd, understand configuration of system software (for example, nginx). 
 
-### Этап 5 — крепкий Middle
-- Выясняешь, что есть безопасность. Нужно шифровать трафик и ограничивать доступ. Учишь ролевые модели, разбираешься с TLS (Диффи-Хеллман, удостоверяющие центры, цепочки подтверждений, электронная подпись). Учишь в своем фреймворке заведение ролей, создание сертификатов, мучаешься с self signed.
-- Дописываешь конфигурируемую ролевую модель на свой сервис, добавляешь TLS.
-- Начинаешь поддержку какого-нибудь проекта в production. Ловишь сотни странных багов.
-- Учишься быть богом grep и tail вместе с regexp и прокачиваешь скилл оракула по переписке.
-- Понимаешь, что регулярная сборка проекта начинает отнимать часы жизни. Изучаешь CI/CD, разбираешься с GitHub Actions/GitLab CI/Jenkins/Bamboo/TeamCity (на выбор).
-- Поднимаешь себе pipeline сборки с регулярными прогонами тестов, статическим анализатором кода (баги, безопасность и code smell), сборкой релизов и выкладкой в репозиторий. Добавляешь pipeline для установки на сервер.
+### Stage 5 — Strong Middle
+- Discover security. Traffic must be encrypted and access restricted. Learn role models, dig into TLS (Diffie–Hellman, certificate authorities, chains of trust, digital signatures). Learn how to configure roles in your framework, create certificates, and struggle with self-signed ones. 
+- Implement a configurable role model for your service, add TLS. 
+- Start maintaining some project in production. Catch hundreds of weird bugs. 
+- Learn to be a god of grep and tail along with regexps, and level up the oracle skill for written communication. 
+- Realize that regular project builds start eating up hours of life. Study CI/CD, learn GitHub Actions/GitLab CI/Jenkins/Bamboo/TeamCity (pick one). 
+- Set up a build pipeline with regular test runs, static code analysis (bugs, security, and code smells), release builds, and publishing to a repository. Add a pipeline for server deployment. 
 
-### Этап 6 — Senior
-- Понимаешь, что жить с зоопарком БД, очередями сообщений и прочим софтом прямо на машине нормально нельзя, к тому же это непереносимо. Учишь контейниризацию, начинаешь поднимать свой pet project на Docker, а окружение в Compose. Разбираешься с устройством контейнеров (UnionFS, cgroups, namespaces, SELinux) и премудростями для работы с ними (монтирование дисков, подключение к контейнеру, сеть, репозитории, базовые образы).
-- Пишешь первый Dockerfile и docker-compose, упираешься в кучу странностей. Побеждаешь. Публикуешь первый артефакт в Docker Hub.
-- Выясняешь, что монолит — не модно, а микросервисы — модно. Читаешь Мартина Фаулера. Начинаешь погружаться в архитектуру. Учишь концепцию The Twelve-Factor App.
-- Дробишь свой проект на микросервисы, делая один большой распределенный монолит.
-- Выясняешь, что Docker в голом виде все равно никакой, разбираешься с оркестрацией контейнеров (Kubernetes). Учишь конфигурацию выделения ресурсов и поднятия сервисов после падения.
-- Начинаешь ставить все на готовый SaaS и кайфовать с красоты, ругаясь на странности и косяки.
-- Понимаешь, что не представляешь, что теперь происходит в проекте. Изучаешь health check, трассировку запросов между сервисами, сбор событий.
-- Добавляешь себе подсистему трассировки (Zipkin) и обработки логов (ELK).
-- Для проекта нужны фронты. Учишься работать с HTML, CSS, JavaScript, npm, Yarn, SCSS/SASS, Autoprefixer, ECMAScript, Webassembly, Webpack, Browserify, nginx, Node.js, Express.js, AngularJS, React, Bootstrap, React Bootstrap, FontAwesome, CDN, TypeScript, V8, MEAN/MERN, MongoDB, событийно-ориентированным программированием, реактивным программированием, изучаешь проблему C10k/C10M…
-- Пишешь фронты…
+### Stage 6 — Senior
+- Realize that living with a zoo of databases, message queues, and other software directly on the machine is not okay, and it’s not portable anyway. Learn containerization, start running your pet project in Docker and the environment in Compose. Understand how containers work (UnionFS, cgroups, namespaces, SELinux) and the intricacies of working with them (mounting disks, connecting to a container, networking, repositories, base images). 
+- Write your first Dockerfile and docker-compose, hit a bunch of weird issues. Overcome them. Publish your first artifact to Docker Hub. 
+- Discover that monoliths are not trendy, and microservices are. Read Martin Fowler. Start diving into architecture. Learn the concept of The Twelve-Factor App. 
+- Split your project into microservices, creating one big distributed monolith. 
+- Realize that plain Docker still isn’t enough; learn container orchestration (Kubernetes). Learn configuring resource allocation and bringing services back up after crashes. 
+- Start deploying everything on a ready-made SaaS and enjoy the beauty while cursing the oddities and pitfalls. 
+- Realize you no longer understand what’s happening in the project. Learn health checks, request tracing between services, and event collection. 
+- Add a tracing subsystem (Zipkin) and log processing (ELK). 
+- The project needs fronts. Learn to work with HTML, CSS, JavaScript, npm, Yarn, SCSS/SASS, Autoprefixer, ECMAScript, WebAssembly, Webpack, Browserify, nginx, Node.js, Express.js, AngularJS, React, Bootstrap, React Bootstrap, FontAwesome, CDN, TypeScript, V8, MEAN/MERN, MongoDB, event-driven programming, reactive programming, study the C10k/C10M problem… 
+- Write the fronts…
 
+And so on. There are literally a few more nuances along the way — job hunting, conferences, talks, hackathons, team management, working in a team, deadlines, Agile/Scrum/Waterfall, technology certifications, passing interviews, interacting with QA/analysts/customers/management, changing jobs, knowledge of the labor market, Upwork, the intricacies of remote work, and maybe a couple dozen more.
 
-И так далее. Есть еще буквально несколько нюансов по дороге — поиск работы, конференции, выступления, хакатоны, управление командой, работа в коллективе, дедлайны, Agile/Scrum/Waterfall, сертификации по технологиям, прохождение собеседований, взаимодействие с тестировщиками/аналитиками/заказчиком/начальством, смена работы, знание рынка труда, Upwork, премудрости удаленки и еще от силы парочка десятков.
+Maybe something was forgotten along the way…
 
-Возможно, я забыл что-нибудь по дороге... 
-
-Но начать входить в IT можно с вышеуказанного. 
+But getting started in IT can be done with the above.

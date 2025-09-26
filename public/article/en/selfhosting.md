@@ -1,172 +1,180 @@
-title: Эссе о селфхостинге
+title: Essay on Self-Hosting
 date: 17.10.2024
-tags: Linux, Администрирование, Self-Hosting
+tags: Linux, Administration, Self-Hosting
 
 ---
 
-### Что это
-Селфхостинг - это хранение ваших данных и запуск сервисов на вашем собственном железе. Через боль и страдания.
+### What it is
+Self-hosting is storing data and running services on one’s own hardware. Through pain and suffering.
 
-### Зачем это нужно
-Короткий ответ - вам это не нужно. Купите очередной iPhone, прожмите привычные галочки "Я согласен с условиями пользовательского соглашения" не читая, выдайте разрешения на доступ к вашим контактам, фотографиям, геолокации и камере, привяжите банковскую карту, с неё автоматически спишется по 5-10 долларов за очередной месяц в пользу Apple, Google, Amazon, Netflix и Spotify, и забудьте, у нас общество разделения труда.
-Если предыдущий абзац не вызвал у вас ни одного вопроса - на этом благодарю за внимание. Вы нормальный человек и у вас есть своя жизнь.
-Если вызвал - добро пожаловать под кат.
+### Why bother
+Short answer — there is no need. Buy yet another iPhone, tick the usual “I agree to the terms of service” boxes without reading, grant access to contacts, photos, geolocation and camera, link a bank card, and it will automatically charge 5–10 dollars for yet another month in favor of Apple, Google, Amazon, Netflix and Spotify, and forget it, we live in a division-of-labor society.
+If the previous paragraph did not raise a single question — thanks for the attention. That’s a normal person with a life.
+If it did — welcome under the cut.
 
-### А в чём собственно проблема
-Разблокируйте свой телефон и взгляните на иконки. Каждая из них - это сервис, и каждый, за исключением калькулятора, имеет серверную часть. Приложение, его серверная часть и команда за ним - это сервис. Сервис потокового видео, музыки, подкастов или почты. Каждый из этих сервисов решает одну или несколько задач. И каждый из них доступен вам либо бесплатно, либо по подписке.
-Сервис - это продукт. А разработка и сопровождение продуктов - это чудовщино сложная и дорогостоящая задача, требующая годами платить зарплаты десяткам или сотням сотрудников, серверных стоек, бесперебойных поставок электричества, охлаждения и отопления, разного рода документов, соблюдения меняющихся директив и законов, а также регулярной оплаты налогов за сам факт ведения деятельности.
-Мысль проста - ни один сервис не может быть бесплатным по определению.
+### So what’s the problem
+Unlock the phone and look at the icons. Each is a service, and each, except the calculator, has a server-side. The app, its server-side and the team behind it — that is a service. A service for streaming video, music, podcasts or mail. Each of these services solves one or more tasks. And each is available either for free or by subscription.
+A service is a product. And building and maintaining products is monstrously complex and costly, requiring years of paying salaries to dozens or hundreds of employees, server racks, uninterrupted electricity supplies, cooling and heating, various documents, compliance with changing directives and laws, as well as regular tax payments for the very fact of operating.
+The idea is simple — no service can be free by definition.
 
-### Стоимость сервиса
-Допустим, мы хотим написать простой календарь для телефона - нам нужны два приложения, для iOS и Android, желательна веб-версия, бэкенд для хранения и синхронизации календарей, сервис отправки уведомлений, интеграции со стандартными протоколами (iCalendar, CalDAV, CardDAV, Exchange ActiveSync, WebDAV), а также непосредственно серверные мощности для хранения календарей и синхронизации со всеми клиентами. Оно не так уж и сложно, но работы, очевидно, какое-то обозримое количество присутствует. Теперь представьте 1 год работы 10 инженеров и менеджеров с зарплатой хотя бы в 1000 USD в месяц каждому - это 120000 USD одних зарплат. Откуда тогда берутся бесплатные сервисы?
-"Я заплатил за сервис при покупке устройства" - очевидный ответ. Экономика сходится. Скажем Apple, продавая вам iPhone, включила стоимость разработки приложения "Календарь" в стоимость телефона, заложив сразу все долговременные затраты на поддержку серверов. А если вы пользуетесь календарём от Google, скажем, ни разу не купив ни одного телефона на Android? Кто оплачивает банкет? Google заработала миллиарды на продаже рекламы и из любви к искусству готова дать вам дополнительные сервисы? Бывает и так.
-По условиям использования есть 4 основных категории сервисов:
+### Service cost
+Suppose a simple phone calendar is needed — two apps for iOS and Android, a web version is desirable, a backend for storing and synchronizing calendars, a notification delivery service, integrations with standard protocols (iCalendar, CalDAV, CardDAV, Exchange ActiveSync, WebDAV), as well as actual server capacity for storage and synchronization with all clients. It is not that hard, but obviously there is a nontrivial amount of work. Now imagine 1 year of work by 10 engineers and managers with at least 1000 USD per month each — that’s 120,000 USD in salaries alone. Where do free services come from then?
+“I paid for the service when buying the device” — the obvious answer. The economics check out. Say Apple, selling an iPhone, included the cost of developing the Calendar app in the phone’s price, frontloading all long-term server support costs. But what if the calendar from Google is used, having never bought an Android phone? Who picks up the tab? Google made billions on advertising and out of love for the craft is ready to give extra services? Sometimes that happens.
+By usage terms there are 4 main categories of services:
 
-### Платные сервисы
-Примеры: 1Password, Dropbox, Proton Mail.
-Суть: разработчики создали продукт, вы оплатили результаты их труда, они разрабатывают и поддерживают продукт дальше и разработчикам не интересно, как вы его используете (на самом деле давно интересно, но в основном в целях дальнейшей разработки).
+### Paid services
+Examples: 1Password, Dropbox, Proton Mail.
+Essence: developers created a product, payment is made for their labor, they continue developing and supporting the product and are uninterested in how it is used (in reality they have long been interested, mostly for further development).
 
-### Доступ к контенту
-Примеры: Netflix, Spotify, Apple Music, Xbox Game Pass.
-Суть: вы платите не только за сервис, но и за доступ к контенту, принадлежащему третьим по отношению к сервису владельцам авторских прав, и надеетесь что любимый исполнитель или разработчик игры получит долю этих денег (так и будет, но на эти деньги группа сможет купить пачку сигарет гитаристу).
+### Access to content
+Examples: Netflix, Spotify, Apple Music, Xbox Game Pass.
+Essence: payment is not only for the service but also for access to content owned by third-party rightsholders, with the hope a favorite performer or game developer receives a share (they will, but the band will be able to buy the guitarist a pack of cigarettes with it).
 
-### Бесплатные сервисы
-Примеры: Gmail, Instagram, Facebook, TikTok.
-Суть: вы и есть продукт, в основном - для сбора информации о вас и ваших предпочтениях с целью продажи таргетированной рекламы.
+### Free services
+Examples: Gmail, Instagram, Facebook, TikTok.
+Essence: the user is the product, mainly for collecting information about preferences to sell targeted ads.
 
-### Бесплатные версии платных сервисов
-Примеры: Google Docs, (пиратский) Windows.
-Суть: за банкет платите не вы, а ваш прошлый, нынешний и будущий, работодатель, покупая коммерческие версии продукта, для вас же сервис действительно бесплатный, из подводных камней лишь крючок привыкания конкретному продукту
+### Free versions of paid services
+Examples: Google Docs, (pirated) Windows.
+Essence: the banquet is paid not by the user, but by the former, current and future employer, buying commercial versions of the product; for the user the service is indeed free, with the only hidden catch being getting hooked on a specific product.
 
-### Почему всюду подписки
-Потому что любой сервис - продукт. Вы больше не можете разработать одно хорошее приложение для распаковки RAR архивов и продавать его десять лет, покупая коробку раменов на прибыль раз в год (надеюсь, Евгений Рошал ел чаще). Apple, Google и (реже) Microsoft будет выпускать десятистраничные ченджлисты ежегодно, ломая API ОС, заставляя вас поддерживать ваши приложения буквально постоянно. Приложение в App Store, не обновляющееся несколько лет - это либо элементарный калькулятор с кастомным (и уехавшим в Саратов на последнем iPhone) интерфейсом, либо оно фактически мертво.
-Спасибо индустрии за поддержку индустрии разработчиков программного обеспечения, а также всех связанных с Интернетом (то есть всех) индустрий. Вагоны со смузи в офиса программистов и рекламные агенства никогда не придется останавливать, если рекламный кабинет Google Ads будет менять интерфейс каждые полгода, а обновления безопасности Windows будут ронять, ну, скажем... Аэропорты...
+### Why everything is subscriptions
+Because any service is a product. It is no longer possible to develop one good app for unpacking RAR archives and sell it for ten years, buying a box of ramen from the yearly profit (hopefully, Eugene Roshal ate more often). Apple, Google and (less often) Microsoft will release ten-page changelists annually, breaking OS APIs, forcing continual maintenance. An App Store app not updated for years is either a basic calculator with a custom interface (that shifted on the latest iPhone) or effectively dead.
+Thanks to the industry for supporting the software development industry, as well as all Internet-related (i.e. everyone) industries. Smoothie wagons to programmers’ offices and ad agencies will never have to stop, if the Google Ads interface changes every six months, and Windows security updates crash, well, say… airports…
 
 ### Building trust
-Каждый используемый сервис, как никотин, вызывает привыкание. У вас буквально мышечная память формируется на определенное положение кнопок на экране. Я лично могу залипнуть в Reels или новости на любимом новостнике за мгновение.
-А еще строит с вами доверие. Представьте, что вы храните фотографии в Apple iCloud уже десятилетие. У соседа сгорел сарай, а в нём NAS, и он уже не покажет своему ребенку его первые шаги. А вы платите какие-то жалкие 5-10 баксов в месяц и забыли о существовании менеджеров фотографий со времён Windows XP. Правда, за 10 лет вы заплатили Apple как минимум 500 долларов за такое удовольствие, но зато у вас было время заняться другими вещами, поприятнее.
-Представьте, что вы просто хотите попробовать Android. Вы купили к нему Google Photos и оставили на пару дней старый айфон включенным, чтобы выгрузить всё туда. Но вас будет бесить один лишь интерфейс Google Photos после iOS Photos, и вы, возможно, вернетесь на айфон за одним тем, чтобы не потерять снятые Live Photo и не получить искореженные сменой кодека видео.
+Every service used, like nicotine, causes dependency. There is literal muscle memory forming for certain button positions. Personally, it is easy to get sucked into Reels or news on a favorite outlet in an instant.
+And it also builds trust. Imagine storing photos in Apple iCloud for a decade. A neighbor’s shed burned down, with a NAS inside, and they will never show their child’s first steps. Meanwhile a measly 5–10 bucks per month are paid and the photo manager from Windows XP times has been forgotten. True, over 10 years at least 500 dollars were paid to Apple, but there was time for other, nicer pursuits.
+Imagine just wanting to try Android. Google Photos is purchased and the old iPhone is left on for a couple of days to upload everything there. But the Google Photos interface after iOS Photos will be annoying, and perhaps the switch back to iPhone will happen just to avoid losing Live Photos and mangled videos from codec changes.
 
-### Дофаминовая яма
-Залипали когда-нибудь на долгие часы в Instagram Reels, TikTok или банально в YouTube? Бинджвотчили Netflix? Это всё они, восьмое чудо света, рекомендательные сервисы. По сути тупые (но сложные и дорогостоящие) нейронки, предлагающие вам посмотреть котиков или похожих укладчиков кафеля на тех, кого вы смотрели вчера.
-Следствие конкуренции. Развлекательные сервисы обязаны конкурировать за ваше внимание, так как проведенное в них ваше время - это мультипликатор стоимости рекламы для рекламодателя. Если вы провели 4 часа в TikTok и 20 минут в Reels, значит таргет в TikTok будет настолько эффективнее (и дороже), что вашей компании выпишут судебный ордер на её продажу в другую юрисдикцию под угрозой запрета работы в стране.
-И потребительской тупости. Казалось бы, откуда в Instagram появились Reels? Вы раньше счастливо выкладывали туда фотографии своей собаки и следили за личной жизнью одноклассника, а теперь сразу после просмотра трёх сторис от друзей вы либо смотрите рекламу от инфлюенсеров, либо листаете вертикальные ролики. Здесь виноваты уже вы. Разработчики инстаграм не могут заставить вашего одноклассника выкладывать фотографии из отпуска чаще чем раз в 20 минут, а значит очевидное решение с их стороны - предложить вам посмотреть тот ролик про мопса, который уже лайнкул миллион настоящих людей, в отличии от фотографии вашего лучшего друга, которую лайнкули два человека (здесь передаю привет Запуску завтра).
-Все продукты вокруг нас - лишь интерфейсы
-Важный тезис - любой популярный продукт был скопирован с его копии. Тысячи скучающих программистов готовы писать софт бесплатно, за признание и в качестве резюме.
-В конце концов, технологическая сфера абсолютно прозрачна и открыта, плечи гигантов растут неизменно, и все сервисы строятся на веренице открытых и (часто с оговорками) бесплатных технологий, используемых повсеместно: GNU/Linux в качестве серверной ОС, Windows/macOS/iOS/Android в качестве клиентской, JavaScript/C#/Golang/Java/Swift/Kotlin/C++ в качестве языков, Oracle/PostgreSQL/MongoDB/ClickHouse/Redis в качестве баз данных и кэшей, Kafka/RabbitMQ/Redis в качестве брокеров сообщений, TypeScript/React/Vue/Svelte для фронтенда, Amazon AWS/Google Cloud Platform/DigitalOcean в качестве серверных мощностей, Kubernetes/Docker/Ansible/Chef/Puppet для управления серверами, Stipe/PayPal для принятия платежей и так далее и тому подобное.
-Возьмите абсолютно любой сервис - и для него обязательно найдутся даже абсолютно бесплатные альтернативы, предоставляющие от 99% до 100% функционала платного аналога, без рекламы и, возможно, даже без необходимости самостоятельной установки.
+### Dopamine pit
+Ever spent hours on Instagram Reels, TikTok or simply YouTube? Binged Netflix? These are the eighth wonder of the world, recommendation services. Essentially dumb (but complex and expensive) neural nets offering cat videos or similar tile-layers to the ones watched yesterday.
+A consequence of competition. Entertainment services must compete for attention, since time spent is the multiplier of ad value for advertisers. If 4 hours were spent in TikTok and 20 minutes in Reels, TikTok targeting will be that much more effective (and pricier) that the company gets a court order to be sold to another jurisdiction under threat of a national ban.
+And consumer silliness. How did Reels appear in Instagram? Previously photos of a dog were happily posted and classmates’ personal lives followed, and now immediately after three friends’ Stories there is either influencer advertising or vertical video scrolling. That is on the users. Instagram developers cannot force a classmate to post vacation photos more often than every 20 minutes, so the obvious solution is to offer that pug video already liked by a million real people, unlike the best friend’s photo liked by two (greetings to Launch tomorrow).
 
-### Аналоги известных сервисов
-- YouTube -> NewPipe/Invidious - не слишком кривые интерфейсы для просмотра базы видео из YouTube без самого YouTube и его рекламы.
-- Apple iCloud Photos/Google Photos -> Immich/PhotoPrism/NextCloud - полные альтернативы сервисов облачных фотографий.
-- Netflix -> Jellyfin - потоковые фильмы и сериалы.
-- Spotify/Apple Music/YouTube Music -> Subsonic/Navidrome - потоковая музыка.
-- Платный контент -> Торрент-трекеры в паре с менеджерами контента (Starr stack - Radarr, Sonarr, Lidarr, Readarr Prowlarr) - автоматический поиск фильмов, сериалов, музыки и книг на торрентах с проставлением всех метаданных к ним, даже если раздача была кривая.
-- Google Drive/Dropbox/Box.com -> NextCloud - облачные документы и синхронизация.
-- Microsoft Office/Google Docs -> NextCloud Office - облачные документы.
-- Slack -> Rocket.Chat -> корпоративные чаты.
-Часто подобные сервисы далеки от идеала до доработки напильником, но на рынке нет ни одного продукта без альтернатив. Вероятно, уход с AutoCAD на FreeCAD, или с SAP на 1С парализует работу авиапредприятия, но мы с вами здесь говорим о частных лицах и банальных потребностях, и здесь всё очень и очень хорошо.
+All products around are just interfaces
+Important thesis — any popular product was copied from its copy. Thousands of bored programmers are ready to write software for free, for recognition and as a résumé.
+In the end, the tech sphere is absolutely transparent and open, the shoulders of giants grow steadily, and services are built on a chain of open and (often with caveats) free technologies used everywhere: GNU/Linux as server OS, Windows/macOS/iOS/Android as client, JavaScript/C#/Golang/Java/Swift/Kotlin/C++ as languages, Oracle/PostgreSQL/MongoDB/ClickHouse/Redis as databases and caches, Kafka/RabbitMQ/Redis as message brokers, TypeScript/React/Vue/Svelte for frontend, Amazon AWS/Google Cloud Platform/DigitalOcean as server capacity, Kubernetes/Docker/Ansible/Chef/Puppet for server management, Stripe/PayPal for payments, and so on.
+Take absolutely any service — and even completely free alternatives will surely be found for it, providing from 99% to 100% of the paid counterpart’s functionality, without ads and perhaps even without the need for self-installation.
 
-### Селфхостинг
-Ну вот мы и здесь.
-Посчитаем среднюю стоимость популярных сервисов. Допустим, что мы смотрим корейские сериалы на Netflix, музыку слушаем у Apple, хостим 500 Гб фоток там же, держим пару личных сайтиков в AWS EC2, и не смотрим рекламу в YouTube:
-- Netflix - 15,49 USD
-- Apple iCloud 2 Tb - 11,99 USD
-- Apple Music - 5,49 USD
-- Amazon AWS - ~7 USD
-- YouTube Premium - 3 USD
-Итого: 42,97 USD в месяц, или 515,64 USD в год.
-Каждый год. Можете поменять плохонький автомобиль на 10 лет оплаты сериальчиков вперед.
-Платные сервисы - это за деньги. А когда этих сервисов и подписок много, то за год набегает круглая сумма. За 5 лет музыки и фотографий у Apple вы потратите на это стоимость iPhone.
-Но бесплатные сервисы - это за ваше время. И за ваши навыки. И на ваш страх и риск.
+### Alternatives to known services
+- YouTube -> NewPipe/Invidious — not-too-janky interfaces to watch YouTube’s video corpus without YouTube and its ads.
+- Apple iCloud Photos/Google Photos -> Immich/PhotoPrism/NextCloud — full alternatives for cloud photo services.
+- Netflix -> Jellyfin — streaming films and series.
+- Spotify/Apple Music/YouTube Music -> Subsonic/Navidrome — streaming music.
+- Paid content -> Torrent trackers paired with content managers (Starr stack — Radarr, Sonarr, Lidarr, Readarr, Prowlarr) — automatic search for movies, series, music and books on torrents with metadata set, even if the torrent was sloppy.
+- Google Drive/Dropbox/Box.com -> NextCloud — cloud documents and sync.
+- Microsoft Office/Google Docs -> NextCloud Office — cloud documents.
+- Slack -> Rocket.Chat — corporate chats.
+Often such services are far from ideal without filing and tuning, but there is not a single product on the market without alternatives. Likely, switching from AutoCAD to FreeCAD, or from SAP to 1C will paralyze an airline enterprise, but here the topic is individuals and everyday needs, and things are very, very good.
 
-### Аргументы за селфхостинг
-Проблемы платных сервисов:
-- Подписки (с регулярным повышением стоимости под инфляцию) - подписки вам попытаются продать на всё, вплоть до элементарных приложений в Play Store.
-- Очевидный оверпрайс за хранилище данных (всегда есть игла с 5-10 бесплатными Гб, которых очень быстро перестанет хватать).
-- Вендор-лок - попробуйте переехать на Android после 10 лет жизни с iPhone и наоборот.
-- Таргетинг рекламы и продажа личных данных - давно читали пользовательские соглашения, как вы даете право передавать любым третьим лицам любые свои данные, и кому на самом деле принадлежит ваш контент?
-- Обучение нейронных сетей - ChatGPT станет только лучше на истории ваших переписок.
-#### Преимущества селфхостинга
-- Ваши данные - ваши. Храните пиратский контент, грузите 700 Гб видео из отпуска, покупайте телефоны с минимальным количеством памяти.
-- Цена - вам нужен диск от 1 Тб и первый попавшийся древний ноутбук с кладовки или Авито за копейки.
-- Свобода выбора интерфейсов - не нравится официальный клиент Reddit - скачайте Apollo! (а, подождите, это из параллельной реальности история, в смысле, не хотите смотреть рекламу в YouTube - поставьте NewPipe!).
-- Никакой свободы врагам свободы - никаких пользовательских соглашений (ну, будем так считать), никаких обновлений без вашего ведома, никакого согласия на обучение нейронок и бесконтрольную продажу ваших данных третьим лицам, никакого отзыва музыки из вашей медиатеки из-за нарушенных договоренностей с правообладателем или смены политического режима.
-- Это прикольно, фаново и страшно интересно. Если вы любитель.
-#### Аргументы против селфхостинга
-Неоспоримые плюсы платных сервисов:
-- Много девяток (99,99(9)% SLA) - снег, дождь, буря, экскаватор на соседней улице или обыск не могут повлиять на доступ к вашим данным. 
+### Self-hosting
+Here we are.
+Let’s tally an average cost of popular services. Suppose Korean dramas are watched on Netflix, music is listened to on Apple, 500 GB of photos are hosted there too, a couple of personal sites are kept on AWS EC2, and YouTube is ad-free:
+- Netflix — 15.49 USD
+- Apple iCloud 2 TB — 11.99 USD
+- Apple Music — 5.49 USD
+- Amazon AWS — ~7 USD
+- YouTube Premium — 3 USD
+Total: 42.97 USD per month, or 515.64 USD per year.
+Every year. A shabby car can be swapped for 10 years of shows in advance.
+Paid services cost money. And when there are many, the annual tally becomes hefty. Five years of music and photos on Apple costs an iPhone.
+But free services cost time. And skills. And come at one’s own risk.
 
-#### Чудовищные недостатки селфхостинга:
-- Это сложно - несмотря на подробные гайды для школьников младших классов, вы будете заводить группы пользователей и сервисы systemd в Debian, отличать host network от bridge network в Docker, поезете в BIOS, потянете провода и будете настраивать DNS, DHCP, SSL/TLS и проброс портов и заведете два десятка новых внешних сервисов и доменных имен (платных, да) для поддержки вашего зоопарка.
-- Это затратно по времени - вы потратите добрую неделю фуллтайма на настройку собственного сервера с нуля, даже если вы занимались этим за деньги последние 10 лет, как минимум допиливая любовно теги в коллекции музыки и выбирая правильную версию Pink Floyd The Wall из 24 доступных релизов, не говоря уже об установке софта.
-- Это ненадежно - вы выгрузите все свои фотографии, а через 9 месяцев жесткий диск умрёт, и даже если вы были умны и не пожалели времени и денег на RAID0, окажется, что БД вашего сервиса по хранению фотографий покорраптилась из-за резкого отключения питания и не подлежит восстановлению, и как только вы всё настроите и пойдете показывать друзьям результаты ваших трудов - у вас дома выключат электричество или кончится сеть.
+### Arguments for self-hosting
+Problems of paid services:
+- Subscriptions (with regular price hikes for inflation) — subscriptions will be pushed for everything, up to simple Play Store apps.
+- Obvious overpricing for storage (there is always a needle with 5–10 free GB, which runs out fast).
+- Vendor lock-in — try moving to Android after 10 years on iPhone and vice versa.
+- Ad targeting and selling personal data — when was the last user agreement read, how rights are granted to transfer any data to any third parties, and who actually owns the content?
+- Training neural networks — ChatGPT will only get better on chat histories.
 
-### Философская рубрика
-Решаясь на селфхостинг или его отсутствие, предлагаю кратко пробежаться по ряду вопросов.
+#### Benefits of self-hosting
+- Data ownership — keep pirated content, upload 700 GB of vacation videos, buy phones with minimal storage.
+- Price — a 1 TB+ drive and the first ancient laptop from the closet or classifieds for pennies.
+- Freedom of interface choice — don’t like the official Reddit client — download Apollo! (oh, wait, that’s from a parallel reality; meaning, if ads on YouTube are unwanted — install NewPipe!).
+- No freedom for enemies of freedom — no user agreements (let’s consider it so), no updates without consent, no agreement to train neural nets and uncontrolled sale of data to third parties, no music revoked from a media library due to broken rightsholder deals or regime changes.
+- It’s fun, cool and very interesting. For enthusiasts.
 
-#### Этический вопрос с контентом
-Пиратство - это плохо, понятненько? В подвале мрачном клуб, хрен еще найдешь среди магазов и халуп, в клубе группа, играет вечно, рубится беспечно - как же скачивать их музыку с торрентов, если берет за душу, не лучше ли заплатить свои 3 бакса Spotify, чтобы ребятам перепало на пиво? Нет! Сходите на концерт или киньте денег на их Patreon, а заодно почитайте, сколько небольшие исполнители действительно получают денег со стримингов.
-Страшно переживаете за доходы Sony Pictures? Прикупите PlayStation 5 и пару игр к ней.
-Окей, без шуток, кража контента вещь сомнительная. Но индустрия авторских прав, подтираясь наличной зеленью, настолько наплевательски относится к самим творцам и к сохранению культурного наследия, что их абсолютно не жалко.
-Я лично, спиратив в школьные годы все игры серии GTA, впоследствии купил оригинальную трилогию трижды (Steam, iOS, Android), GTA IV трижды (Steam, Xbox, PlayStation 3) и GTA V четырежды (Steam, Xbox, PlayStation 3 и PlayStation 4). Надеюсь, за эти два десятилетия никто в Rockstar не умер с голоду.
-Хорошей игре - хорошие продажи, тут без вопросов.
+#### Arguments against self-hosting
+Undeniable pros of paid services:
+- Many nines (99.99(9)% SLA) — snow, rain, storm, an excavator on a nearby street or a search raid cannot affect access to data.
 
-#### Проблема сбора данных
-А есть ли она? Представим, что наши данные категоризируются и используются исключительно в обезличенном виде для целей таргетинга рекламы (никакие базы данных целых государственных институтов и коммерческих компаний в полном виде со списком заказов еды и вашими адресами пусть никогда не утекают).
-Что видит рекламодатель в рекламном кабинете Google или Facebook? Он не видит конечного покупателя, он видит когорты - "люди, бывающие в данном районе", "люди, приехавшие в город с целью туризма", "люди, интересующиеся покупкой автомобиля". Вы провели вечер на YouTube просматривая обзоры Volkswagen Golf, а автодилеру нужно продать партию и он готов заплатить за привлечение клиентов. У него даже может быть партия Skoda Octavia, и он даже может вас перебудить.
-В конце концов, суть рекламы сводится к тому, что держатель ценности или поставщик услуги хочет донести до своих потенциальных покупателей информацию о своём существовании - "эй, чувак, продам гараж, ты как раз искал". Весь профиль, который ведет о вас Google и Facebook нужен для того, чтобы вы попадали в нужные когорты, из-за чего Facebook будет продавать рекламу дороже, так как она от этого таргетированная. Мечта рекламодателя. Всеобщий win-win. Вы получаете бесплатную соцсеть, соцсеть получает деньги за рекламу, автодилер находит клиента, вы ездите на своей машине.
+#### Monstrous downsides of self-hosting:
+- It’s hard — despite guides for middle schoolers, user groups and systemd services in Debian will be created, host vs bridge networking in Docker will be distinguished, BIOS will be visited, cables will be pulled and DNS, DHCP, SSL/TLS and port forwarding will be configured, and a couple dozen new external services and domain names (paid, yes) will be set up to support the zoo.
+- Time-consuming — a good full-time week will be spent setting up a personal server from scratch, even after doing it for money for the last 10 years, at least lovingly fixing tags in a music collection and choosing the right Pink Floyd The Wall from 24 releases, not to mention installing software.
+- Unreliable — all photos will be uploaded, and in 9 months the hard drive dies, and even if one was smart and didn’t skimp on RAID1, it turns out the photo service DB corrupted due to a power loss and is beyond recovery, and as soon as everything is set up and it’s time to show friends the results — the power at home goes out or the network dies.
 
-#### Глаз бога
-Возможно, проблема в сборе данных всё еще есть. Базы данных текут. Все наши идентификаторы провязаны (домашнее задание - найдите номер телефона владельца стоящего на улице автомобиля). Нас приучили к тому, что любое пользовательское соглашение нужно не читать, так как оно специально написано невозможным языком. При этом всём данные текут настолько, что вы можете по любой ниточке достать о человеке приблизительно всё, и никакой ответственности за сливы, кроме штрафа от 5 долларов до 5% годового оборота для компаний и государства не предусмотрено, даже если они открыли сети всю вашу жизнь.
-Чёрт с ним с текут, мы сами ими делимся и сами даём ко всему доступ. Фотографии в Instagram? Ну это допустим. А как насчёт скидки на страховку на автомобиль за установку телематики? Как насчёт Tesla, которая может отключить ваш автомобиль удаленно? Не слишком ли много мы даём контроля над своей жизнью крупным компаниям в обмен на удобство? Тут вопрос без ответа.
-Представьте себя государством
-Любой ваш гражданин - открытая книга. Вы знаете, где живёт он и его друзья, частые адреса заказа такси и доставки еды, употребляет ли он алкоголь, что он пишет в частных переписках, каких политических взглядов придерживается, какие мультики смотрят его дети, как и какой он водит автомобиль, где паркуется, его социальный и экономический статус, его сексуальную ориентацию, его расписание на каждый день, посещенные страны и чем он в них занимался. Вы знаете всё.
-Вы можете управлять целыми когортами. Вы можете влиять на нужные слои населения. Вы можете ввести социальный рейтинг.
-Не мечта ли это руководителя?
-#### Представьте себя бизнесом
-Вы заходите в свой 7Eleven, Пятерочку, Carrefour или Lidl. Ваше лицо снимает камера, распознает, и понимает, что именно вам и именно сегодня мы продаём все по фуллпрайсу. А вот той многодетной матери или пенсионеру мы автоматом делаем скидку в 10-20%. С вас не убудет, вы молодой/молодая и здоровый/здоровая.
-Вы открываете приложение с такси или заказом еды, а вы прям очень похожи на состоятельного гражданина, вот только что с экзотического острова выкладывали фотографии, почему бы вам не сделать такси на жалкие 40% дороже?
-Социальный рейтинг - это в Азии. У нас это называется кредитной историей. Зачем запрещать летать на самолете, если вы себя плохо вели, когда можно сделать билет на самолет лично для вас на 70% дороже?
-#### Hide in a plain sight?
-А можно ли (и нужно ли скрываться)? А попробуйте. Скачайте OpenStreetMap вместо Google Maps и проживите с ними год. Картографический сервис почти равносилен социальному. Если вы не знаете, открыто ли еще заведение, куда вы идете, смысла в сервисе будет мало.
-Представьте, что вы сотрудник аэропорта США, и в очереди среди людей с iPhone и Samsung A24 вы видите у человека старый Google Pixel с установленным на нём GrapheneOS или Calyx OS, на экране которого нет логотипов WhatsApp, Facebook и Instagram, а еще у него на каждое приложение стоит пароль. Вызывает обоснованные подозрения. Или хуже. Если у человека есть WhatsApp и Telegram, но они нарочито пустые, будто всё было только что удалено. Кто из очереди первым доедет до своего отеля?
-Ну а если всё же да?
-Тогда сил, удачи и удовольствия вам!
+### Philosophical section
+When deciding for or against self-hosting, consider a few questions.
 
-### Строим селфхостинг
+#### Ethical question of content
+Piracy is bad, right? In a dingy club basement, try finding it among shops and shacks, the band plays forever, rocking carefree — how to download their music from torrents if it touches the soul, wouldn’t it be better to pay 3 bucks to Spotify so the guys get beer money? No! Go to a concert or throw money on their Patreon, and also read how much small artists actually get from streaming.
+Worried about Sony Pictures’ income? Buy a PlayStation 5 and a couple of games.
+Okay, seriously, stealing content is questionable. But the copyright industry, wiping with cash, is so neglectful of creators and cultural heritage that it’s hard to feel sorry for them.
+Personally, having pirated all GTA games in school years, the original trilogy was later bought three times (Steam, iOS, Android), GTA IV three times (Steam, Xbox, PlayStation 3) and GTA V four times (Steam, Xbox, PlayStation 3 and PlayStation 4). Hopefully no one at Rockstar starved in those two decades.
+A good game — good sales, no questions.
 
-#### Каталог софта
+#### The data collection problem
+Is there one? Suppose data is categorized and used exclusively in anonymized form for ad targeting (and may whole databases of state institutions and companies never leak complete with food orders and addresses).
+What does an advertiser see in Google or Facebook’s ad console? Not the end buyer, but cohorts — “people frequenting this area,” “people visiting the city for tourism,” “people interested in buying a car.” An evening on YouTube watching Volkswagen Golf reviews, while a dealer needs to sell a batch and is ready to pay to attract customers. They might even have a batch of Skoda Octavia and even convert interest.
+In the end, the essence of advertising is that a value holder or service provider wants to convey to potential buyers information about their existence — “hey, selling a garage, you were just looking.” The whole profile Google and Facebook keep is to get users into the right cohorts, because of which Facebook will sell ads at a higher price, since they are targeted. Advertiser’s dream. Universal win–win. Users get a free social network, the network gets ad money, the dealer finds a client, the client drives a car.
+
+#### Eye of God
+Perhaps the data collection problem still exists. Databases leak. All identifiers are linked (homework — find the phone number of the owner of a car on the street). Users are trained not to read user agreements, as they are deliberately written in impossible language. Meanwhile data leaks so much that by any thread one can pull up nearly everything about a person, and there is no real liability for leaks, except a fine from 5 dollars to 5% of annual turnover for companies and the state, even if entire lives were exposed.
+Leaks aside, sharing is voluntary and access is granted widely. Photos on Instagram? Fine. What about a car insurance discount for installing telematics? What about Tesla being able to disable a car remotely? Is too much control being ceded to large companies in exchange for convenience? That is an open question.
+Imagine being the state
+Any citizen is an open book. Residence of them and friends is known, frequent taxi and food delivery addresses, whether they drink alcohol, what they write in private chats, political views, what cartoons the kids watch, how and what car is driven, where it is parked, social and economic status, sexual orientation, the schedule for every day, countries visited and what was done there. Everything is known.
+Entire cohorts can be steered. The desired segments can be influenced. A social credit system can be introduced.
+Is this not a leader’s dream?
+
+#### Imagine being a business
+Entering 7-Eleven, Pyaterochka, Carrefour or Lidl. A camera captures the face, recognizes it, and realizes that for this specific person today everything is sold at full price. But for that multi-child mother or pensioner an automatic 10–20% discount is applied. It won’t hurt, the young and healthy will be fine.
+Opening a taxi or food app, looking very much like a well-off citizen, having just posted from an exotic island — why not make the taxi a mere 40% more expensive?
+Social rating is in Asia. Here it’s called credit history. Why ban flights for bad behavior when the plane ticket can be made 70% more expensive personally?
+
+#### Hide in plain sight?
+Is it possible (and necessary) to hide? Try it. Download OpenStreetMap instead of Google Maps and live with it for a year. A mapping service is almost equivalent to a social one. If it’s unknown whether the destination is still open, the service has little point.
+Imagine being a US airport officer, and in a queue among iPhones and Samsung A24 there is an old Google Pixel with GrapheneOS or CalyxOS, with no WhatsApp, Facebook and Instagram logos on screen, and each app is password-locked. That raises reasonable suspicion. Or worse. If WhatsApp and Telegram are present but conspicuously empty, as if everything was just deleted. Who reaches the hotel first?
+Well, what if yes anyway?
+Then strength, good luck and enjoyment!
+
+### Building self-hosting
+
+#### Software catalog
 - Awesome-Selfhosted.
 - deploy-your-own-saas.
 
-#### Железо
-- Любой NAS (Synology - выбор олигархата).
-- Любой древний ноутбук или десктоп от 30 USD.
-- Raspberry Pi 4 и выше (не рекомендую, но большую часть сервисов потянет).
+#### Hardware
+- Any NAS (Synology — the oligarchs’ choice).
+- Any ancient laptop or desktop from 30 USD.
+- Raspberry Pi 4 and up (not recommended, but will handle most services).
 
-#### ОС
+#### OS
 - Debian/Ubuntu/Raspberry Pi OS
 
-#### Сеть
-- Tailscale - mesh-сеть для ваших устройств.
-- Cloudflare - домены, DNS и тоннели для вывода сервисов в Интернет (Cloudflare ZeroTrust).
-- Caddy - Веб-сервер, HTTPS сертификаты от Let's Encrypt и reverse proxy.
-#### Сервисы
-- AdGuard Home - DNS с обрезкой рекламы на уровне сети для всех ваших устройств.
-- Navidrome - музыкальный стриминг с Subsonic API.
-- Jellyfin - видеостриминг.
-- Starr - Lidarr, Radarr, Readarr, Sonarr, Prowlarr - управление медиатекой (автоматическая загрузка фильмов, сериалов, музыки и книг с торрентов с проставлением тегов).
-- Invidious - альернативный фронтенд для YouTube без рекламы с загрузкой роликов.
-- NextCloud - облачное хранилище данных, документов и фотографий, с модулями для чатов, звонков и видеоконференций.
-- Immich - облачное хранилище фотографий.
-#### Важные моменты
-Избегайте потерь питания (выбирайте ноутбук или ставьте UPS). Как минимум EXT4 очень плохо их переживает, а базы данных в Docker мгновенно корраптятся от этого.
-Ваше железо должно перезагружаться после потери питания. Обычно в настройках BIOS есть опция Wake on AC. Не забудьте включить.
-Диски желательно брать одинаковые, от 2 штук, в RAID0 массиве, для сохранности.
-Обеспечьте адекватное охлаждение (хотя бы не закрывайте вентиляционные отверстия), так как сервер часто будет жить с нагрузкой близкой к 100%.
-Обязательно перезагрузите машину несколько раз после окончания первичной настройки и убедитесь, что сеть поднимается, диски монтируются, сервисы грузятся. Все сервисы.
-Аккуратнее с Docker и Portainer - если вы не до конца понимаете networking, предпочитайте обычные Debian пакеты контейнерам в Docker, либо используйте подготовленные сообществом Docker Compose файлы.
-Приготовтесь долго ждать и занять весь сетевой канал. Например, выгрузка фотографий может занять буквально недели чистого времени, и устроит стресс-тест вашему железу при их обработке.
-Не бросайтесь в омут. Поживите с селфхостингом немного, и уже после решайте, от чего из платных сервисов вы готовы отказаться.
-Спасибо за внимание!
+#### Network
+- Tailscale — mesh network for devices.
+- Cloudflare — domains, DNS and tunnels to expose services to the Internet (Cloudflare Zero Trust).
+- Caddy — web server, HTTPS certificates from Let’s Encrypt and reverse proxy.
+
+#### Services
+- AdGuard Home — DNS with network-level ad blocking for all devices.
+- Navidrome — music streaming with Subsonic API.
+- Jellyfin — video streaming.
+- Starr — Lidarr, Radarr, Readarr, Sonarr, Prowlarr — media library management (automatic download of movies, series, music and books from torrents with tagging).
+- Invidious — alternative frontend for YouTube without ads with video downloading.
+- NextCloud — cloud storage for data, documents and photos, with modules for chats, calls and videoconferencing.
+- Immich — cloud photo storage.
+
+#### Important notes
+Avoid power losses (choose a laptop or use a UPS). At minimum, EXT4 handles them poorly, and Docker databases corrupt instantly from this.
+Hardware should reboot after power loss. Usually BIOS has a Wake on AC option. Don’t forget to enable it.
+Prefer identical drives, from 2 units, in a RAID1 array, for preservation.
+Ensure adequate cooling (at least don’t block vents), as the server will often live near 100% load.
+Be sure to reboot the machine several times after initial setup and verify the network comes up, disks mount, services load. All services.
+Be careful with Docker and Portainer — if networking is not fully understood, prefer plain Debian packages over Docker containers, or use community-prepared Docker Compose files.
+Prepare to wait long and saturate the entire network link. For example, photo uploads can literally take weeks of wall time, stress-testing the hardware during processing.
+Don’t jump in headfirst. Live with self-hosting a bit, and only then decide which paid services can be ditched.
+
+Thanks for the attention!

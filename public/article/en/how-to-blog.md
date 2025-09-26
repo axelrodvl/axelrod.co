@@ -1,71 +1,72 @@
-title: Поднимаем собственный блог на Hugo
+title: Setting up a personal blog with Hugo
 date: 11.02.2019
-tags: Разработка
+tags: Development
 
 ---
 
-Для ведения личного блога технаря существует масса взрослых платформ. Весьма хорош [Medium](https://medium.com) или высококармический аккаунт на [Хабре](https://habr.com/en/). Мне же лично хочется побольше контроля, поэтому чужие платформы не подоходят.
+For running a personal tech blog, there are plenty of mature platforms. [Medium](https://medium.com) is quite good, as is a high-karma account on [Habr](https://habr.com/en/). Personally, more control is desirable, so third‑party platforms are not suitable.
 
+An obvious and most convenient solution is [GitHub Pages](https://pages.github.com), which, while meeting almost all of the desires, requires binding a domain to github.io and does not allow controlling the hosting.
 
-Очевидным и наиболее удобным решением является [GitHub Pages](https://pages.github.com), который, удовлетворяя почти всем моим желаниям, требует привязки домена к github.io и не позволяет контролировать хостинг.
+There is nothing complicated about reproducing GitHub Pages’ functionality independently. That is, of course, if an extra $5 per month for hosting and a couple of hours of free time are not a problem.
 
+At the end of the post, there are instructions for creating both a free blog on GitHub Pages and a paid one on personal hosting.
 
-Ничего сложного в том, чтобы повторить фукнционал GitHub Pages самостоятельно, нет. Если вам, разумеется, не жалко лишних 5 $ в месяц на хостинг и пары часов свободного времени. 
+### What was needed and how it was solved:
 
+- **Editing posts as plain text without excess markup**:
 
-В конце поста дана инструкция по созданию как бесплатного блога на GitHub Pages, так и платного на собственном хостинге.
+    For this purpose, [Markdown](https://ru.wikipedia.org/wiki/Markdown) is ideal, allowing the necessary layout to be added with simple syntax.
+- **Version control for texts**:
 
-### Чего мне хотелось от блога и чем я это решал:
+    Naturally, [git](https://git-scm.com). Working with text without saving history is, to put it mildly, impractical. Special thanks go to Linus Torvalds’ productive vacation.
 
-- **Редактирование постов голым текстом без лишней разметки**:
+- **No need to dive into frontend nuances, responsive layout, dynamics, and design**:
 
-    Для этой цели идеален [Markdown](https://ru.wikipedia.org/wiki/Markdown), позволяющий простыми ключами добавлять необходимую верстку.
-- **Версионный контроль текстов**:
+	I chose static page generation with [Hugo](https://gohugo.io). An [immense number](https://www.staticgen.com) of static generators have been written due to the relative simplicity of the task and developers’ inner love of building bikes. Nevertheless, for a blog, not only a bare markup structure is needed but also design and layout (and taste). The best choice is a popular product with a large community and a set of ready-made themes. Hugo offers a [wide selection of themes](https://themes.gohugo.io), and the most delightful for a geek’s soul is storing them as `git submodules`.
 
-    Разумеется, [git](https://git-scm.com). Работа с текстом без сохранения истории, мягко говоря, непрактична. Отдельное спасибо продуктивному отпуску Линуса Торвальдса.
+- **Control over domain and hosting, analytics**:
 
-- **Отсутствие необходимости вникать в нюансы работы с фронтендом, адаптивной версткой, динамикой и дизайном**:
+	The domain was purchased long ago, and the smallest droplet on [DigitalOcean](https://www.digitalocean.com) fit perfectly as hosting. Analytics came from [Google](https://analytics.google.com/analytics/web/).
 
-	Я выбрал статическую генерацию страниц с помощью [Hugo](https://gohugo.io). Генераторов статики написано [величайшее множество](https://www.staticgen.com), ввиду сравнительной простоты задачи и внутренней любви разработчиков к велосипедостроению. Тем не менее, для блога нужна не только голая структура разметки, но и дизайн, и верстка (и вкус). Лучшим выбором будет популярный продукт с большим сообществом и набором готовых шаблонов оформления. Hugo предлагает [широкий выбор тем](https://themes.gohugo.io), а главное радующее душу гика решение по их хранению в качестве `git submodules`.
-- **Контроль над доменом и хостингом, аналитика**:
+	GitHub Pages did not fit specifically in this aspect. But if using a domain exclusively for a blog is enough, or if there is no desire to buy a domain — it is an excellent choice.
 
-	Домен у меня куплен уже давно, а в качестве хостинга прекрасно подошел самый маленький дроплет на [DigitalOcean](https://www.digitalocean.com). Аналитику взял от [Google](https://analytics.google.com/analytics/web/). 
+- **Security (HTTPS)**:
 
-	Именно в этом аспекте [GitHub Pages](https://pages.github.com) мне не подошел. Но если вам достаточно использования домена исключительно под блог, либо домен покупать не хочется — отличный выбор.
-- **Безопасность (HTTPS)**:
+	[Let’s Encrypt](https://letsencrypt.org)! A free and proven Certificate Authority with mature automation tools makes it possible, in a couple of commands, to obtain the coveted certificate and plug it into any popular web server. Certificates are issued for 90 days, but there is the ability to automate renewals (a 60‑day interval is recommended).
 
-	[Let’s Encrypt](https://letsencrypt.org)! Бесплатный и проверенный `Certificate Authority` со взрослыми средствами автоматизации дает возможность в пару команд получить заветный сертификат и подключить его к любому популярному веб-серверу. Сертификаты выдаются на 90 дней, но есть возможность автоматизировать их перевыпуск (рекомендуется интервал в 60 дней).
+### Bring a blog up in 3 simple steps:
 
+#### Step one: Hugo and GitHub
+- [Install Hugo](https://gohugo.io/getting-started/installing) for the working OS.
+- [Create a site, choose a theme, and write a test post](https://gohugo.io/getting-started/quick-start).
 
-### Поднимаем блог за 3 простых шага:
+	As a result of the quickstart guide, a new `git` repository will be obtained with the `ananke` theme connected via `git submodules` and one empty post in the `content/posts` directory. A local web server can be launched there, the blog can be played with in the browser, and a [theme can be selected](https://themes.gohugo.io).
+- [Create a Google Analytics account](https://analytics.google.com/analytics/web/) and connect it to Hugo.
 
-#### Шаг первый: Hugo и GitHub
-- [Установить Hugo](https://gohugo.io/getting-started/installing) для своей рабочей ОС.
-- [Создать сайт, выбрать тему оформления и написать тестовый пост](https://gohugo.io/getting-started/quick-start). 
+	The only nontrivial process.
 
-	В результате quickstart guide вы получите новый `git` репозиторий с подключенной через `git submodules` темой `ananke` и одним пустым постом в директории `content/posts`. Там же можно будет поднять локальный веб-сервер, поиграться с блогом в браузере и [выбрать тему оформления](https://themes.gohugo.io).
-- [Создать аккаунт на Google Analytics](https://analytics.google.com/analytics/web/) и подключить его к Hugo.
-
-	Единственный нетривиальный процесс.
-
-	После создания учетной записи скопируйте ваш идентификатор отслеживания вида `UA-XXX-XXX` и добавьте его в конфигурацию Hugo:
+	After creating the account, copy the tracking ID like `UA-XXX-XXX` and add it to the Hugo configuration:
 	```
 	echo 'googleAnalytics = "UA-XXX-XXX"' >> config.toml
 	```
+	[web:5]
 
-	Далее необходимо [добавить шаблон трекера](https://gohugo.io/templates/internal/#use-the-google-analytics-template) к вашей теме. Менее красивая, но более полезная [инструкция](http://cloudywithachanceofdevops.com/posts/2018/05/17/setting-up-google-analytics-on-hugo/). Вам необходимо скопировать layout выбранной темы в корень репозитория, оставить в нем только страницу или ее часть, отображаемую везде (в зависимости от темы она может быть разной) и вставить в нее:
+	Next, [add the tracker template](https://gohugo.io/templates/internal/#use-the-google-analytics-template) to the theme. A less pretty but more useful [instruction](http://cloudywithachanceofdevops.com/posts/2018/05/17/setting-up-google-analytics-on-hugo/). Copy the layout of the chosen theme into the repository root, leave only the page or its part that is displayed everywhere (depending on the theme it may differ), and insert:
 	```
 	{{ template "_internal/google_analytics.html" . }}
 	```
+	[web:1]
 
-- [Создать два репозитория на GitHub для хранения исходников блога и готового сайта](https://gohugo.io/hosting-and-deployment/hosting-on-github). 
+- [Create two repositories on GitHub for storing blog sources and the built site](https://gohugo.io/hosting-and-deployment/hosting-on-github).
 
-	Важный момент — если вы будете публиковать блог на GitHub Pages, то репозиторий вида `<YOUR_NAME>.github.io` должен быть публичным, если только на своем сайте — то можно сделать приватным. 
+	An important point — if publishing the blog on GitHub Pages, the `<YOUR_NAME>.github.io` repository must be public; if only on a personal site — it can be private.
 
-	Репозиторий с исходниками блога логично сделать приватным. В инструкции важно: 
-	- выполнить команду для подключения основного репозитория к репозиторию `<YOUR_NAME>.github.io` в качестве submodule;
-	- скопировать в основной репозиторий скрипт `deploy.sh` для публикации сайта из исходников.
-- Сохранить созданные исходники блога и выгрузить их в основной репозиторий:
+	The repository with the blog sources is logically private. In the instructions it is important to:
+	- run the command to connect the main repository to the `<YOUR_NAME>.github.io` repository as a submodule;
+	- copy the `deploy.sh` script into the main repository to publish the site from sources.
+
+- Save the created blog sources and push them to the main repository:
 
 	```
 	git add .
@@ -73,41 +74,42 @@ tags: Разработка
 	git remote add origin https://github.com/<YOUR_NAME>/<YOUR_REPO>.git
 	git push -u origin master
 	```
-- Опубликовать блог:
+
+- Publish the blog:
 
 	```
 	chmod +x deploy.sh
 	./deploy.sh
 	```
+	[web:9]
 
-	Если вы опубликовали блог на GitHub Pages — на этом все, приятного использования. 
+	If the blog was published on GitHub Pages — that’s it, enjoy.
 
-	Следующие два шага нужны для самостоятельного хостинга блога.
+	The next two steps are needed for self‑hosting the blog.
 
-#### Шаг второй: домен, хостинг и DNS
-- [Купить собственный домен](https://ru.godaddy.com/domains/domain-name-search) — в среднем, цена на хорошее имя около 20-30 $ в год, но GoDaddy обычно дает ощутимые скидки на первый год, а также позволяет выполнить приватную регистрацию домена.
-- Создать аккаунт на DigitalOcean — любезно предложу [ссылку с промокодом на 10 $](https://m.do.co/c/90cafccc437b), которой хватит на оплату первых двух месяцев.
-- Купить минимальный дроплет за 5 $ в месяц с Ubuntu, сгенерировать большой и надежный пароль для пользователя и сохранить его в 1Password (или любой другой менеджер паролей по вкусу).
-- Выставить на дроплете публичный ipv4 адрес и добавить его в [A record](https://ru.godaddy.com/help/add-an-a-record-19238) в панели управления DNS на GoDaddy.
+#### Step two: domain, hosting, and DNS
+- [Buy a personal domain](https://ru.godaddy.com/domains/domain-name-search) — on average, a good name costs about $20–30 per year, but GoDaddy usually offers tangible discounts for the first year and allows private registration.
+- Create a DigitalOcean account — kindly offering a [link with a $10 promo code](https://m.do.co/c/90cafccc437b), which is enough to pay for the first two months.
+- Buy the minimal $5/month droplet with Ubuntu, generate a long and strong password for the user, and store it in 1Password (or any other password manager of choice).
+- Assign a public IPv4 address to the droplet and add it as an [A record](https://ru.godaddy.com/help/add-an-a-record-19238) in the GoDaddy DNS control panel.
 
+After adding the `A record`, some time will be required (from a couple of minutes to a couple of days) before DNS records update and allow accessing the site by domain name.
 
-После внесения `A record` потребуется некоторое время (от пары минут до пары дней), прежде чем DNS записи обновятся и позволят обращаться к нашему сайту по доменному имени.
-
-#### Шаг третий: настройка портов, веб-сервера и сертификата для HTTPS
-- [Открыть доступ на дроплет по SSH](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04).
-- [Установить nginx и открыть доступы к портам HTTP и HTTPS](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04-quickstart).
-- [Установить Let's Encrypt, получить сертификат и подключить его к nginx](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04). В процессе настройки утилита предложит создать принудительный редирект HTTP трафика на HTTPS, что весьма рекомендую принять.
-- [Установить Hugo на дроплет](https://gohugo.io/getting-started/installing/#snap-package).
-- Склонировать на дроплет репозиторий `<YOUR_NAME>.github.io`:
+#### Step three: ports, web server, and HTTPS certificate setup
+- [Open SSH access to the droplet](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04).
+- [Install nginx and open HTTP and HTTPS ports](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04-quickstart).
+- [Install Let's Encrypt, obtain a certificate, and connect it to nginx](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04). During setup, the utility will suggest creating a forced redirect from HTTP to HTTPS, which is strongly recommended.
+- [Install Hugo on the droplet](https://gohugo.io/getting-started/installing/#snap-package).
+- Clone the `<YOUR_NAME>.github.io` repository onto the droplet:
 
 	```
 	git clone https://github.com/<YOUR_NAME>/<YOUR_NAME>.github.io.git
 	cd <YOUR_NAME>
 	pwd
 	```
-- [Указать nginx директорию со статикой](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/#), полученную в предыдущем пункте.
 
+- [Point nginx to the static directory](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/#), obtained in the previous step.
 
-**Voilà!** Наш блог готов. Остается самое сложное — придумать, что в него писать. 
+**Voilà!** The blog is ready. What remains is the hardest part — figuring out what to write in it.
 
-Как насчет статьи о том, как поднять собственный блог?
+How about an article on how to set up a personal blog?

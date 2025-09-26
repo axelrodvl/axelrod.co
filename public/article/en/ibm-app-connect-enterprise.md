@@ -1,161 +1,136 @@
-title: Обзор IBM App Connect Enterprise
+title: IBM App Connect Enterprise Overview
 date: 14.01.2020
-tags: Разработка, IBM, IBM App Connect Enterprise, IBM Integration Bus
+tags: Development, IBM, IBM App Connect Enterprise, IBM Integration Bus
 
 ---
 
-### Глоссарий
+### Glossary
 
-Далее будут использованы следующие сокращения:
-- ACE, также «брокер» — IBM App Connect Enterprise
-- MQ — IBM MQ (ранее IBM WebSphere MQ)
-- SOA — Service-Oriented Architecture, сервис-ориентированная архитектура
-- ESB — Enterprise Service Bus, сервисная шина предприятия
+The following abbreviations will be used:
+- ACE, also "broker" — IBM App Connect Enterprise
+- MQ — IBM MQ (formerly IBM WebSphere MQ)
+- SOA — Service-Oriented Architecture
+- ESB — Enterprise Service Bus
 
----
+### What is IBM App Connect Enterprise
 
-### Что такое IBM App Connect Enterprise
+IBM App Connect Enterprise is a platform for building an enterprise integration bus (Enterprise Service Bus, ESB).
 
-IBM App Connect Enterprise — платформа для построения интеграционной шины предприятия (Enterprise Service Bus, ESB).
+It provides a set of channels for interaction between services in an SOA (Service-Oriented Architecture).
 
-Предоставляет набор каналов для взаимодействия между сервисами в архитектуре SOA (Service-Oriented Architecture).
+### Version history
 
----
+Product names:
+- IBM WebSphere Message Broker (up to version 9)
+- IBM Integration Bus (up to version 11)
+- IBM App Connect Enterprise (version 11 and later)
 
-### История версий
+IBM App Connect Enterprise represents the current version of the application integration platform and combines the capabilities of IBM Integration Bus and IBM App Connect.
 
-Наименование продукта:
-- IBM WebSphere Message Broker (до 9 версии)
-- IBM Integration Bus (до 11 версии)
-- IBM App Connect Enterprise (11 версия и далее)
+IBM App Connect Enterprise V11 is the official successor of IBM Integration Bus V10, which in turn succeeded IBM WebSphere Message Broker.
 
-IBM App Connect Enterprise представляет собой текущую версию платформы интеграции приложений и объединяет возможности IBM Integration Bus и IBM App Connect. 
+### SOA and ESB
 
-IBM App Connect Enterprise V11 является официальным преемником IBM Integration Bus V10, который в свою очередь является преемником IBM WebSphere Message Broker.
+- SOA is an approach to developing large information systems.  
+It implies building a system out of many loosely coupled, independent components providing functionality through standardized interfaces and protocols.
+- ESB is a way to ensure standardized interaction between components in SOA.  
+It is designed to build a service-oriented architecture using existing (legacy) components. It acts as a single transport node (single entry point) for interactions between heterogeneous components, ensuring the standardization of interfaces and protocols. At the same time, the components themselves are freed from the obligation to comply with standardization requirements — ESB handles this transformation. 
 
----
+### Why all this?
+Imagine a large bank using the Misys Equation core banking system, running on IBM&nbsp;System&nbsp;i&nbsp;(AS/400) servers under i5/OS&nbsp;(OS/400). This system processes terabytes of data with the required reliability and functionality for managing money.
 
-### SOA и ESB
+The bank then opens a new office with beanbags, superhero murals, hires a young team with MacBooks, and asks them to build a sleek iOS app in Swift.
 
-- SOA — подход к разработке больших информационных систем. 
-Предполагает построение системы из множества слабо связанных, самостоятельных компонентов, предоставляющих свой функционал по стандартизированным интерфейсам и протоколам.
-- ESB — способ обеспечения стандартизированного взаимодействия между компонентами в SOA.
-Предназначен для построения сервис-ориентированной архитектуры системы с использование существующих (legacy) компонентов. Представляет собой единый транспортный узел (единую точку входа) для взаимодействия разнородных компонентов, обеспечивающий стандартизацию интерфейсов и протоколов. При этом сами компоненты освобождаются от обязанности следовать требованиям SOA касательно стандартизации интерфейсов, задача преобразования оных ложится на ESB. 
+The following dialogue occurs between a dreadlocked iOS developer and a bearded architect:
+- I'm building an account overview screen and need data. How do we interface with your backend? Do you return Protobuf? Or JSON via REST? Got Swagger?
+- You can connect to the backend via TCP/IP using 5250 telnet with text blocks.
 
----
-
-### Зачем это все?
-Представим, что один крупный банк использует АБС Misys Equation, работающую на серверах IBM&nbsp;System&nbsp;i&nbsp;(AS/400) под ОС&nbsp;i5/OS&nbsp;(OS/400), позволяющую обрабатывать терабайты данных и обладающую необходимыми надежностью и функционалом в таком критичном деле, как учет и движение денег. 
-
-Банк открывает офис с пуфиками, раскрашивает стены супергероями из Marvel и DC, нанимает команду молодых людей с макбуками и ставит задачу написать красивое iOS приложение на Swift.
-
-Далее происходит следующий диалог между дредастым iOS разработчиком и бородатым архитектором:
-- Я пишу экран отображения счетов, нужны данные. Как будем взаимодействовать? Ваш бэк по Protobuf вернет данные? Или JSON'ами через REST общаемся? Swagger есть?
-- К бэку можно обращаться по TCP/IP через 5250&nbsp;telnet передачей блоков текста.
-
-А дальше бородатый архитектор показывает это:
+Then the bearded architect shows this:
 
 ![AS/400](ibm-app-connect-enterprise/as400.jpg)
 
-К тому же, брать данные из АБС с помощью фактической эмуляции работы живого человека и ввода данных с клавиатуры в поля зеленого экрана на эмуляции IBM&nbsp;5250 совместимого терминала предстоит также разработчикам клиента на Android, веб-версии для физических и юридических лиц и еще парочке-другой команд.
+Moreover, retrieving data from the banking system requires developers to emulate human interaction with an IBM&nbsp;5250 terminal, entering data into green-screen fields. This applies not just to the iOS team, but also to Android, web versions, and several more teams.
 
-А еще у банка есть не только АБС...
+And the bank doesn’t only have a core banking system...
 
-На сцену врывается ESB и встает (живым) щитом между 128-битной сверхзащищенной операционной системой 1988 года и миром High&nbsp;DPI экранов и счастливых разработчиков десктоп-чатов на Electron, хвастающихся снижением потребления ОЗУ их чатиком с 1680 Мб до 710 Мб.
+Enter the ESB, stepping in as a living shield between a 128-bit ultra-secure OS from 1988 and the modern world of High&nbsp;DPI screens and happy Electron desktop chat developers bragging about dropping RAM usage from 1680 MB to 710 MB.
 
----
+### SOA and Microservice Architecture
 
-### SOA и микросервисная архитектура
+Main article: [Microservices, SOA and APIs: friends or foes?](https://www.ibm.com/developerworks/ru/library/1601_clark-trs/index.html)
 
-Основная статья: [Микросервисы, SOA и API: друзья или враги?](https://www.ibm.com/developerworks/ru/library/1601_clark-trs/index.html)
+"Standardized interfaces and protocols, loose coupling, distributed components" — SOA and microservices share very similar concepts, with distinctions depending on context.
 
-«Стандартизированные интерфейсы и протоколы, слабая связность, распределенные компоненты» — концепции SOA и микросервисов очень схожи и их различие зависит от контекста.
+**Microservices are one possible architecture for building a single system component, while SOA connects heterogeneous components into a whole information system.**
 
-**Микросервисы — это одна из возможных архитектур построения отдельного компонента информационной системы, в то время как SOA связывает разнородные компоненты в одну информационную систему.**
+SOA’s scope covers the entire enterprise, enabling applications to interact through standardized interfaces. Microservice architecture focuses on structuring individual applications into modular components.
 
-Область охвата SOA — это это все предприятие, где происходит взаимодействие между приложениями. SOA предоставляет сервисы для приложений посредством стандартизированных интерфейсов. Архитектура микросервисов ориентирована на структуру и компоненты отдельного приложения.
+### Key Features and Capabilities of ACE
 
----
-
-### Основные функции и возможности ACE
-
-Основная статья: [IBM App Connect Enterprise technical overview](https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ab20551_.htm)
+Main article: [IBM App Connect Enterprise technical overview](https://www.ibm.com/support/knowledgecenter/en/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ab20551_.htm)
 
 IBM App Connect Enterprise:
-- Преднзначен для предоставления каналов взаимодействия различных систем (интеграционных потоков).
-- Обеспечивает передачу информации между инициатором и получателями в формате сообщений (Message Assembly) с помощью потоков (Message Flow).
-- Обеспечивает маршрутизацию и трансформацию сообщений.
-- Обеспечивает транзакционность и обработку ошибок.
-- Предоставляет готовые коннекторы для наиболее популярных протоколов передачи данных (JMS, MQTT, HTTP, REST, SOAP, File) и программных продуктов (IBM&nbsp;MQ, Kafka, SAP, Siebel, PeopleSoft, Salesforce).
-- Поддерживает масштабирование.
-- Поддерживает установку локально (Windows, Linux, AIX), в частном облаке (Kubernetes) или в публичном облаке (IBM Cloud).
+- Provides integration channels between different systems (integration flows).
+- Transfers information between initiators and recipients in message format (Message Assembly) using Message Flows.
+- Supports message routing and transformation.
+- Ensures transactionality and error handling.
+- Offers ready-made connectors for popular data transfer protocols (JMS, MQTT, HTTP, REST, SOAP, File) and products (IBM&nbsp;MQ, Kafka, SAP, Siebel, PeopleSoft, Salesforce).
+- Supports scaling.
+- Can be deployed locally (Windows, Linux, AIX), in private clouds (Kubernetes), or in public cloud (IBM Cloud).
 
----
+### Applications and Flows in ACE
+- The deployment unit in ACE is an Application containing one or more Flows, plus resources (ESQL code, Java libraries, XSLT files, etc.).
+- Container for one or more applications is a BAR file.
+- Flows are designed visually as a set of interconnected Nodes.
+- Each Node has an entry point and one or more exit points.
+- Each Node has configurable Properties and detailed documentation.
+- Flows can be converted into Subflows for reuse.
+- Node settings can be generalized at flow level for configuration during deployment. However, any property can be edited afterwards.
+- Flows are stored in XML format, though developing without the graphical editor is impractical.
+- Runtime flows are stateless, but state can be persisted with Global Cache, Java Singleton, or databases.
+- Messages in flows are represented as trees, with bodies as byte streams or parsed trees.
+- High-performance parsers for XML, JSON, DFDL, MIME, etc. are supported.
 
-### Приложения и потоки в ACE
-- Единица установки в ACE — приложение (Application), содержащее один или более потоков (Flows), а также ресурсы (ESQL код, Java библиотеки, XSLT файлы и прочее). 
-- Контейнер для одного или нескольких приложений — BAR файл.
-- Потоки разрабатываются в графическом виде и представлены как набор узлов (Nodes), соединенных друг с другом.
-- Каждый узел имеет точку входа и одну или несколько точек выхода.
-- Каждый узел имеет набор настроек (Properties) и страницу в документации с полным описанием всех возможностей.
-- Потоки можно преобразовывать в подпотоки (Subflow) для эффективного переиспользования.
-- Настройки узлов можно выносить на уровень потока для указания, что требуется настраивать в потоке при установке. Тем не менее, любую настройку собранного потока можно изменить.
-- Потоки сохраняются в формате XML, но из-за особенностей связывания элементов, разработка без использования графического редактора сильно затруднена.
-- Потоки в runtime не хранят состояние, но сохранение состояния возможно с использованием Global Cache, Singleton (Java) и баз данных.
-- Сообщения в потоке представленнs в виде дерева, при этом тело сообщения может быть представленно в виде массива байт или дерева после парсинга.
-- Поддерживаются высокопроизводительные парсеры для XML, JSON, DFDL, MIME и прочих форматов.
+### ACE and IBM MQ
+- IBM MQ queues are the primary transport for flows.
+- IBM MQ was bundled with IBM Integration Bus 9 and earlier, but decoupled starting with version 10.
+- Some nodes (e.g., TimeoutNotification) require IBM&nbsp;MQ.
+- IBM MQ can be installed alongside ACE or remotely.
+- When local, ACE communicates with MQ directly through API; when remote, over TCP/IP.
 
----
+### Tools for Working with ACE and MQ
+- ACE apps are developed in IBM App Connect Enterprise Toolkit.
+- ACE runtime, configuration, and deployments are managed via the MQSI command-line client.
+- MQ runtime and configuration are managed via the MQSC command-line client.
+- Programmatic interaction with ACE is available via the IBM Integration API (a.k.a. Configuration Manager Proxy, CMP).
+- Programmatic interaction with MQ is via WebSphere MQ API (a.k.a. MQI).
+- ACE and MQ provide web-based and REST admin interfaces.
+- IBM&nbsp;MQ Explorer and rfhutil provide GUI tooling for queue operations.
 
-### ACE и IBM MQ
-- Основным транспортом для потоков являются очереди в IBM MQ.
-- IBM MQ был включен в состав IBM Integration Bus 9 и ранее, но начиная с 10 версии отделен.
-- Некоторые узлы (например, TimeoutNotification) требуют наличия IBM&nbsp;MQ для работы.
-- IBM MQ может быть установлен вместе с ACE, либо на удаленной машине.
-- При локальной установке ACE будет взаимодействовать с MQ напрямую через его API, при удаленной установке — по TCP/IP.
+### ACE Architecture
 
----
-
-### Инструменты для работы с ACE и MQ
-- Приложения для ACE разрабатываются в IBM App Connect Enterprise Toolkit.
-- Запуск, остановка и настройка ACE, а также сборка, установка и настройка приложений осуществляется с помощью консольного клиента MQSI (от MQSeries Integrator), устанавливаемого вместе с ACE.
-- Запуск, остановка и настройка MQ осуществляется с помощью консольного клиента MQSC, устанавливаемого вместе с MQ.
-- Взаимодействие с ACE возможно осуществлять программно с помощью IBM Integration API (также именуемого Configuration Manager Proxy или CMP).
-- Взаимодействие с MQ возможно осуществлять программно с помощью WebSphere MQ API (также именуемого MQ Interface или MQI).
-- ACE и MQ предоставляют веб-интерфейсы и REST API для управления.
-- Для работы с очередями в IBM&nbsp;MQ можно использовать графический клиент IBM&nbsp;MQ&nbsp;Explorer, а также rfhutil.
-
----
-
-### Архитектура ACE
-
-- Integration Server — сервер интеграции (IntegrationServer), ранее DataFlowEngine, предоставляет изолированное окружение для запуска потоков (runtime). Каждый сервер интеграции запускается отдельным процессом в выделенном адресном пространстве. Предназначены для запуска в контейнере или для нужд разработки.
-- Integration Node — узел интеграции, служит для объединения отдельных серверов интеграции с общими настройками. Предназначен для установки на физической или виртуальной машине (on-premise).
+- Integration Server — also known as IntegrationServer (formerly DataFlowEngine). Provides isolated runtime environments for flows, each as a separate process with its own memory space. Intended for containerized deployments or development use.
+- Integration Node — combines multiple Integration Servers under shared configuration. Intended for installation on physical or virtual on-premise servers.
 
 ![Architecture](ibm-app-connect-enterprise/arch.gif)
 
----
-
 ### ACE — Integration Server
 
-Основные статьи:
+Key articles:
 - [Execution and threading models in a message flow](https://www.ibm.com/support/knowledgecenter/SSTTDS_11.0.0/com.ibm.etools.mft.doc/ac01541_.htm)
 - [Getting the Most out of IIB and App Connect Enterprise (ACE)](https://www.mqtechconference.com/sessions_v2018/MQTC_2018_ACE_Getting_The_Most_final.pdf)
 
-Единственный (при использовании контейнера без IBM MQ) процесс, необходимый для запуска потоков — IntegrationServer, внутри которого также запускается экземпляр JVM. Процесс предполагает управление жизненным циклом с помощью инструментария ОС.
+The only process needed to run flows (without IBM MQ) is the IntegrationServer, which also launches a JVM instance. Its lifecycle is managed by OS-level tools.
 
-При инициализации IntegrationServer, в окружение загружаются требуемые Loadable&nbsp;Implementation&nbsp;Library&nbsp;(LIL) и Plug-in&nbsp;Archive&nbsp;(PAR).
-IntegrationServer запускается и стартует выделенный конфигурационный поток.
+During initialization, IntegrationServer loads required Loadable&nbsp;Implementation&nbsp;Libraries (LILs) and Plug-in&nbsp;Archives (PARs). It then starts a dedicated configuration thread.
 
-Обработка сообщения внутри потока концептуально схожа с продурным программированием. Каждый узел потока исполняется как вызов соответствующей функции. Каждое сообщение, проходящее через поток (Message Flow), выполняется в отдельном единственном потоке (Thread). Message Flow являются потокобезопасным, а значит масштабирование потока может осуществляться в пределах доступных ресурсов без дополнительных модификаций. Не стоит забывать, что это не касается дополнительной логики, так как JVM будет хранить явно определенное состояние (например, при использовании Singleton).
+Message flow handling resembles procedural programming. Each node executes like a function call. Each message passing through a flow is processed by a single dedicated Thread. Flows are thread-safe, so scaling depends only on available resources unless stateful logic is manually introduced (e.g., Singleton in Java).
 
-Стандартный параметр для количества экземпляров потока — Additional instances.
+The standard parameter for flow parallelism is Additional instances.
 
----
+### ACE System Processes
 
-### Системные процессы ACE
-
-Просмотра данных по утилизации ресурсов на Linux:
+On Linux, resource utilization can be viewed via:
 ```
 ##### Processes:
 pstree -c -u -l -a -p -S -s 1049
@@ -166,33 +141,29 @@ ps -eLf | grep Inte | grep -v grep | awk '{print $4}'
 strace -o foo -ff -p 1049
 ```
 
----
-
 ### ACE — Global Cache
 
-Потоки в ACE не хранят состояние (после завершения).
+Flows in ACE are stateless once completed.
 
-Основным средством для хранения данных между исполнениями в потоках ACE является Global Cache — in-memory key-value БД.
-Global Cache не является персистентным, после перезагрузки его потребуется инициализировать заново. Все значения имеют срок жизни и удаляются по его истечению.
-Global Cache не стоит использовать как точку синхронизации, а также для корреляции, так как он станет бутылочным горлышком (конкурентный доступ).
-Для целей корреляции стандартным подходом является использование очередей.
+The primary way to share data across flow executions is Global Cache — an in-memory key-value database.  
+Global Cache is non-persistent and needs reinitialization after restart. All values have an expiry time.  
+It should not be used as a synchronization or correlation point since it creates a bottleneck.  
+For correlation, queues are the standard approach.
 
-Global Cache может быть как встроенным (embedded) в брокер, так и установленным отдельно (WebSphere eXtreme Scale grid).
-
----
+Global Cache may be embedded into the broker or deployed separately as a WebSphere eXtreme Scale grid.
 
 ### IBM MQ
 
-Высокопроизводительный MOM (Message-Oriented Middleware), предназначенный для передачи любых видов сообщений с гарантией однократной доставки.
+A high-performance Message-Oriented Middleware (MOM) designed for message delivery with guaranteed once-only semantics.
 
-IBM MQ поддерживает следующие виды обмена сообщениями:
-- Queuing — сообщения помещаются в очереди
-- Point-to-point — форма queuing, где сообщения доступны для получения строго одним получателем
-- Publish/subscribe — публкация сообщений для подписчиков на определенную тему (topic)
-- Multicast — форма publish/subscribe для большого числа подписчиков
-- File transfer — передача файлов как сообщений
-- Telemetry — передача телеметрии через легковесный протокол IBM&nbsp;MQTT&nbsp;(MQ&nbsp;Telemetry&nbsp;Transport)
+IBM MQ supports:
+- Queuing — storing messages in queues
+- Point-to-point — a queueing model where a message is consumed by exactly one receiver
+- Publish/subscribe — publishing messages to topic subscribers
+- Multicast — a publish/subscribe variant for many subscribers
+- File transfer — sending files as messages
+- Telemetry — sending telemetry via lightweight IBM&nbsp;MQTT protocol
 
-Подключение клиентов к IBM&nbsp;MQ осуществляется с помощью создаваемых каналов MQI Client Channel типа SVRCONN (например, существующий по умолчанию SYSTEM.DEF.SVRCONN).
+Clients connect to IBM&nbsp;MQ via MQI Client Channels of type SVRCONN (e.g., default SYSTEM.DEF.SVRCONN).
 
-Для подключения к каналу на стороне IBM&nbsp;MQ запускается выделенный процесс (Listener), слушающий подключения по определенному порту (например, 1414 по умолчанию).
+On the MQ side, a Listener process runs on a designated port (default 1414) for channel connections.
