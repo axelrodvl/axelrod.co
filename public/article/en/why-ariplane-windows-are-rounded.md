@@ -1,17 +1,17 @@
-title: Почему окна самолётов овальные
-date: 21.04.2023
-tags: Авиация
+title: Why airplane windows are oval  
+date: 21.04.2023  
+tags: Aviation  
 
 ---
 
-Всё началось с de Havilland Comet. Первый коммерческий реактивный пассажирский самолет из 50-х годов.
+It all started with the de Havilland Comet. The first commercial jet passenger aircraft from the 1950s.  
 
-Помните условный Douglas DC-4 и вообще старые поршневые самолеты? У них квадратные окна, с ними лучше обзор. Такие самолеты как раз летали на высоте около 3000 метров, где герметизация не нужна. Не от хорошей жизни, впрочем. Больше высота — меньше сопротивление воздуха, выше скорость и меньше потребление топлива. Но поршневые двигатели не могут забираться выше 5000 метров без турбонаддува как раз из-за низкой плотности воздуха, но это в целом другая история.
+Remember the typical Douglas DC-4 and the old piston-powered planes in general? They had square windows, which gave a better view. Such planes usually flew at an altitude of about 3,000 meters, where pressurization was not necessary. Not exactly out of luxury, though. The higher the altitude, the lower the air resistance, the higher the speed, and the lower the fuel consumption. But piston engines could not climb higher than 5,000 meters without turbocharging, precisely because of the low air density — but that’s another story.  
 
-При проектировании первого реактивного самолета, который мог за счет двигателей забираться и на 10000 метров, потребовалось его герметизировать. Окна ему сделали квадратными — по привычке индустрии.
+When designing the first jet aircraft, which thanks to its engines could climb up to 10,000 meters, it had to be pressurized. They fitted it with square windows — following industry habit.  
 
-Через несколько лет эксплуатации Кометы начали исчезать с радаров прямо в полете. Ни сигналов SOS, ни воздушных перехватов, ничего. Самолет вылетает и растворяется по пути. Искали в море обломки — ничего. Рыбаки периодически поднимали какие-то мелкие куски железа сантиметров по 50, но кто скажет, что это было вообще.
+After several years of Comet operations, the aircraft began disappearing from radar right in mid-flight. No SOS signals, no interceptions, nothing. The plane would take off and vanish en route. They searched the sea for wreckage — nothing. Fishermen occasionally pulled up small pieces of metal, about 50 cm in size, but who could say what they were.  
 
-Спустя ещё несколько лет выяснилось, что на углах квадратных окон при герметизации формируются точки наибольшего напряжения, усталость металла и микротрещины развиваются мгновенно. Фюзеляж ходил буквально пару лет (условно, 750-1500 циклов герметизации) до момента, когда его в полете просто расшивало и фюзеляж взрывался.
+Several more years later it was discovered that at the corners of square windows, when pressurized, the points of greatest stress appeared, metal fatigue and microcracks developed instantly. The fuselage lasted literally just a couple of years (about 750–1500 pressurization cycles) before in flight it would simply tear apart and the fuselage would explode.  
 
-Поэтому и сечение у современных фюзеляжей теперь круглое (не только аэродинамика), и окна овальные.
+That’s why modern fuselages now have a circular cross-section (not just for aerodynamics), and the windows are oval.  

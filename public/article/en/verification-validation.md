@@ -1,29 +1,28 @@
-title: Верификация и валидация
+title: Verification and Validation
 date: 06.02.2019
 tags: ISO 9000:2005
 
 ---
 
-Легко сломать голову обо все попытки донести смысл этих двух простых, но смежных определений.
+It’s easy to get confused trying to convey the meaning of these two simple but related definitions.
 
-### Сущность
-- Верификация — требования выполнены.
-- Валидация — требования **для конкретного использования** выполнены.
+### Essence
+- Verification — requirements are met.
+- Validation — requirements **for specific use** are met.
 
-### Пример
-- Верификация — двигатель имеет 20 л.с.
-- Валидация — двигатель с 20 л.с. **не сдвинет с места грузовик**.
+### Example
+- Verification — the engine has 20 hp.
+- Validation — the engine with 20 hp **will not move a truck**.
 
-#### Стандарт ISO 9000:2005
-Определения:
+#### ISO 9000:2005 Standard
+Definitions:
 
-- [Верификация](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.4) — подтверждение посредством представления [объективных свидетельств](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.1) того, что установленные [требования](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.1.2) были выполнены.
+- [Verification](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.4) — confirmation through the provision of [objective evidence](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.1) that specified [requirements](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.1.2) have been fulfilled.
 
+- [Validation](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.5) — confirmation through the provision of [objective evidence](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.1) that [requirements](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.1.2) for a specific intended use or application have been fulfilled.
 
-- [Валидация](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.5) — подтверждение посредством представления [объективных свидетельств](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.1) того, что [требования](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.1.2) для конкретного предназначенного использования или применения выполнены.
+Related definitions:
 
-Сопутствующие определения:
+- [Requirement](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.1.2) — a need or expectation that is stated, generally implied, or obligatory.
 
-- [Требование](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.1.2) — потребность или ожидание, которое установлено, обычно предполагается или является обязательным.
-
-- [Объективное свидетельство](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.1) — данные, подтверждающие наличие или истинность чего-либо.
+- [Objective evidence](https://www.iso.org/obp/ui/#iso:std:iso:9000:ed-3:v1:ru:term:3.8.1) — data supporting the existence or truth of something.
