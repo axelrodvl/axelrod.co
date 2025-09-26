@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readArticles, readProjects } from "@/lib/content";
+import { formatDate } from "@/lib/utils";
 
 type HomePageProps = {
   params: {
@@ -138,7 +139,7 @@ export default function HomePage({ params }: HomePageProps) {
                           dateTime={article.publishedAt.toISOString()}
                           className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
                         >
-                          {article.date}
+                          {formatDate(article.publishedAt, locale === "ru" ? "ru-RU" : "en-GB")}
                         </time>
                         <h3 className="mt-1 text-lg font-semibold text-white">
                           {article.title}
