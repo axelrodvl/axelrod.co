@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
@@ -41,7 +42,17 @@ export default function RootLayout({
         className={`${plexMono.variable} antialiased`}
       >
         <div className="noise" aria-hidden />
-        {children}
+        <header className="relative z-10 border-b border-white/10 bg-black/60/80 bg-opacity-60 backdrop-blur-sm">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5 text-[#e4f1ff] sm:px-12">
+            <Link
+              href="/"
+              className="text-sm font-semibold uppercase tracking-[0.6em] text-emerald-200 transition hover:text-emerald-100"
+            >
+              Vadim Axelrod
+            </Link>
+          </div>
+        </header>
+        <main className="relative z-10">{children}</main>
       </body>
     </html>
   );
