@@ -15,4 +15,3 @@ export function formatDate(date: Date, locale = "en-GB"): string {
     day: "2-digit",
   }).format(date);
 }
-
