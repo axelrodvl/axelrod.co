@@ -1,28 +1,28 @@
-title: Языки Индии
+title: Languages of India
 date: 03.03.2023
-tags: Путешествия, Индия
+tags: Travel, India
 
 ---
 
-![Каннада](languages-in-india/kannada.jpeg)
+![Kannada](languages-in-india/kannada.jpeg)
 
-Дети, на каком языке разговаривают в Индии? Хинди?
+Children, what language do they speak in India? Hindi?
 
-А вот и нет. Хинди здесь, наряду с английским — lingua franca, официальные языки государства, при этом носителей хинди как родного в Индии всего от 250 до 450 миллионов человек (в зависимости от учета диалектов) из 1,4 миллиардов населения.
+Well, not exactly. Hindi here, along with English, is the lingua franca, the official languages of the state, but native speakers of Hindi number only 250 to 450 million people (depending on dialect classification) out of the 1.4 billion population.
 
-В каждом штате Индии проживают отдельные народы, де факто использующие собственные языки. Насчитывается 22 языка более чем с 1 миллионом носителей, и ещё сотни более мелких.
+Each state of India is home to different peoples who de facto use their own languages. There are 22 languages with more than 1 million speakers, and hundreds of smaller ones.
 
-Например:
-- Мумбаи, штат Махараштра.
-  Язык: маратхи (मराठी).
-  83 миллиона носителей.
-- Панаджи, штат Гоа.
-  Язык: конкани (कोंकणी).
-  1,7 миллионов носителей.
-- Бангалор, штат Карнатака.
-  Язык: каннада (ಕನ್ನಡ).
-  38 миллионов носителей.
+For example:
+- Mumbai, state of Maharashtra.  
+  Language: Marathi (मराठी).  
+  83 million speakers.  
+- Panaji, state of Goa.  
+  Language: Konkani (कोंकणी).  
+  1.7 million speakers.  
+- Bangalore, state of Karnataka.  
+  Language: Kannada (ಕನ್ನಡ).  
+  38 million speakers.  
 
-И так далее. Различается даже система письма.
+And so on. Even the writing system differs.
 
-К слову, носителей языка маратхи больше, чем носителей турецкого, корейского, немецкого и французского.
+By the way, there are more speakers of Marathi than there are of Turkish, Korean, German, or French.
