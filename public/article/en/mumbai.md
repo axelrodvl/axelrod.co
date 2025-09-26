@@ -1,27 +1,27 @@
-title: Мумбаи
+title: Mumbai
 date: 17.03.2023
-tags: Путешествия, Индия
+tags: Travel, India
 
 ---
 
-Мумбаи копчёный, чёрный и страшный.
-Мумбаи пахнет.
-Мумбаи жаркий, липкий, чудовищно громкий и переполненный.
-Мумбаи богатый и нищий, роскошный и разваленный.
-В нём люди спят на улице, жирные крысы ворошатся десятками на обочине тротуара, мотоциклисты не снижают скорости при виде тебя и водители начинают движение на красный.
-В нём готовят что-то бурое на горелке прямо на тротуаре, хранят лепёшки и тростник для сока на асфальте.
-В нём лавочники умеют властвовать над улицей, зазывая криком на грани болевого порога, и швыряют мусор в метре от себя.
-В нём коровы занимают парковочные места и собаки спят на каждой ступени.
-В нём красивые люди, радостные босоногие дети, красочные одеяния, кубометры бриолина и невероятные типажи.
-В нём стильный транспорт — от рикш до поездов. От битых вкруг чёрно-желтых такси с нерабочими ремнями, до ливреи самолётов Air India — такой красной и густой, что самолёт по возвращению можно облить водой, собрать в стакан что стекло по фюзеляжу и выпить прохладный масала чай.
+Mumbai is smoky, black, and frightening.
+Mumbai smells.
+Mumbai is hot, sticky, monstrously loud, and overcrowded.
+Mumbai is rich and poor, luxurious and decayed.
+In it, people sleep on the street, fat rats stir in dozens on the roadside, motorcyclists don’t slow down when they see you, and drivers start moving at a red light.
+In it, they cook something brown on a burner right on the sidewalk, store flatbreads and sugarcane for juice on the asphalt.
+In it, shopkeepers know how to rule the street, shouting on the edge of pain, and throw trash a meter away from themselves.
+In it, cows occupy parking spots and dogs sleep on every step.
+In it, are beautiful people, joyful barefoot children, colorful clothes, cubic meters of pomade, and incredible characters.
+In it, stylish transport — from rickshaws to trains. From battered all-around black-and-yellow taxis with broken seatbelts to Air India liveries — so red and dense that upon return, one could pour water over the plane, collect what slides off the fuselage into a glass, and drink a cool masala chai.
 
-Мумбаи не шутит.
-Если спросить прохожего, где поменять валюту — он поменяет тебе валюту.
-Если зайти в маленькое отделение почты отправить открытку, тебя отправят на главпочтамт в средневековый замок.
-Если нужно съездить за город — ты отправляешься туда из архитектурного наследия Юнеско.
-Если это судебное разбирательство или торговля акциями — то верховный суд и биржа находится в городе Бомбей.
-Если нужно найти ночлег — подходят железнодорожные пути и конец взлетно-посадочной полосы аэропорта.
+Mumbai does not joke.
+If you ask a passerby where to exchange currency — he will exchange your currency himself.
+If you go into a small post office branch to send a postcard, they will send you to the General Post Office in a medieval castle.
+If you need to go outside the city — you depart from a UNESCO World Heritage building.
+If it’s a court case or stock trading — then the Supreme Court and the Stock Exchange are in the city of Bombay.
+If you need to find lodging — the railway tracks or the end of an airport runway will do.
 
-Мумбаи безумный и крутой.
-Великий город.
-Советую.
+Mumbai is crazy and cool.
+A great city.
+I recommend it.

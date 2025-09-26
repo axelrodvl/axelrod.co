@@ -1,62 +1,62 @@
-title: ПК на диете. Или что вам на самом деле нужно от ОС.
+title: PC on a diet. Or what you really need from an OS.
 date: 06.09.2023
-tags: Linux, Операционные системы
+tags: Linux, Operating Systems
 
 ---
 
-Современные операционные системы непринужденно потребляют гигабайты ОЗУ, перманентно согревая карманы и помещения циклами процессора своим несметным числом фоновых процессов. macOS, например, очень любит разбирать ваши фотографии из iCloud, размечая на них лица. Android сканирует Wi-Fi сети вокруг вас и считает шаги. iOS слушает ваше "Привет, Сири", которое звучит дважды после покупки iPhone и более никогда. На носимых устройствах для поедания ресурсов есть естественный ограничитель — батарея, поэтому iOS просто запрещает фоновую работу большинства приложений, Android также всячески противится. Но на десктопных и серверных ОС ограничений нет — электричество бесконечное и бесплатное, а значит можно счастливо высаживать в ноль батарею вашего ноутбука.
+Modern operating systems casually consume gigabytes of RAM, permanently warming pockets and rooms with CPU cycles thanks to their countless number of background processes. macOS, for example, really loves analyzing your iCloud photos, tagging faces in them. Android scans nearby Wi-Fi networks and counts your steps. iOS listens for your "Hey Siri," which is only uttered twice after buying an iPhone and never again. On wearable devices there is a natural limiter for resource consumption — the battery, so iOS simply forbids most apps from working in the background, Android also resists. But on desktop and server OSes there are no such limits — electricity is endless and free, which means you can happily drain your laptop’s battery to zero.
 
-Но что из того, что происходит за кадром, действительно нужно именно вам, как пользователю? Когда ресурсов гора, дела никому нет, а мне выпала прекрасная возможность разобраться в вопросе, превращая компьютер за 20$ в рабочую машину.
+But what of all that goes on behind the scenes do *you*, the user, actually need? When resources are abundant, nobody cares, but I had a great chance to dig into the matter while turning a $20 computer into a usable machine.
 
-Встречайте красавца — Raspberry Pi Zero 2 W. Процессор Arm Cortex-A53, 4 ядра, 1 ГГц и 512 Мб ОЗУ, наравне с Wi-Fi, HDMI и Bluetooth дерзко возвращают нас во времена больших деревьев, когда сопоставимой мощности коробка не влезала не только в часовой карман джинсов, но разве что в багажник авто. Подключаем монитор, мышь и клавиатуру, накатываем Raspberry Pi OS, загружаемся, открываем Google Chrome и наблюдаем полное молчание в радиоэфире. В смысле вообще, он просто не открывается. Смотрим на свободную память и выясняем, что наша красивая, как Renault Logan, ОС только что заняла порядка 50% ОЗУ, а то и больше. И современный браузер вдруг отказывается открывать сайт размером в 50 Мб в сжатом виде при свободных 200 Мб ОЗУ. Он даже интерфейс свой загрузить в это не способен.
+Meet the beauty — Raspberry Pi Zero 2 W. An Arm Cortex-A53 CPU, 4 cores, 1 GHz and 512 MB RAM, along with Wi-Fi, HDMI, and Bluetooth boldly take us back to the times of big trees, when a box with comparable power didn’t fit not only in a jeans watch pocket, but barely in a car trunk. We connect monitor, mouse, keyboard, install Raspberry Pi OS, boot up, open Google Chrome and observe complete radio silence. Meaning — nothing, it just doesn’t open. Checking free memory we discover our OS, as beautiful as a Renault Logan, has just taken up about 50% of RAM or more. And the modern browser suddenly refuses to open a site of 50 MB compressed with 200 MB of free RAM left. It can’t even load its own interface.
 
-Меняем дистрибутив на диетический (DietPi), и о чудо — жалкие 30 секунд и искомый сайт открыт!
-Визуально не поменялось приблизительно ничего, а машинка дело сделала.
+We switch the distro to a diet one (DietPi), and oh miracle — only 30 seconds and the desired site is open!  
+Visually nothing has changed, but the machine did the job.
 
-Выясняем, что наша ОС похудела в своих памятных ожиданиях до жалких 119 Мб. И для меня, как пользователя, не изменилось ничего. Кроме работоспособности нужного софта.
+We find that our OS slimmed down in its memory expectations to a pitiful 119 MB. And for me, as a user, nothing changed. Except working software.
 
-Ну так и что мне правда нужно, чтобы тыкать мышкой в браузер?
+So what do I really need to just point and click in a browser?
 
-Давайте разберем процессы незамутненной лишним ОС — только самое необходимое лично вам.
+Let’s examine the processes of an OS unclouded by excess — only what’s absolutely necessary for *you*.
 
-На примере Linux. И в слегка ограниченном числе, без совсем уж низкоуровневых, где нужно 2 тома академических прочитать для начала. Для Windows, macOS, iOS, Android, QNX, FreeBSD, NeXTSTEP, Solaris, OS/400 и любых прочих фактически отличаться будут лишь названия, а смысл и назначение останется тем же.
+On the example of Linux. And in a slightly limited set, without the deep low-level stuff that requires two volumes of textbooks before starting. For Windows, macOS, iOS, Android, QNX, FreeBSD, NeXTSTEP, Solaris, OS/400 or any others the difference would be mostly in names, the meaning and tasks remain the same.
 
-Начнем с процессов суперпользователя, то есть самой ОС, без них у нас ничего не получится:
-- `init` — координирует процесс загрузки и конфигурации окружения для пользователя, мать драконов и отец всех прочих процессов
-- `sshd` — сервер для удаленных подключений к ОС по SSH
-- `rngd` — демон для заполнения энтропией генератора псевдослучайных чисел, то есть собиратор всякого мусора со всех железных устройств ПК, чтобы случайные числа в системе были более, ну, случайными
-- `cron` — планировщик задач, запускает всякое по расписанию, например отправить в Google все собранные по вам данные за последнюю минуту
-- `polkitd` — контролёр привилегий процессов, когда черни нужно пообщаться со старшими, вместо аудиенции с оными предоставит писчего, бересту и курьерский сервис для доставки мессаджа, проще говоря — когда процессу нужны ресурсы, не даёт их целиком, а чутко следит за их использованием
-- `bluetoothd` — когда мышкой делаем тык-тык, доставляет тык-тык до нашей странички, а ещё регулярно теряет эту мышку и снова находит, но чаще первое
-- `hciattach` — подключает последовательные асинхронные приемо-передатчики к стеку Bluetooth, фактически физический протокол передачи данных от железа к ОС и обвязка к нему
-- `dhclient` — DHCP клиент, нижайше просит дать роутер нам адресок какой, чтоб в сети были видные, самостоятельные и от других компьютеров всякое интересное получать
-- `systemd-udevd` — менеджер железа, управляет подключениями к ОС разных клавиатур, флешек, принтеров, джойстиков и всего, что в компьютер воткнуть можно без молотка
-- `systemd-logind` — вас тут много, а он один, и следит, чтоб каждому юзеру выдали консоль, процессов пачку и чтоб обиженным никто не ушел, а ещё следит за нажатием кнопки ВЫКЛ.
-- `systemd-journald` — хранитель логов, сшивает вашу коллекцию Playboy, любовные письма, события ядра и прочее происходящее с системой
-- `login` — стоит у ворот, тыкает алебардой в вас и спрашивает, кто такой, чего желаешь, и открывает ворота при правильном пароле
-- `dbus-daemon --system` — менеджер системы доставки сообщений между процессами, `--system` часть занимается особо важными, мол новую флешку занесли, товарищ ядро, чего делать будем?
+Let’s start with superuser processes, meaning the OS itself, without which nothing works:
+- `init` — coordinates boot and environment configuration, the mother of dragons and father of all other processes
+- `sshd` — server for remote SSH connections
+- `rngd` — daemon filling the pseudo-random generator with entropy, gathering garbage from hardware devices so random numbers are more random
+- `cron` — task scheduler, runs jobs, e.g. send Google all your data from the last minute
+- `polkitd` — privilege controller, when the commoners want to speak with lords, it provides a scribe and courier service instead; simply put it grants and monitors process resource usage
+- `bluetoothd` — delivers your mouse clicks to the system, while often losing and finding your mouse again
+- `hciattach` — ties serial asynchronous transceivers to the Bluetooth stack, actually the hardware protocol bridge
+- `dhclient` — DHCP client, politely asks the router for an address to be visible in the network
+- `systemd-udevd` — hardware manager, manages device connections like keyboards, USB sticks, printers, gamepads
+- `systemd-logind` — manages multiple users, consoles, processes, watches over the POWER button
+- `systemd-journald` — log keeper, stores your kernel events, logs, and everything else happening in the system
+- `login` — guards the gates, asks credentials, opens upon correct password
+- `dbus-daemon --system` — system message bus between processes for system-level communication (e.g. new USB drive inserted)
 
-Вышеперечисленное нужно с виду самому ядру, но нам в том числе, иначе Bluetooth, мышка с клавой и сеть админить придется руками, а вы так быстро не сумеете.
+The above is needed by the kernel itself, but also by us — otherwise you’d need to administer Bluetooth, keyboard, and networking by hand.
 
-Теперь лично наши процессы:
-- `top` — спонсор нашего текста, собирает и выводит информацию о запущенных в системе процессах
-- `systemd --user` — отвечает за все пользовательские подкапотные процессы, например включить вам Steam при запуске ОС, или перезапустить торрент-клиент, если его кто убил
-- `dbus-daemon --session` — вышеназванный менеджер системы доставки сообщений, но уже для пользовательских приложений, мол товарищ телеграм, там у нас вайфай отвалился с концами, уведомляю, всего доброго, хорошего настроения
-- `sd-pam` — сложная система проверки прав на методы (не спрашивайте, правда сложная)
-- `bash` — хранит доисторические мемы про патчинг KDE2 под FreeBSD, а также командный интерпретатор UNIX — место, где можно команды разные компьютеру давать с клавиатуры
-- `startx` — входная точка, запускающая нам курсор мыши и дающая дальше включить менеджер окон, панельки, часики и прочее на экран не в режиме 80x25 символов
-- `xinit` — скрипт для непосредственного запуска менеджера окон, рисования панелек, часиков и прочего на экран
-- `lxqt-session` — запуск сессии GUI для пользователя, грузит не просто панельку, а именно вашу, любовно настроенную панельку с часами
-- `ssh-agent` — хранилище разных ключей и паролей
-- `openbox` — менеджер окошек, чтобы мышкой можно было туда-сюда двигать наш браузер
-- `lxterminal` — окошко, в котором будет запущен bash
-- `lxqt-policykit-agent` — агент аутентификации для фреймворка обработки привилегий процессов внутри LXQt (потерпите, мы уже заканчиваем)
-- `xorg` — великая и ужасная оконная система Linux, используемая для построения графического интерфейса пользователя
+Now our personal processes:
+- `top` — sponsor of this text, collects and displays info about running processes
+- `systemd --user` — manages user-level background processes, like autostarting Steam or restarting a torrent client
+- `dbus-daemon --session` — same message bus but for user apps: e.g. Telegram reporting “Wi-Fi is gone, goodbye”
+- `sd-pam` — complex system for method permissions (complicated, don’t ask)
+- `bash` — command interpreter of UNIX, also keeps ancient jokes alive
+- `startx` — launches mouse cursor and enables window manager startup
+- `xinit` — script for running the window manager that draws the panels, clock, etc.
+- `lxqt-session` — launches user GUI session, loads your customized panel with the clock
+- `ssh-agent` — stores various keys and passwords
+- `openbox` — window manager so you can move browser windows with the mouse
+- `lxterminal` — terminal window that runs bash
+- `lxqt-policykit-agent` — privilege authentication agent inside LXQt
+- `xorg` — the great and terrible Linux windowing system used to build the GUI
 
-И всё! Неужели в самом деле всё — спросит меня читатель, внимательно ознакомившийся со всем списком гаек и болтов Линукса, ничего не проскроллив и не забив на этот список все возможные огромные болты. В самом деле всё — отвечает ему писатель.
+And that’s it! Really? — asks the reader who carefully studied the list without scrolling. Yes, really — replies the writer.
 
-А как же распознавание лиц на фотографиях из облака? А где отправка телеметрии в Microsoft? А что передаст товарищу майору метаданные моих взаимоотношений с миром? Кто же будет выдавать подключенным к моему хотспоту пользователям IP адреса? Кто будет искать горячих пользователей Интернета, желающих пообщаться рядом со мной?
+But what about cloud photo face recognition? Where’s Microsoft telemetry reporting? Who forwards my metadata to security services? Who gives hotspot clients IP addresses? Who finds hot singles near me?
 
-А вот и занятный факт. На самом деле, чтобы вы могли двигать мышкой по экрану, смотреть на бегущее время и запустить Google Chrome, вашей ОС нужно в современном мире порядка 128 Мб, да и то на небольшой зоопарк подключенного всеми способами железа. А куда запущенная винда съела ещё 6 Гб сверху — вопросы к Microsoft, Apple, Google и Спортлото.
+Here’s the fun thing. For you to just move your mouse, see the clock, and start Chrome, your OS in today’s world only needs around 128 MB, even with various attached peripherals. And where the extra 6 GB went in Windows is a question for Microsoft, Apple, Google and the lottery.
 
-P.S. Работать на Raspberry Pi в качестве десктопа и правда можно, что очень отрадно и достойно для компьютера размером с половину банковской карты и ценой в 3 шаурмы. Но современный мир уже привык к тому, что сайт можно сделать размером в 100 Мб, а клиент для чатиков сделать прямо в браузере вместо написания нативного приложения, поэтому приходится в конце вздохнуть, и сесть обратно за ноутбук, на котором в шестьдесят четыре раза больше памяти, и на котором сайтик с твитами откроется пошустрее.
+P.S. Using a Raspberry Pi as a desktop is indeed possible, which is delightful for such a small $20 computer. But the modern world has grown used to making websites of 100 MB, and chat clients written only as web apps, so eventually you sigh and go back to the laptop with 64 times more memory, where Twitter loads faster.
