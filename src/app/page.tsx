@@ -40,7 +40,7 @@ export default function HomePage() {
               </dd>
             </div>
             <div className="transition hover:text-emerald-300/90">
-              <dt>gpg/cv</dt>
+              <dt>cv</dt>
               <dd>
                 <a
                   href="/cv/CV-Axelrod_Vadim.pdf"
@@ -176,7 +176,8 @@ export default function HomePage() {
         </main>
 
         <footer className="mt-20 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.4em] text-white/40">
-          <p>© {new Date().getFullYear()} Vadim Axelrod · compiled successfully</p>
+          <p className="mb-5">© {new Date().getFullYear()} Vadim Axelrod</p>
+          <p>gpt-5-codex created this entire website, and all it received in return was a fleeting mention in the footer.</p>
         </footer>
       </div>
     </div>

@@ -55,7 +55,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           href="/article"
           className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
         >
-          ← Back to archive
+          ← Back to articles
         </Link>
         <div className="space-y-3">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
