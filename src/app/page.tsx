@@ -16,7 +16,7 @@ export default function HomePage() {
               Vadim Axelrod – Software Engineer
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
-              Building reliable solutions with TypeScript, Java, and modern web platforms. I enjoy
+              Building reliable solutions with Java, TypeScript, and modern web platforms. I enjoy
               shipping products, optimizing developer workflows, and writing about engineering practices.
             </p>
           </div>
