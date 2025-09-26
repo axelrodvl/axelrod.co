@@ -1,4 +1,4 @@
-title: Airplane ground handling — the technology of aircraft ground servicing by an apron representative.
+title: Airplane ground handling — the technology of aircraft ground servicing by an apron representative
 date: 22.09.2019
 tags: Aviation
 

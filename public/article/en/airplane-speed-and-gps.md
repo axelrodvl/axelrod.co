@@ -1,64 +1,68 @@
-title: Скорость и высота в авиации, и почему использовать в полёте барометр и GPS телефона (почти) бесполезно
+title: Speed and Altitude in Aviation, and Why Using a Phone’s Barometer and GPS in Flight is (Almost) Useless
 date: 08.04.2020
-tags: Авиация
+tags: Aviation
 
 ---
 
-Главные характеристики полёта воздушного судна — скорость и высота.
+The main flight characteristics of an aircraft are speed and altitude.
 
-Каждый современный телефон умеет достаточно точно высчитывать оба показателя через встроенный барометр и приёмник GPS.
-Если пилоты лишились значений указанных характеристик, то почему телефон им никак не поможет?
+Every modern phone can calculate both values fairly accurately using its built-in barometer and GPS receiver.  
+But if pilots lose access to these instruments, why wouldn’t the phone help them?
 
-### Зададимся двумя вопросами в качестве вводных.
-**Вопрос 1. Скорость верна, а высота нет?**
+### Let’s ask two introductory questions.
+**Question 1. Speed is correct, but altitude is not?**
 
-Допустим, мы взлетели на Boeing 737, набрали высоту и табло «Пристегните ремни» погасло.
-Достаем телефон и запускаем автомобильный навигатор — видим честные 700-900 км/ч, в зависимости от направления и этапа полета: 
+Suppose we took off in a Boeing 737, reached cruising altitude, and the “Fasten Seatbelt” sign went out.  
+We take out the phone, launch a car navigator — and we see a solid 700–900 km/h depending on heading and phase of flight:
 
 ![Yandex Navigator](airplane-speed-and-gps/speed.jpg)
 
-А теперь запускаем барометр и видим значение высоты примерно в 1,5-2,4 км.
-Что с высотой — вопрос интересный, но интереснее сначала задаться вторым.
+Now we open the barometer and see an altitude reading of about 1.5–2.4 km.  
+What’s with the altitude is an interesting matter, but before that, let’s ask the second question.
 
-**Вопрос 2. А почему самолеты падают из-за неверных показаний скорости, если скорость в телефоне верна?**
+**Question 2. Why do airplanes crash due to incorrect speed readings if the speed on the phone is correct?**
 
-Наиболее частой причиной авиационных происшествий (в том числе катастроф с жертвами) является потеря управления в полете или LOC-I (Loss of control in flight).
-Потеря управления не всегда означает неисправность самого самолета — фюзеляж может быть цел, органы управления и двигатели могут работать абсолютно исправно. Часто это означает, что пилоты уронили в полете технически исправный самолет, в котором по какой-то причине приборы перестали показывать корректные значения.
-Немалое число авиакатастроф произошло по причине неверных показаний скорости, даже во времена, когда салон набит доброй сотней-двумя людей с телефонами в карманах. А мы только что проверили, что скорость по GPS телефон, в отличие от давления, показывает верно. Почему? Что мешало пилотам взять телефон и открыть навигатор?
-А потому, что мы видим путевую скорость. Она помогает посчитать время прибытия на место, но абсолютно бесполезна для пилотирования.
+The most common cause of aviation accidents (including fatal crashes) is loss of control in flight, abbreviated LOC-I (Loss of Control in Flight).  
+Loss of control does not always mean a malfunction of the aircraft itself — the fuselage can be intact, the control surfaces and engines perfectly serviceable. Often this means that pilots lost a technically sound aircraft in flight because instruments stopped giving correct readings.  
+A considerable number of air crashes have happened because of incorrect speed readings, even in times when cabins were packed with a hundred or two passengers carrying phones in their pockets. And we just verified that GPS speed on a phone, unlike pressure-based altitude, is correct. So why couldn’t pilots just check their phones?  
+Because what we see is ground speed. It’s good for calculating arrival times, but absolutely useless for piloting.
 
-### Почему путевая скорость бесполезна?
-Потому, что нам нужна скорость набегающего потока воздуха.
-Самолет прекрасно себя чувствует в полете при соблюдении двух условий — скорость достаточна для того, чтобы крылья создавали подъемную силу и скорость недостаточна для того, чтобы эти самые крылья (и другие части самолета) начало отрывать.
-То есть, самолет имеет две критических скорости — минимальную (скорость сваливания) и максимальную (конструктивный предел прочности).
-Самолет летит не относительно исходной точки на земле (что показывает нам GPS), а внутри и за счет воздушных масс вокруг него. Точнее, за счет подъемной силы крыла, возникающей при движении крыла в воздушных массах. Если самолет движется слишком медленно, подъемная сила будет слишком мала для того, чтобы держать его в воздухе. А если слишком быстро — то набегающий поток начнет проминать и выламывать части самолета.
-Все это значит, что для удержания самолета в диапазоне скоростей нам нужна скорость набегающего потока воздуха. И это ни разу не скорость самолета относительно земли по GPS.
-А если совсем точно, то в пилотировании используется целых три скорости.
+### Why is ground speed useless?
+Because what we really need is airspeed — the speed of airflow relative to the aircraft.  
+An airplane can only fly safely within two limits — the speed must be high enough for the wings to generate enough lift, and low enough that the airflow doesn’t tear the wings or other structures apart.  
+This means the aircraft has two critical speeds: minimum (stall speed) and maximum (structural limit).  
 
-**Определения:**
-- Приборная скорость или IAS (Indicated Airspeed) — скорость набегающего воздушного потока, измеряется трубками Пито. Является главной в процессе пилотирования, так как подъемная сила и прочностные характеристики самолета зависят от набегающего потока воздуха.
-- Истинная скорость или TAS (True Airspeed) — скорость самолета относительно воздушных масс с поправкой на температуру и атмосферное давление на текущей высоте (ALT). Вычисляется как IAS + (IAS*0,02 * ALT/1000). 
-- Путевая скорость или GS (Ground Speed) — скорость самолета относительно земли.
+The aircraft does not fly relative to the earth (as GPS measures), but within the surrounding air mass. More precisely, lift is generated by the wing moving through the air. If the plane is too slow, there isn’t enough lift to stay aloft. If it’s too fast, the airflow begins to bend and tear structural parts.  
+So, to keep the aircraft within safe limits, we need airspeed — not ground speed.  
 
-Итого, если приборы пилотов начали показывать что-то странное, и у вас нет возможности высунуть руку с завалявшейся в ручной клади трубкой Пито на улицу при -50° на скорости в 800 км/ч, пилотам со своим телефоном вы не поможете.
+More accurately, there are three different speeds used in piloting:
 
-### А вот теперь насчет высунуть руку из самолета. Вернемся к нашему барометру.
-Допустим, у пилотов перестали работать высотометры, и мы решили им помочь вышеупомянутым телефоном. Допустим также, что он показывает нам не «погоду», а правильное значение.
+**Definitions:**
+- Indicated Airspeed or IAS — the speed of the oncoming airflow, measured by Pitot tubes. This is the primary speed for flying because lift and structural stresses depend directly on it.
+- True Airspeed or TAS — the speed of the aircraft relative to the air mass, corrected for temperature and atmospheric pressure at current altitude (ALT). Calculated as IAS + (IAS * 0.02 * ALT/1000).
+- Ground Speed or GS — the speed of the aircraft relative to the ground.
 
-Для чего нам вообще высота в полете?
+So, if the pilots’ instruments are giving strange readings and you don’t have the option of sticking a Pitot tube out of the window at –50° while flying 800 km/h, your phone won’t help them.
 
-Например, высота (также эшелон) нужна для разделения самолетов в полете. Самолеты двигаются с запада на восток на нечетных «высотах», а с востока на запад — на четных. Сталкиваться в полете минздрав не рекомендует.
-Или при отказе всех двигателей самолет может планировать с высоты на некоторое расстояние, в зависимости от числа аэродинамического качества. Если аэродинамическое качество равно 15 (значение для нашего Boeing 737), то мы можем за счет 1 метра высоты пролететь вперед 15 метров, и с высоты в 10 км мы можем пролететь целых 150 км по карте, а этого вполне может хватить для посадки самолета с внезапно иссякнувшим топливом.
+### Now, about sticking the phone outside. Let’s return to the barometer.
+Suppose all altitude instruments failed and we want to help pilots using our phone. Suppose also that it gives us the “real” reading and not “weather.”  
 
-Но мы делали допущение, а барометр все еще показывает 2 км, когда под нами 10.
+Why do we need altitude in flight anyway?
 
-Все дело в принципе измерения давления и в герметизации самолета. К несчастью, чем больше высота над уровнем моря, тем более разрежен воздух, и тем меньше там кислорода. Человеку прекрасно хватает оного на высотах до 1500 метров над уровнем моря, но выше начинается его небольшая нехватка, со временем перерастающая в незаметную потерю сознания. Впрочем, если покатать пассажиров с давлением на уровне 10000 метров над землей, можно неплохо сэкономить на курице с рыбой.
+For example, altitude (flight level) is used to separate aircraft. Planes flying westward use odd flight levels, and those going eastward — even ones. Mid-air collisions are not recommended by the Ministry of Health.  
 
-Итак, самолёт герметизируется, то есть давление внутри самолёта нагнетается на уровень, в среднем, до 2,4 км. Разные самолеты — по-разному. Блестящий новенький Dreamliner или XWB (никто не заставлял красавца A350 таким именем нарекать, прости Airbus) сделает нам в салоне комфортную «высоту» в 1800-1900 м за счёт композитных материалов (они выдерживают более высокое давление), в то время как заслуженные цельнометаллические старики в лице 737 и A320 будут портить нам самочувствие легким высокогорьем ближе к 2,4 км над уровнем моря.
-Барометр телефона измерит нам «высоту» в кабине, а для измерения настоящей высоты нам все ещё нужно вытащить телефон наружу в упомянутые -50°, а это чертовски холодно. И да, для измерения высоты за бортом барометр телефона подходит, главное не держать его внутри кабины, что демонстрируют мои друзья Vlad Dugnist и Igor Kamenev из Skyduck APP, замеряя высоту парашютистов:
+Or, in case of total engine failure, altitude allows the aircraft to glide over a certain distance depending on its glide ratio. With a 737’s glide ratio of 15, for every 1 meter of altitude you can glide forward 15 meters. From 10 km up, that gives you 150 km range — often enough to make it to an airfield.  
+
+But we already saw the barometer showing 2 km when we’re actually at 10 km.  
+
+It’s because of how pressure is measured and how airliners are pressurized. The higher the altitude, the thinner the air, and the less oxygen it contains. Up to 1500 m, there’s enough oxygen for humans, but above that hypoxia begins and can lead to unconsciousness. Clearly, passengers can’t be subjected to cabin pressure corresponding to 10,000 m altitude — unless the airline really wants to save money on chicken or fish service.  
+
+Thus, the aircraft cabin is pressurized, typically to the equivalent of about 2.4 km altitude, though it varies between aircraft. The modern Dreamliner or A350 XWB (Airbus could’ve thought of a nicer name) maintains about 1800–1900 m thanks to composite materials that withstand higher pressure. Older all-metal planes like the 737 and A320 pressurize to around 2.4 km, which is why long-haul flights can leave you feeling like you’re at mild high altitude.  
+
+So, your phone barometer only measures cabin altitude, not real altitude. To measure actual altitude outside, you’d need to expose the phone to the –50° outside air, which isn’t convenient. Though, as demonstrated by my friends Vlad Dugnist and Igor Kamenev from Skyduck APP, who measure skydiver altitudes — it does work:
 
 ![Skyduck](airplane-speed-and-gps/skyduck.jpg)
 
-Подводя итоги. В полёте играют роль значительно большее число переменных, чем в бытовых условиях использования телефонов. Посмотреть на карте, где вы летите и с какой скоростью — можно. Посмотреть, почему затекли ноги и испортилось самочувствие в долгом перелёте — тоже. Но не более того.
+In summary: many more variables matter in flight than in everyday phone use. You can use a phone to check your location and rough ground speed, or to guess why your legs went numb and you felt off during a long-haul flight. But for actual flight data — it’s useless.
 
-**Спасибо Денису Оканю за интерес к теме и Игорю Малухину за его книгу [«737. Мой первый лайнер»](http://malukhin.ru/?page_id=1968), в которой были подчерпнуты важные детали по скоростям и герметизации.**
+**Thanks to Denis Okan for the interest in the subject and to Igor Malukhin for his book [“737. My First Liner”](http://malukhin.ru/?page_id=1968), which provided important details on speed and pressurization.**
