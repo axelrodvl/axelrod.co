@@ -62,9 +62,6 @@ export default function ProjectsPage() {
                     ))}
                   </ul>
                 )}
-                <span className="text-sm font-semibold text-emerald-300/90 transition group-hover:text-emerald-200">
-                  Visit project ⇱
-                </span>
               </a>
             </article>
           ))}

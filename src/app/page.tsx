@@ -12,7 +12,6 @@ export default function HomePage() {
       <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-16 pt-14 sm:px-12">
         <header className="flex flex-col gap-6 border-b border-white/10 pb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-emerald-300/80">status: online</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
               Vadim Axelrod – Software Engineer
             </h1>
@@ -99,9 +98,6 @@ export default function HomePage() {
                         ))}
                       </ul>
                     )}
-                    <span className="mt-auto pt-6 text-sm font-semibold text-emerald-300/90 transition group-hover:text-emerald-200">
-                      Visit project ⇱
-                    </span>
                   </a>
                 </li>
               ))}

@@ -1,3 +1,10 @@
+name: CarCare [ALPHA]
+link: https://cars.axelrod.co/
+description: Car encyclopedy and managing of your car
+tags: Vibe Coding, Cursor, LLM, React
+
+---
+
 name: L'Atelier de Macaron
 link: https://macaron.ge/
 description: Bakery website with payment system integration and CRM
