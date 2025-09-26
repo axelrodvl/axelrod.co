@@ -76,21 +76,6 @@ export default function ProjectsPage() {
                         </ul>
                       )}
                     </div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden
-                      className="h-5 w-5 text-emerald-400/60 transition group-hover:text-emerald-200"
-                    >
-                      <path
-                        d="m9 18 6-6-6-6"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
                   </div>
                 </a>
               </li>
