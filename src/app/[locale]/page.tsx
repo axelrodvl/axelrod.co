@@ -51,12 +51,12 @@ export default function HomePage({ params }: HomePageProps) {
               <dt>{t.home.contacts.cv}</dt>
               <dd>
                 <a
-                  href="/cv/CV-Axelrod_Vadim.pdf"
+                  href="/cv/CV-Vadim_Axelrod.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm tracking-normal text-white/80"
                 >
-                  CV-Axelrod_Vadim.pdf
+                  CV-Vadim_Axelrod.pdf
                 </a>
               </dd>
             </div>
