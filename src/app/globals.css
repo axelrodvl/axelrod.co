@@ -17,29 +17,5 @@ a {
 }
 
 .noise {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(
-      rgba(4, 6, 9, 0.6),
-      rgba(4, 6, 9, 0.6)
-    ),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-  mix-blend-mode: screen;
-  z-index: 0;
-  animation: grain 6s steps(10) infinite;
-}
-
-@keyframes grain {
-  0% { transform: translate3d(0, 0, 0); }
-  10% { transform: translate3d(-5%, -10%, 0); }
-  20% { transform: translate3d(-15%, 5%, 0); }
-  30% { transform: translate3d(7%, -25%, 0); }
-  40% { transform: translate3d(-5%, 25%, 0); }
-  50% { transform: translate3d(-15%, 10%, 0); }
-  60% { transform: translate3d(15%, 0, 0); }
-  70% { transform: translate3d(0, 15%, 0); }
-  80% { transform: translate3d(3%, 35%, 0); }
-  90% { transform: translate3d(-10%, 10%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
+  display: none;
 }
