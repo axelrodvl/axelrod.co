@@ -14,21 +14,24 @@ export default function ProjectsPage() {
   return (
     <div className="bg-[#040609] text-[#e4f1ff]">
       <div className="mx-auto min-h-screen max-w-4xl px-6 pb-16 pt-14 sm:px-12">
-        <header className="border-b border-white/10 pb-10">
-          <Link
-            href="/"
-            className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-          >
-            ← Back to home
-          </Link>
-          <h1 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Projects
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/60">
-            A mix of client work and personal initiatives spanning product development, integrations,
-            and tooling across the web, mobile, and backend ecosystems.
-          </p>
-        </header>
+        <div className="sticky top-[60px] z-20 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
+          <header className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h1 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
+                Projects
+              </h1>
+              <p className="mt-1 max-w-2xl text-xs uppercase tracking-[0.3em] text-white/40">
+                A mix of client work and personal initiatives across web platforms, automation, and integrations.
+              </p>
+            </div>
+            <Link
+              href="/"
+              className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
+            >
+              ← Back to home
+            </Link>
+          </header>
+        </div>
 
         <main className="mt-10 space-y-6">
           {projects.map((project) => (

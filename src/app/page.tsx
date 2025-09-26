@@ -54,9 +54,9 @@ export default function HomePage() {
           </dl>
         </header>
 
-        <main className="mt-12 flex flex-1 flex-col gap-16">
-          <section>
-            <div className="flex flex-wrap items-center gap-4">
+        <main className="mt-6 flex flex-1 flex-col gap-16">
+          <section className="relative">
+            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
               <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
                 Projects
               </h2>
@@ -68,7 +68,7 @@ export default function HomePage() {
                 View all projects
               </Link>
             </div>
-            <ul className="mt-6 grid gap-6 md:grid-cols-2">
+            <ul className="mt-4 grid gap-6 md:grid-cols-2">
               {projects.map((project) => (
                 <li
                   key={project.name}
@@ -104,8 +104,8 @@ export default function HomePage() {
             </ul>
           </section>
 
-          <section>
-            <div className="flex flex-wrap items-center gap-4">
+          <section className="relative">
+            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
               <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
                 Articles
               </h2>
@@ -117,7 +117,7 @@ export default function HomePage() {
                 Browse all articles
               </Link>
             </div>
-            <ul className="mt-6 overflow-hidden rounded-3xl border border-white/10 bg-black/30">
+            <ul className="mt-4 overflow-hidden rounded-3xl border border-white/10 bg-black/30">
               {articles.map((article) => (
                 <li key={article.slug} className="border-b border-white/10 last:border-none">
                   <Link

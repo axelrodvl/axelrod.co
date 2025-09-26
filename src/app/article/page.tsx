@@ -30,6 +30,21 @@ export default function ArticlesPage() {
       </header>
 
       <main>
+        <div className="sticky top-[60px] z-20 mb-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm sm:px-12">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h1 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
+                Articles
+              </h1>
+            </div>
+            <Link
+              href="/"
+              className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
+            >
+              ← Back to home
+            </Link>
+          </div>
+        </div>
         <ul className="space-y-6">
           {articles.map((article) => (
             <li key={article.slug}>
