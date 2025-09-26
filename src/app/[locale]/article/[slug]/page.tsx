@@ -61,7 +61,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const t = getDictionary(params.locale);
 
   return (
-    <article className="space-y-8">
+    <article className="mx-auto max-w-3xl space-y-8">
       <header className="space-y-4 border-b border-white/10 pb-6">
         <Link
           href={`/${params.locale}/article`}

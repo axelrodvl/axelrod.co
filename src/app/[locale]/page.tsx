@@ -18,7 +18,7 @@ export default function HomePage({ params }: HomePageProps) {
   return (
     <div className="relative bg-[#040609] text-[#e4f1ff]">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/40 via-sky-500/60 to-emerald-500/40" aria-hidden />
-      <div className="mx-auto flex min-h-screen max-w-5xl flex-col px-6 pb-6 pt-6">
+      <div className="mx-auto flex min-h-screen max-w-4xl flex-col px-6 pb-6 pt-6">
         <header className="flex flex-col gap-6 border-b border-white/10 pb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">

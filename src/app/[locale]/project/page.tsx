@@ -16,7 +16,7 @@ export default function ProjectsPage({ params }: ProjectsPageProps) {
   const projects = readProjects(locale);
 
   return (
-    <div className="space-y-10">
+    <div className="mx-auto max-w-4xl space-y-10">
       <header className="border-b border-white/10 pb-8">
         <Link
           href={`/${locale}`}
