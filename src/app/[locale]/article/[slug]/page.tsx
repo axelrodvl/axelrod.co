@@ -52,17 +52,21 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
 
 export default function ArticlePage({ params }: ArticlePageProps) {
   const article = readArticle(params.locale, params.slug);
-
   if (!article) {
     notFound();
   }
+
+  const articles = readArticles(params.locale);
+  const currentIndex = articles.findIndex((item) => item.slug === params.slug);
+  const previousArticle = currentIndex > 0 ? articles[currentIndex - 1] : undefined;
+  const nextArticle = currentIndex !== -1 && currentIndex < articles.length - 1 ? articles[currentIndex + 1] : undefined;
 
   const { frontmatter, content, tagsList, publishedAt } = article;
   const t = getDictionary(params.locale);
 
   return (
     <article className="mx-auto max-w-3xl space-y-8">
-      <header className="space-y-4 border-b border-white/10 pb-6">
+      <header className="space-y-4 pb-6">
         <Link
           href={`/${params.locale}/article`}
           className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
@@ -91,6 +95,71 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       <Markdown baseImagePath={`/article/image/${params.slug}/`}>
         {content}
       </Markdown>
+
+      {(previousArticle || nextArticle) && (
+        <nav className="mt-12 grid gap-4 pt-8 sm:grid-cols-2">        
+          {nextArticle && (
+            <Link
+              href={`/${params.locale}/article/${nextArticle.slug}`}
+              className="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-black/40 p-6 transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+            >
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 group-hover:text-emerald-300/90">
+                {t.articleDetail.nextArticle}
+              </span>
+              <div className="space-y-3">
+                <time
+                  dateTime={nextArticle.publishedAt.toISOString()}
+                  className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
+                >
+                  {formatDate(nextArticle.publishedAt, params.locale === "ru" ? "ru-RU" : "en-GB")}
+                </time>
+                <h3 className="mt-1 text-lg font-semibold text-white">
+                  {nextArticle.title}
+                </h3>
+                {nextArticle.tagsList.length > 0 && (
+                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+                    {nextArticle.tagsList.map((tag) => (
+                      <li key={`${nextArticle.slug}-${tag}`} className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </Link>
+          )}
+          {previousArticle && (
+            <Link
+              href={`/${params.locale}/article/${previousArticle.slug}`}
+              className="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-black/40 p-6 transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+            >
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 group-hover:text-emerald-300/90">
+                {t.articleDetail.previousArticle}
+              </span>
+              <div className="space-y-3">
+                <time
+                  dateTime={previousArticle.publishedAt.toISOString()}
+                  className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
+                >
+                  {formatDate(previousArticle.publishedAt, params.locale === "ru" ? "ru-RU" : "en-GB")}
+                </time>
+                <h3 className="mt-1 text-lg font-semibold text-white">
+                  {previousArticle.title}
+                </h3>
+                {previousArticle.tagsList.length > 0 && (
+                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+                    {previousArticle.tagsList.map((tag) => (
+                      <li key={`${previousArticle.slug}-${tag}`} className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </Link>
+          )}
+        </nav>
+      )}
     </article>
   );
 }

@@ -46,6 +46,8 @@ const translations: Record<Locale, {
   };
   articleDetail: {
     backToArticles: string;
+    previousArticle: string;
+    nextArticle: string;
   };
 }> = {
   en: {
@@ -93,7 +95,9 @@ const translations: Record<Locale, {
       stickyTitle: "Projects",
     },
     articleDetail: {
-      backToArticles: "← Back to articles",
+      backToArticles: "\u2190 Back to articles",
+      previousArticle: "\u2190 Previous article",
+      nextArticle: "Next article \u2192",
     },
   },
   ru: {
@@ -141,7 +145,9 @@ const translations: Record<Locale, {
       stickyTitle: "Проекты",
     },
     articleDetail: {
-      backToArticles: "← Назад к статьям",
+      backToArticles: "\u2190 \u041d\u0430\u0437\u0430\u0434 \u043a \u0441\u0442\u0430\u0442\u044c\u044f\u043c",
+      previousArticle: "\u2190 \u041f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0430\u044f \u0441\u0442\u0430\u0442\u044c\u044f",
+      nextArticle: "\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0430\u044f \u0441\u0442\u0430\u0442\u044c\u044f \u2192",
     },
   },
 };
