@@ -37,6 +37,8 @@ const translations: Record<Locale, {
     description: string;
     backToHome: string;
     stickyTitle: string;
+    tagCloudTitle: string;
+    tagCloudAll: string;
   };
   projects: {
     title: string;
@@ -86,6 +88,8 @@ const translations: Record<Locale, {
         "Stories and engineering notes from the projects I build and the systems I maintain. Everything is written in plain Markdown and rendered on the fly.",
       backToHome: "← Back to home",
       stickyTitle: "Articles",
+      tagCloudTitle: "Filter by tag",
+      tagCloudAll: "All",
     },
     projects: {
       title: "Projects",
@@ -136,6 +140,8 @@ const translations: Record<Locale, {
         "Истории и инженерные заметки о проектах и системах, над которыми я работаю. Всё написано в Markdown и рендерится на лету.",
       backToHome: "← На главную",
       stickyTitle: "Статьи",
+      tagCloudTitle: "Фильтр по тегам",
+      tagCloudAll: "Все",
     },
     projects: {
       title: "Проекты",
