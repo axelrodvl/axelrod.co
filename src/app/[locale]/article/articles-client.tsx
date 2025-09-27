@@ -119,7 +119,7 @@ export default function ArticlesClient({
         </div>
       </div>
       {tags.length > 0 && (
-        <div className="mb-8 space-y-4 border-y border-white/10 py-6">
+        <div className="mb-8 space-y-4 py-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <span className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">
               {labels.tagCloudTitle}
