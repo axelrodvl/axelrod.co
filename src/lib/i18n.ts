@@ -45,6 +45,8 @@ const translations: Record<Locale, {
     description: string;
     backToHome: string;
     stickyTitle: string;
+    tagCloudTitle: string;
+    tagCloudAll: string;
   };
   articleDetail: {
     backToArticles: string;
@@ -97,6 +99,8 @@ const translations: Record<Locale, {
         "A selection of client work and personal initiatives spanning web platforms, automation, and integrations.",
       backToHome: "← Back to home",
       stickyTitle: "Projects",
+      tagCloudTitle: "Filter by tag",
+      tagCloudAll: "All",
     },
     articleDetail: {
       backToArticles: "\u2190 Back to articles",
@@ -149,6 +153,8 @@ const translations: Record<Locale, {
         "Подборка клиентских и личных инициатив: веб-платформы, автоматизация и интеграции.",
       backToHome: "← На главную",
       stickyTitle: "Проекты",
+      tagCloudTitle: "Фильтр по тегам",
+      tagCloudAll: "Все",
     },
     articleDetail: {
       backToArticles: "\u2190 \u041d\u0430\u0437\u0430\u0434 \u043a \u0441\u0442\u0430\u0442\u044c\u044f\u043c",

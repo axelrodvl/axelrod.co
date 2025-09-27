@@ -1,19 +1,23 @@
 import Link from "next/link";
-
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readProjects } from "@/lib/content";
+import ProjectsClient from "./projects-client";
 
 type ProjectsPageProps = {
   params: {
     locale: Locale;
   };
+  searchParams?: {
+    tag?: string | string[];
+  };
 };
 
-export default function ProjectsPage({ params }: ProjectsPageProps) {
+export default function ProjectsPage({ params, searchParams }: ProjectsPageProps) {
   const { locale } = params;
   const t = getDictionary(locale);
   const projects = readProjects(locale);
+  const initialTag = typeof searchParams?.tag === "string" ? searchParams.tag : undefined;
 
   return (
     <div className="mx-auto max-w-4xl space-y-10">
@@ -32,59 +36,18 @@ export default function ProjectsPage({ params }: ProjectsPageProps) {
         </p>
       </header>
 
-      <main>
-        <div className="sticky top-[60px] z-20 mb-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
-                {t.projects.stickyTitle}
-              </h2>
-            </div>
-            <Link
-              href={`/${locale}`}
-              className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-            >
-              {t.projects.backToHome}
-            </Link>
-          </div>
-        </div>
-
-        <ul className="space-y-5">
-          {projects.map((project) => (
-            <li key={project.name}>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
-              >
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="space-y-2">
-                    <h2 className="text-lg font-semibold text-white">
-                      {project.name}
-                    </h2>
-                    <p className="text-sm leading-relaxed text-white/60">
-                      {project.description}
-                    </p>
-                    {project.tags.length > 0 && (
-                      <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
-                        {project.tags.map((tag) => (
-                          <li
-                            key={`${project.name}-${tag}`}
-                            className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
-                          >
-                            {tag}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </main>
+      <ProjectsClient
+        locale={locale}
+        projects={projects}
+        initialTag={initialTag}
+        labels={{
+          stickyTitle: t.projects.stickyTitle,
+          backToHome: t.projects.backToHome,
+          tagCloudTitle: t.projects.tagCloudTitle,
+          tagCloudAll: t.projects.tagCloudAll,
+        }}
+        homeHref={`/${locale}`}
+      />
     </div>
   );
 }
