@@ -20,7 +20,7 @@ export default function HomePage({ params }: HomePageProps) {
     <div className="relative bg-[#040609] text-[#e4f1ff]">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/40 via-sky-500/60 to-emerald-500/40" aria-hidden />
       <div className="mx-auto flex min-h-screen max-w-4xl flex-col pb-6 pt-6">
-        <header className="flex flex-col gap-6 border-b border-white/10 pb-12 sm:flex-row sm:items-end sm:justify-between">
+        <header className="flex flex-col gap-6 pb-12 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
               {t.home.heroTitle}
@@ -126,37 +126,39 @@ export default function HomePage({ params }: HomePageProps) {
                 {t.home.sections.articles.cta}
               </Link>
             </div>
-            <ul className="mt-3 overflow-hidden rounded-3xl border border-white/10 bg-black/30">
+            <ul className="mt-3 space-y-5">
               {articles.map((article) => (
-                <li key={article.slug} className="border-b border-white/10 last:border-none">
+                <li key={article.slug}>
                   <Link
                     href={`/${locale}/article/${article.slug}`}
-                    className="flex flex-col gap-3 border-white/10 bg-black/40 px-6 py-5 transition hover:border-emerald-400/40 hover:bg-black/60 sm:flex-row sm:items-center sm:justify-between"
+                    className="group block rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
                   >
-                    <div className="space-y-2">
-                      <div>
-                        <time
-                          dateTime={article.publishedAt.toISOString()}
-                          className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
-                        >
-                          {formatDate(article.publishedAt, locale === "ru" ? "ru-RU" : "en-GB")}
-                        </time>
-                        <h3 className="mt-1 text-lg font-semibold text-white">
-                          {article.title}
-                        </h3>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="space-y-2">
+                        <div>
+                          <time
+                            dateTime={article.publishedAt.toISOString()}
+                            className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
+                          >
+                            {formatDate(article.publishedAt, locale === "ru" ? "ru-RU" : "en-GB")}
+                          </time>
+                          <h3 className="mt-1 text-lg font-semibold text-white">
+                            {article.title}
+                          </h3>
+                        </div>
+                        {article.tagsList.length > 0 && (
+                          <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+                            {article.tagsList.map((tag) => (
+                              <li
+                                key={`${article.slug}-${tag}`}
+                                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
+                              >
+                                {tag.toUpperCase()}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
-                      {article.tagsList.length > 0 && (
-                        <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
-                          {article.tagsList.map((tag) => (
-                            <li
-                              key={`${article.slug}-${tag}`}
-                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
-                            >
-                              {tag}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
                     </div>
                   </Link>
                 </li>
