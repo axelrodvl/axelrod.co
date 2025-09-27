@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { formatDate } from "@/lib/utils";
 
@@ -33,11 +33,15 @@ export default function ArticlesClient({
   labels,
   homeHref,
 }: ArticlesClientProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const search = useSearchParams();
   const paramTag = search.get("tag") ?? initialTag;
-  const selectedTag = typeof paramTag === "string" ? paramTag : undefined;
+  const normalizedParamTag = typeof paramTag === "string" ? paramTag : undefined;
+  const [selectedTag, setSelectedTag] = useState<string | undefined>(normalizedParamTag);
+
+  useEffect(() => {
+    setSelectedTag((prev) => (prev === normalizedParamTag ? prev : normalizedParamTag));
+  }, [normalizedParamTag]);
 
   const tagCounts = useMemo(
     () =>
@@ -74,17 +78,28 @@ export default function ArticlesClient({
     [articles, selectedTag],
   );
 
-  const handleTagSelect = (tag?: string) => {
-    const next = new URLSearchParams(search.toString());
+  const handleTagSelect = useCallback(
+    (tag?: string) => {
+      setSelectedTag(tag);
 
-    if (!tag) {
-      next.delete("tag");
-    } else {
-      next.set("tag", tag);
-    }
+      if (typeof window === "undefined") {
+        return;
+      }
 
-    router.replace(`${pathname}?${next.toString()}`);
-  };
+      const next = new URLSearchParams(window.location.search);
+
+      if (!tag) {
+        next.delete("tag");
+      } else {
+        next.set("tag", tag);
+      }
+
+      const query = next.toString();
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      window.history.replaceState(window.history.state, "", nextUrl);
+    },
+    [pathname],
+  );
 
   return (
     <main>
