@@ -13,8 +13,8 @@ type HomePageProps = {
 export default function HomePage({ params }: HomePageProps) {
   const { locale } = params;
   const t = getDictionary(locale);
-  const projects = readProjects(locale);
-  const articles = readArticles(locale);
+  const projects = readProjects(locale).slice(0, 5);
+  const articles = readArticles(locale).slice(0, 5);
 
   return (
     <div className="relative bg-[#040609] text-[#e4f1ff]">
