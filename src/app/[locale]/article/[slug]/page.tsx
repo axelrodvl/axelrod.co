@@ -97,7 +97,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       </Markdown>
 
       {(previousArticle || nextArticle) && (
-        <nav className="mt-12 grid gap-4 pt-8 sm:grid-cols-2">        
+        <nav className="mt-6 grid gap-4 pt-8 sm:grid-cols-2">        
           {nextArticle && (
             <Link
               href={`/${params.locale}/article/${nextArticle.slug}`}
