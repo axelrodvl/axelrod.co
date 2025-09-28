@@ -5,6 +5,13 @@ tags: Vibe Coding, Cursor, LLM, React
 
 ---
 
+name: Telegram MCP Server
+link: https://github.com/axelrodvl/telegram-mcp-server
+description: MCP коннектор для отправки сообщений из LLM в Telegram
+tags: MCP, LLM, Java, Spring, Spring AI
+
+---
+
 name: No GC WebSocket/LMAX Disruptor
 link: https://github.com/axelrodvl/websocket-client-with-disruptor-no-gc
 description: Демо WebSocket клиента для LMAX Disruptor с полным No GC
