@@ -66,6 +66,7 @@ Take absolutely any service — and even completely free alternatives will surel
 - Google Drive/Dropbox/Box.com -> NextCloud — cloud documents and sync.
 - Microsoft Office/Google Docs -> NextCloud Office — cloud documents.
 - Slack -> Rocket.Chat — corporate chats.
+
 Often such services are far from ideal without filing and tuning, but there is not a single product on the market without alternatives. Likely, switching from AutoCAD to FreeCAD, or from SAP to 1C will paralyze an airline enterprise, but here the topic is individuals and everyday needs, and things are very, very good.
 
 ### Self-hosting
@@ -77,6 +78,7 @@ Let’s tally an average cost of popular services. Suppose Korean dramas are wat
 - Amazon AWS — ~7 USD
 - YouTube Premium — 3 USD
 Total: 42.97 USD per month, or 515.64 USD per year.
+
 Every year. A shabby car can be swapped for 10 years of shows in advance.
 Paid services cost money. And when there are many, the annual tally becomes hefty. Five years of music and photos on Apple costs an iPhone.
 But free services cost time. And skills. And come at one’s own risk.

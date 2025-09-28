@@ -8,7 +8,7 @@ tags: Vibe Coding, Cursor, LLM, React
 name: Telegram MCP Server
 link: https://github.com/axelrodvl/telegram-mcp-server
 description: MCP коннектор для отправки сообщений из LLM в Telegram
-tags: MCP, LLM, Java, Spring, Spring AI
+tags: MCP, LLM, Java, Telegram, Spring, Spring AI
 
 ---
 
@@ -54,9 +54,16 @@ tags: TypeScript, React, Antd, Java, Spring
 
 ---
 
+name: Axelrod WebServer Publishing
+link: https://github.com/axelrodvl/webserver/tree/publishing
+description: Прошлая ультра-лёгкая версия этого блога на Java с собственной реализацией HTTP веб-сервера
+tags: Java
+
+---
+
 name: Gutenberg
 link: https://github.com/axelrodvl/gutenberg
-description: Прошлая версия этого блока
+description: Прошлая версия этого блога на React
 tags: React
 
 ---
