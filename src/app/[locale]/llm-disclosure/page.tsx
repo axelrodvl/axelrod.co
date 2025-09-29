@@ -41,10 +41,6 @@ export default function LlmDisclosurePage({ params }: LlmDisclosurePageProps) {
           ))}
         </ul>
       </section>
-
-      <footer>
-        <p className="text-sm leading-relaxed text-white/60">{disclosure.outro}</p>
-      </footer>
     </div>
   );
 }

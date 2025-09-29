@@ -59,15 +59,7 @@ export default function HomePage({ params }: HomePageProps) {
                   CV-Vadim_Axelrod.pdf
                 </a>
               </dd>
-            </div>
-            <div className="transition hover:text-emerald-300/90">
-              <dt>{t.home.contacts.llmPolicy}</dt>
-              <dd>
-                <Link href={`/${locale}/llm-disclosure`} className="text-sm tracking-normal text-white/80">
-                  {t.home.contacts.llmPolicy}
-                </Link>
-              </dd>
-            </div>
+            </div>            
           </dl>
         </header>
 
