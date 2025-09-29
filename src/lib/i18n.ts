@@ -62,7 +62,7 @@ const translations: Record<Locale, {
     home: {
       heroTitle: "Vadim Axelrod – Software Engineer",
       heroSubtitle:
-        "Building reliable solutions with Java, TypeScript, and modern web platforms. I enjoy shipping products, optimizing developer workflows, and writing about engineering practices.",
+        "Building reliable solutions with Java, TypeScript, and modern web platforms using LLMs. I enjoy shipping products, optimizing developer workflows, and writing about engineering practices.",
       contacts: {
         github: "github",
         email: "e-mail",
@@ -116,7 +116,7 @@ const translations: Record<Locale, {
     home: {
       heroTitle: "Вадим Аксельрод — инженер-программист",
       heroSubtitle:
-        "Создаю надёжные решения на Java, TypeScript и современных веб-платформах. Запускаю продукты, улучшаю процессы разработки и делюсь инженерными практиками.",
+        "Создаю надёжные решения на Java, TypeScript и современных веб-платформах с использованием LLM. Запускаю продукты, улучшаю процессы разработки и делюсь инженерными практиками.",
       contacts: {
         github: "github",
         email: "e-mail",
