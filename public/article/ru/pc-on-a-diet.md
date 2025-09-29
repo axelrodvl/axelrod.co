@@ -1,6 +1,8 @@
 title: ПК на диете. Или что вам на самом деле нужно от ОС.
 date: 06.09.2023
 tags: Linux, Операционные системы
+llm-usage: 10
+llm-translation: false
 
 ---
 

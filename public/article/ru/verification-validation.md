@@ -1,6 +1,8 @@
 title: Верификация и валидация
 date: 06.02.2019
 tags: ISO 9000:2005
+llm-usage: 0
+llm-translation: false
 
 ---
 

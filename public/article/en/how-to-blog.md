@@ -1,6 +1,8 @@
 title: Setting up a personal blog with Hugo
 date: 11.02.2019
 tags: Development
+llm-usage: 0
+llm-translation: true
 
 ---
 

@@ -1,6 +1,8 @@
 title: Plan for Entering Backend Development
 date: 29.01.2021
 tags: Development, Backend, Learning
+llm-usage: 0
+llm-translation: true
 
 ---
 

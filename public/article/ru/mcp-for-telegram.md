@@ -1,6 +1,8 @@
 title: Расширяем возможности ChatGPT - подключение к Telegram через MCP
 date: 28.09.2025
 tags: Разработка, MCP, LLM, Telegram
+llm-usage: 10
+llm-translation: false
 
 ---
 

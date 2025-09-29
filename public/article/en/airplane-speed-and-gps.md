@@ -1,6 +1,8 @@
 title: Speed and Altitude in Aviation, and Why Using a Phone’s Barometer and GPS in Flight is (Almost) Useless
 date: 08.04.2020
 tags: Aviation
+llm-usage: 0
+llm-translation: true
 
 ---
 

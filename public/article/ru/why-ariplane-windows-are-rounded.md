@@ -1,6 +1,8 @@
 title: Почему окна самолётов овальные
 date: 21.04.2023
 tags: Авиация
+llm-usage: 0
+llm-translation: false
 
 ---
 

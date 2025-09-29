@@ -1,6 +1,8 @@
 title: Лакх и крор
 date: 11.03.2023
 tags: Путешествия, Индия
+llm-usage: 0
+llm-translation: false
 
 ---
 

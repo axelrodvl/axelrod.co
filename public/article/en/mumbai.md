@@ -1,6 +1,8 @@
 title: Mumbai
 date: 17.03.2023
 tags: Travel, India
+llm-usage: 0
+llm-translation: true
 
 ---
 

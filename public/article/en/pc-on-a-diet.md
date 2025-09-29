@@ -1,6 +1,8 @@
 title: PC on a diet. Or what you really need from an OS.
 date: 06.09.2023
 tags: Linux, Operating Systems
+llm-usage: 10
+llm-translation: true
 
 ---
 

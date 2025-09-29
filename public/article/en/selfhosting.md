@@ -1,6 +1,8 @@
 title: Essay on Self-Hosting
 date: 17.10.2024
 tags: Linux, Administration, Self-Hosting
+llm-usage: 30
+llm-translation: true
 
 ---
 

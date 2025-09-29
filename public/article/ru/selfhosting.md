@@ -1,6 +1,8 @@
 title: Эссе о селфхостинге
 date: 17.10.2024
 tags: Linux, Администрирование, Self-Hosting
+llm-usage: 30
+llm-translation: false
 
 ---
 

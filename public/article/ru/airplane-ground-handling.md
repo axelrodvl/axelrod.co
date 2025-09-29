@@ -1,6 +1,8 @@
 title: Airplane ground handling — технология наземного обслуживания самолетов представителем на перроне
 date: 22.09.2019
 tags: Авиация
+llm-usage: 0
+llm-translation: false
 
 ---
 

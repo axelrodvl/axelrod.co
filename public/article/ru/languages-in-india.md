@@ -1,6 +1,8 @@
 title: Языки Индии
 date: 03.03.2023
 tags: Путешествия, Индия
+llm-usage: 0
+llm-translation: false
 
 ---
 

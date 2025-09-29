@@ -1,6 +1,8 @@
 title: Expanding ChatGPT Capabilities - Connecting to Telegram via MCP
 date: 28.09.2025
 tags: Development, MCP, LLM, Telegram
+llm-usage: 10
+llm-translation: true
 
 ---
 

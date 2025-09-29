@@ -1,6 +1,8 @@
 title: Мумбаи
 date: 17.03.2023
 tags: Путешествия, Индия
+llm-usage: 0
+llm-translation: false
 
 ---
 

@@ -1,6 +1,8 @@
 title: Поднимаем собственный блог на Hugo
 date: 11.02.2019
 tags: Разработка
+llm-usage: 0
+llm-translation: false
 
 ---
 

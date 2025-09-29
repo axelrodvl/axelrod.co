@@ -1,6 +1,8 @@
 title: Собираем домашнюю метеостанцию с Telegram ботом на Raspberry Pi
 date: 02.06.2019
 tags: Разработка, Raspberry Pi
+llm-usage: 0
+llm-translation: false
 
 ---
 

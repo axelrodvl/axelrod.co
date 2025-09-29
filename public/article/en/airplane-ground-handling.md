@@ -1,6 +1,8 @@
 title: Airplane ground handling — the technology of aircraft ground servicing by an apron representative
 date: 22.09.2019
 tags: Aviation
+llm-usage: 0
+llm-translation: true
 
 ---
 

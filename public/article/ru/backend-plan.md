@@ -1,6 +1,8 @@
 title: План вхождения в backend разработку
 date: 29.01.2021
 tags: Разработка, Backend, Обучение
+llm-usage: 0
+llm-translation: false
 
 ---
 

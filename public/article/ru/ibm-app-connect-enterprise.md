@@ -1,6 +1,8 @@
 title: Обзор IBM App Connect Enterprise
 date: 14.01.2020
 tags: Разработка, IBM, IBM App Connect Enterprise, IBM Integration Bus
+llm-usage: 0
+llm-translation: false
 
 ---
 
