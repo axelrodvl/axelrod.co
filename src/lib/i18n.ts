@@ -17,6 +17,7 @@ const translations: Record<Locale, {
       email: string;
       cv: string;
     };
+    llmPolicyBanner: string;
     sections: {
       projects: {
         title: string;
@@ -53,6 +54,15 @@ const translations: Record<Locale, {
     previousArticle: string;
     nextArticle: string;
   };
+  llmDisclosure: {
+    title: string;
+    intro: string;
+    backToHome: string;
+    items: {
+      label: string;
+      description: string;
+    }[];
+  };
 }> = {
   en: {
     header: {
@@ -68,6 +78,7 @@ const translations: Record<Locale, {
         email: "e-mail",
         cv: "cv",
       },
+      llmPolicyBanner: "🧠 - - - - - - - - LLM usage disclosure policy - - - - - - - - 🤖",
       sections: {
         projects: {
           title: "Projects",
@@ -107,6 +118,30 @@ const translations: Record<Locale, {
       previousArticle: "\u2190 Previous article",
       nextArticle: "Next article \u2192",
     },
+    llmDisclosure: {
+      title: "LLM Usage Disclosure Policy",
+      intro:
+        "I disclose how much support large language models provided for each article or project. Use the scale below to understand the level of AI involvement.",
+      backToHome: "\u2190 Back to home",
+      items: [
+        {
+          label: "🧠 0%",
+          description: "Absolutely everything was created by me. No wording, structure, or code came from an LLM.",
+        },
+        {
+          label: "🧠 Less than 50%",
+          description: "I asked an LLM for corrections, code suggestions, or factual references, but the final structure and logic are mine.",
+        },
+        {
+          label: "\ud83e\udd16 More than 50%",
+          description: "An LLM produced most of the work: structure, ideas, and significant fragments may remain unverified.",
+        },
+        {
+          label: "\ud83e\udd16 LLM Translated",
+          description: "The original content is mine, and the LLM only translated it into another language.",
+        },
+      ]
+    },
   },
   ru: {
     header: {
@@ -122,6 +157,7 @@ const translations: Record<Locale, {
         email: "e-mail",
         cv: "резюме",
       },
+      llmPolicyBanner: "🧠 - - - - - - - - Политика раскрытия использования LLM - - - - - - - - 🤖",
       sections: {
         projects: {
           title: "Проекты",
@@ -160,6 +196,30 @@ const translations: Record<Locale, {
       backToArticles: "\u2190 \u041d\u0430\u0437\u0430\u0434 \u043a \u0441\u0442\u0430\u0442\u044c\u044f\u043c",
       previousArticle: "\u2190 \u041f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0430\u044f \u0441\u0442\u0430\u0442\u044c\u044f",
       nextArticle: "\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0430\u044f \u0441\u0442\u0430\u0442\u044c\u044f \u2192",
+    },
+    llmDisclosure: {
+      title: "Политика раскрытия использования LLM",
+      intro:
+        "Я отмечаю степень участия больших языковых моделей в каждой статье и проекте. По шкале ниже можно понять, сколько работы выполнил ИИ.",
+      backToHome: "\u2190 \u041d\u0430 \u0433\u043b\u0430\u0432\u043d\u0443\u044e",
+      items: [
+        {
+          label: "🧠 0%",
+          description: "Всё сделано вручную: текст, структура и код созданы мной без участия LLM.",
+        },
+        {
+          label: "🧠 Менее 50%",
+          description: "LLM помогала с вычиткой, генерацией фрагментов кода или справочными данными, но общая логика и структура мои.",
+        },
+        {
+          label: "\ud83e\udd16 Более 50%",
+          description: "Большую часть работы выполнила LLM: структура, идеи и значимые куски могли остаться непроверенными.",
+        },
+        {
+          label: "\ud83e\udd16 Перевод LLM",
+          description: "Исходный материал мой, а LLM использовалась только для перевода на другой язык.",
+        },
+      ]
     },
   },
 };

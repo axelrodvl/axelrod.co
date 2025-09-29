@@ -60,10 +60,27 @@ export default function HomePage({ params }: HomePageProps) {
                 </a>
               </dd>
             </div>
+            <div className="transition hover:text-emerald-300/90">
+              <dt>{t.home.contacts.llmPolicy}</dt>
+              <dd>
+                <Link href={`/${locale}/llm-disclosure`} className="text-sm tracking-normal text-white/80">
+                  {t.home.contacts.llmPolicy}
+                </Link>
+              </dd>
+            </div>
           </dl>
         </header>
 
         <main className="mt-4 flex flex-1 flex-col gap-12">
+          <Link
+            href={`/${locale}/llm-disclosure`}
+            className="group relative block overflow-hidden rounded-3xl border border-emerald-400/40 bg-gradient-to-r from-emerald-500/20 via-sky-500/20 to-purple-500/20 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200 transition hover:scale-[1.01] hover:border-emerald-300/60 hover:text-emerald-100 sm:text-sm"
+          >
+            <span className="relative z-10 flex items-center justify-center gap-3 text-white/80 transition group-hover:text-white">
+              {t.home.llmPolicyBanner}
+            </span>
+            <span className="absolute inset-0 -z-10 bg-gradient-to-r from-emerald-500/30 via-sky-500/30 to-purple-500/30 opacity-0 transition group-hover:opacity-100" aria-hidden />
+          </Link>
           <section className="relative">
             <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
               <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
