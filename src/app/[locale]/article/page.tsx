@@ -22,6 +22,8 @@ export default function ArticlesPage({ params, searchParams }: ArticlesPageProps
     title: article.title,
     tagsList: article.tagsList,
     publishedAt: article.publishedAt.toISOString(),
+    llmTags: article.llmTags,
+    llmTagsTranslated: article.llmTagsTranslated,
   }));
   const initialTag = typeof searchParams?.tag === "string" ? searchParams.tag : undefined;
 

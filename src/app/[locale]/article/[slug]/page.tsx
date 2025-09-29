@@ -61,7 +61,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const previousArticle = currentIndex > 0 ? articles[currentIndex - 1] : undefined;
   const nextArticle = currentIndex !== -1 && currentIndex < articles.length - 1 ? articles[currentIndex + 1] : undefined;
 
-  const { frontmatter, content, tagsList, publishedAt } = article;
+  const { frontmatter, content, tagsList, llmTagsTranslated, publishedAt } = article;
   const t = getDictionary(params.locale);
 
   return (
@@ -81,10 +81,21 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             {frontmatter.title}
           </h1>
         </div>
-        {tagsList.length > 0 && (
-          <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+        {(tagsList.length > 0 || llmTagsTranslated.length > 0) && (
+          <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+            {llmTagsTranslated.map((tag) => (
+              <li
+                key={`${params.slug}-llm-${tag}`}
+                className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+              >
+                {tag}
+              </li>
+            ))}
             {tagsList.map((tag) => (
-              <li key={`${params.slug}-${tag}`} className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1">
+              <li
+                key={`${params.slug}-${tag}`}
+                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+              >
                 {tag}
               </li>
             ))}
@@ -116,10 +127,21 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 <h3 className="mt-1 text-lg font-semibold text-white">
                   {nextArticle.title}
                 </h3>
-                {nextArticle.tagsList.length > 0 && (
-                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+                {(nextArticle.tagsList.length > 0 || nextArticle.llmTagsTranslated.length > 0) && (
+                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+                    {nextArticle.llmTagsTranslated?.map((tag) => (
+                      <li
+                        key={`${nextArticle.slug}-llm-${tag}`}
+                        className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                      >
+                        {tag}
+                      </li>
+                    ))}
                     {nextArticle.tagsList.map((tag) => (
-                      <li key={`${nextArticle.slug}-${tag}`} className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1">
+                      <li
+                        key={`${nextArticle.slug}-${tag}`}
+                        className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                      >
                         {tag}
                       </li>
                     ))}
@@ -146,10 +168,21 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 <h3 className="mt-1 text-lg font-semibold text-white">
                   {previousArticle.title}
                 </h3>
-                {previousArticle.tagsList.length > 0 && (
-                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
+                {(previousArticle.tagsList.length > 0 || previousArticle.llmTagsTranslated.length > 0) && (
+                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+                    {previousArticle.llmTagsTranslated?.map((tag) => (
+                      <li
+                        key={`${previousArticle.slug}-llm-${tag}`}
+                        className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                      >
+                        {tag}
+                      </li>
+                    ))}
                     {previousArticle.tagsList.map((tag) => (
-                      <li key={`${previousArticle.slug}-${tag}`} className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1">
+                      <li
+                        key={`${previousArticle.slug}-${tag}`}
+                        className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                      >
                         {tag}
                       </li>
                     ))}

@@ -2,7 +2,7 @@ title: Building a Home Weather Station with a Telegram Bot on Raspberry Pi
 date: 02.06.2019
 tags: Development, Raspberry Pi
 llm-usage: 0
-llm-translation: false
+llm-translation: true
 
 ---
 

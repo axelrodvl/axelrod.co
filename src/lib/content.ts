@@ -19,12 +19,16 @@ type ArticleFrontmatter = {
   title: string;
   date: string;
   tags?: string;
+  "llm-usage"?: number;
+  "llm-translation"?: boolean;
 };
 
 export type Article = ArticleFrontmatter & {
   slug: string;
   tagsList: string[];
   publishedAt: Date;
+  llmTags: string[];
+  llmTagsTranslated: string[];
 };
 
 export type ArticleDetail = {
@@ -33,6 +37,8 @@ export type ArticleDetail = {
   tagsList: string[];
   content: string;
   publishedAt: Date;
+  llmTags: string[];
+  llmTagsTranslated: string[];
 };
 
 export function readProjects(locale: string): Project[] {
@@ -68,6 +74,8 @@ export function readArticles(locale: string): Article[] {
       const { data } = parseMarkdown(content);
       const publishedAt = parseDate(data.date ?? "01.01.1970");
 
+      const llmTagLocales = buildLlmTags(data);
+
       return {
         title: data.title ?? file,
         date: data.date ?? "01.01.1970",
@@ -75,6 +83,8 @@ export function readArticles(locale: string): Article[] {
         tagsList: normaliseTags(data.tags),
         slug: file.replace(/\.md$/, ""),
         publishedAt,
+        llmTags: llmTagLocales.map((tag) => tag.en),
+        llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
       } satisfies Article;
     })
     .sort((a, b) => Number(b.publishedAt) - Number(a.publishedAt));
@@ -91,6 +101,8 @@ export function readArticle(locale: string, slug: string): ArticleDetail | null 
   const { data, content } = parseMarkdown(raw);
   const publishedAt = parseDate(data.date ?? "01.01.1970");
 
+  const llmTagLocales = buildLlmTags(data);
+
   return {
     slug,
     frontmatter: {
@@ -101,6 +113,8 @@ export function readArticle(locale: string, slug: string): ArticleDetail | null 
     tagsList: normaliseTags(data.tags),
     content,
     publishedAt,
+    llmTags: llmTagLocales.map((tag) => tag.en),
+    llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
   };
 }
 
@@ -145,5 +159,87 @@ function parseMarkdown(raw: string) {
   const synthetic = `---\n${frontmatter}\n---\n${body}`;
 
   return matter(synthetic);
+}
+
+type LlmTag = {
+  key: string;
+  en: string;
+  ru: string;
+};
+
+function buildLlmTags(data: Record<string, unknown>): LlmTag[] {
+  const result: LlmTag[] = [];
+  const usage = parseLlmUsage(data["llm-usage"]);
+
+  if (usage != null) {
+    const normalised = clampPercentage(usage);
+    const formatted = formatPercentage(normalised);
+    const icon = normalised >= 50 ? "🤖" : "🧠";
+    const label = `${icon} ${formatted}% LLM`;
+
+    result.push({
+      key: "llm-usage",
+      en: label,
+      ru: label,
+    });
+  }
+
+  if (isTruthy(data["llm-translation"])) {
+    result.push({
+      key: "llm-translation",
+      en: "🤖 LLM translated",
+      ru: "🤖 Переведено LLM",
+    });
+  }
+
+  return result;
+}
+
+function getTagByLocale(tag: LlmTag, locale: string): string {
+  if (locale === "ru") {
+    return tag.ru;
+  }
+
+  return tag.en;
+}
+
+function parseLlmUsage(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const parsed = Number.parseFloat(value);
+    if (Number.isFinite(parsed)) {
+      return parsed;
+    }
+  }
+
+  return undefined;
+}
+
+function clampPercentage(value: number): number {
+  if (Number.isNaN(value)) {
+    return 0;
+  }
+
+  return Math.min(100, Math.max(0, value));
+}
+
+function formatPercentage(value: number): string {
+  const fixed = value.toFixed(1);
+  return fixed.replace(/\.0$/, "");
+}
+
+function isTruthy(value: unknown): boolean {
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    return value.trim().toLowerCase() === "true";
+  }
+
+  return false;
 }
 

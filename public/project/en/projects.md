@@ -2,6 +2,7 @@ name: CarCare [ALPHA]
 link: https://cars.axelrod.co/
 description: Car encyclopedy and managing of your car
 tags: Vibe Coding, Cursor, LLM, React
+llm-usage: 100
 
 ---
 
@@ -9,6 +10,7 @@ name: Telegram MCP Server
 link: https://github.com/axelrodvl/telegram-mcp-server
 description: MCP connector for sending LLM outputs to Telegram.
 tags: MCP, LLM, Java, Telegram, Spring, Spring AI
+llm-usage: 0
 
 ---
 
@@ -16,6 +18,7 @@ name: No GC WebSocket/LMAX Disruptor
 link: https://github.com/axelrodvl/websocket-client-with-disruptor-no-gc
 description: Demo WebSocket client for LMAX Disruptor with full No GC
 tags: Java
+llm-usage: 30
 
 ---
 
@@ -23,6 +26,7 @@ name: L'Atelier de Macaron
 link: https://macaron.ge/
 description: Bakery website with payment system integration and CRM
 tags: TypeScript, React, Antd, Java, Spring
+llm-usage: 5
 
 ---
 
@@ -30,6 +34,7 @@ name: ASATools
 link: https://asa.tools/
 description: Frontend for Apple Search Ads Attribution marketing analytics
 tags: JavaScript, React, Antd
+llm-usage: 0
 
 ---
 
@@ -37,6 +42,7 @@ name: ChatWords
 link: https://github.com/axelrodvl/chatwords-public
 description: Telegram bot - translator and dictionary for learning foreign languages
 tags: Java, Spring, MongoDB, Telegram
+llm-usage: 0
 
 ---
 
@@ -44,6 +50,7 @@ name: Kartvelian Online
 link: https://kartvelian.axelrod.co/
 description: Tool for learning Georgian alphabet
 tags: JavaScript, React, Antd
+llm-usage: 0
 
 ---
 
@@ -51,6 +58,7 @@ name: Axelrod Natalya
 link: https://axelrodnatalya.com/
 description: Psychologist website
 tags: TypeScript, React, Antd, Java, Spring
+llm-usage: 0
 
 ---
 
@@ -58,6 +66,7 @@ name: Axelrod WebServer Publishing
 link: https://github.com/axelrodvl/webserver/tree/publishing
 description: Previous Java-based platform of this blog (ultra-light with own HTTP Web Server implementation)
 tags: Java
+llm-usage: 0
 
 ---
 
@@ -65,6 +74,7 @@ name: Gutenberg
 link: https://github.com/axelrodvl/gutenberg
 description: Previous React-based platform of this blog
 tags: React
+llm-usage: 0
 
 ---
 
@@ -72,6 +82,7 @@ name: Dana | Tattoo artist
 link: https://dana.tattoo/
 description: Tattoo artist website
 tags: Bootstrap
+llm-usage: 0
 
 ---
 
@@ -79,6 +90,7 @@ name: IBM MQ Client
 link: https://github.com/axelrodvl/ibm-mq-client
 description: CLI for IBM MQ
 tags: Java, IBM MQ
+llm-usage: 0
 
 ---
 
@@ -86,6 +98,7 @@ name: Jenkins toolkit for Kubernetes
 link: https://github.com/axelrodvl/jenkins-toolkit
 description: Java/Gradle building pipelines for Jenkins in Kubernetes
 tags: Jenkins, Kubernetes
+llm-usage: 0
 
 ---
 
@@ -93,6 +106,7 @@ name: Skyduck Web
 link: https://skyduck.app/cabinet/
 description: Frontend for Skyduck
 tags: JavaScript, React, Bootstrap
+llm-usage: 0
 
 ---
 
@@ -100,5 +114,6 @@ name: toU couple game
 link: https://apps.apple.com/ru/app/tou-couple-game/id1478656277
 description: Backend for mobile application
 tags: Java, Spring, MongoDB
+llm-usage: 0
 
 ---

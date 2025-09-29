@@ -146,18 +146,35 @@ export default function HomePage({ params }: HomePageProps) {
                             {article.title}
                           </h3>
                         </div>
-                        {article.tagsList.length > 0 && (
-                          <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
-                            {article.tagsList.map((tag) => (
-                              <li
-                                key={`${article.slug}-${tag}`}
-                                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
-                              >
-                                {tag.toUpperCase()}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                        {(() => {
+                          const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
+                          const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
+
+                          if (!hasAny) {
+                            return null;
+                          }
+
+                          return (
+                            <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+                              {llmTags.map((tag) => (
+                                <li
+                                  key={`${article.slug}-llm-${tag}`}
+                                  className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                                >
+                                  {tag}
+                                </li>
+                              ))}
+                              {article.tagsList.map((tag) => (
+                                <li
+                                  key={`${article.slug}-${tag}`}
+                                  className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                                >
+                                  {tag.toUpperCase()}
+                                </li>
+                              ))}
+                            </ul>
+                          );
+                        })()}
                       </div>
                     </div>
                   </Link>

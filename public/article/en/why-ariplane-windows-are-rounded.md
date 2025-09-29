@@ -2,7 +2,7 @@ title: Why airplane windows are oval
 date: 21.04.2023  
 tags: Aviation  
 llm-usage: 0
-llm-translation: false
+llm-translation: true
 
 ---
 
