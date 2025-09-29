@@ -9,6 +9,8 @@ type ProjectSummary = {
   link: string;
   description: string;
   tags: string[];
+  llmTags: string[];
+  llmTagsTranslated: string[];
 };
 
 type ProjectsClientProps = {
@@ -178,18 +180,35 @@ export default function ProjectsClient({
                 <div className="space-y-2">
                   <h2 className="text-lg font-semibold text-white">{project.name}</h2>
                   <p className="text-sm leading-relaxed text-white/60">{project.description}</p>
-                  {project.tags.length > 0 && (
-                    <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
-                      {project.tags.map((tag) => (
-                        <li
-                          key={`${project.name}-${tag}`}
-                          className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
-                        >
-                          {tag.toUpperCase()}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  {(() => {
+                    const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
+                    const hasAny = llmTags.length > 0 || project.tags.length > 0;
+
+                    if (!hasAny) {
+                      return null;
+                    }
+
+                    return (
+                      <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+                        {llmTags.map((tag) => (
+                          <li
+                            key={`${project.name}-llm-${tag}`}
+                            className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                          >
+                            {tag}
+                          </li>
+                        ))}
+                        {project.tags.map((tag) => (
+                          <li
+                            key={`${project.name}-${tag}`}
+                            className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                          >
+                            {tag.toUpperCase()}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  })()}
                 </div>
               </div>
             </a>

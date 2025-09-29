@@ -95,18 +95,35 @@ export default function HomePage({ params }: HomePageProps) {
                     <p className="mt-3 text-sm leading-relaxed text-white/60">
                       {project.description}
                     </p>
-                    {project.tags.length > 0 && (
-                      <ul className="mt-4 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide text-emerald-300/80">
-                        {project.tags.map((tag) => (
-                          <li
-                            key={`${project.name}-${tag}`}
-                            className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1"
-                          >
-                            {tag}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    {(() => {
+                      const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
+                      const hasAny = llmTags.length > 0 || project.tags.length > 0;
+
+                      if (!hasAny) {
+                        return null;
+                      }
+
+                      return (
+                        <ul className="mt-4 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+                          {llmTags.map((tag) => (
+                            <li
+                              key={`${project.name}-llm-${tag}`}
+                              className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                          {project.tags.map((tag) => (
+                            <li
+                              key={`${project.name}-${tag}`}
+                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      );
+                    })()}
                   </a>
                 </li>
               ))}

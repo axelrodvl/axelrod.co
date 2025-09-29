@@ -13,6 +13,8 @@ export type Project = {
   link: string;
   description: string;
   tags: string[];
+  llmTags: string[];
+  llmTagsTranslated: string[];
 };
 
 type ArticleFrontmatter = {
@@ -51,11 +53,15 @@ export function readProjects(locale: string): Project[] {
 
   return entries.map((entry) => {
     const { data } = matter(`---\n${entry}\n---\n`);
+    const llmTagLocales = buildLlmTags(data);
+
     return {
       name: data.name ?? "",
       link: data.link ?? "#",
       description: data.description ?? "",
       tags: normaliseTags(data.tags),
+      llmTags: llmTagLocales.map((tag) => tag.en),
+      llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
     } satisfies Project;
   });
 }
