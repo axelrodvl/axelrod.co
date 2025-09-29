@@ -14,8 +14,8 @@ export default function LlmDisclosurePage({ params }: LlmDisclosurePageProps) {
   const disclosure = dictionary.llmDisclosure;
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-8 py-10 text-white/90">
-      <header className="pb-8">
+    <div className="mx-auto flex max-w-3xl flex-col gap-8 mb-4 text-white/90">
+      <header>
         <Link
           href={`/${locale}`}
           className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"

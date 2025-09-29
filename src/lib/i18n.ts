@@ -78,7 +78,7 @@ const translations: Record<Locale, {
         email: "e-mail",
         cv: "cv",
       },
-      llmPolicyBanner: "🧠 - - - - - - - - LLM usage disclosure policy - - - - - - - - 🤖",
+      llmPolicyBanner: "🧠 LLM usage disclosure 🤖",
       sections: {
         projects: {
           title: "Projects",
@@ -121,7 +121,7 @@ const translations: Record<Locale, {
     llmDisclosure: {
       title: "LLM Usage Disclosure Policy",
       intro:
-        "I disclose how much support large language models provided for each article or project. Use the scale below to understand the level of AI involvement.",
+        "I disclose how much support large language models provided for each article or project. Use the scale below to understand the level of LLM involvement.",
       backToHome: "\u2190 Back to home",
       items: [
         {
@@ -157,7 +157,7 @@ const translations: Record<Locale, {
         email: "e-mail",
         cv: "резюме",
       },
-      llmPolicyBanner: "🧠 - - - - - - - - Политика раскрытия использования LLM - - - - - - - - 🤖",
+      llmPolicyBanner: "🧠 Раскрытие использования LLM 🤖",
       sections: {
         projects: {
           title: "Проекты",
@@ -200,7 +200,7 @@ const translations: Record<Locale, {
     llmDisclosure: {
       title: "Политика раскрытия использования LLM",
       intro:
-        "Я отмечаю степень участия больших языковых моделей в каждой статье и проекте. По шкале ниже можно понять, сколько работы выполнил ИИ.",
+        "Я отмечаю степень участия больших языковых моделей в каждой статье и проекте. По шкале ниже можно понять, сколько работы выполнила LLM.",
       backToHome: "\u2190 \u041d\u0430 \u0433\u043b\u0430\u0432\u043d\u0443\u044e",
       items: [
         {
@@ -213,7 +213,7 @@ const translations: Record<Locale, {
         },
         {
           label: "\ud83e\udd16 Более 50%",
-          description: "Большую часть работы выполнила LLM: структура, идеи и значимые куски могли остаться непроверенными.",
+          description: "Большую часть работы выполнила LLM: структура, идеи и значимые части могли остаться без провоерки.",
         },
         {
           label: "\ud83e\udd16 Перевод LLM",

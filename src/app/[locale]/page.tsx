@@ -20,7 +20,7 @@ export default function HomePage({ params }: HomePageProps) {
     <div className="relative bg-[#040609] text-[#e4f1ff]">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500/40 via-sky-500/60 to-emerald-500/40" aria-hidden />
       <div className="mx-auto flex min-h-screen max-w-4xl flex-col pb-6 pt-6">
-        <header className="flex flex-col gap-6 pb-12 sm:flex-row sm:items-end sm:justify-between">
+        <header className="flex flex-col gap-6 pb-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
               {t.home.heroTitle}
@@ -74,10 +74,12 @@ export default function HomePage({ params }: HomePageProps) {
         <main className="mt-4 flex flex-1 flex-col gap-12">
           <Link
             href={`/${locale}/llm-disclosure`}
-            className="group relative block overflow-hidden rounded-3xl border border-emerald-400/40 bg-gradient-to-r from-emerald-500/20 via-sky-500/20 to-purple-500/20 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.4em] text-emerald-200 transition hover:scale-[1.01] hover:border-emerald-300/60 hover:text-emerald-100 sm:text-sm"
+            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-emerald-400/40 bg-gradient-to-r from-emerald-500/20 via-sky-500/20 to-purple-500/20 px-3 py-1 text-xs font-medium uppercase tracking-[0.3em] text-white/80 transition hover:scale-[1.01] hover:border-emerald-300/60 hover:text-emerald-100"
           >
-            <span className="relative z-10 flex items-center justify-center gap-3 text-white/80 transition group-hover:text-white">
-              {t.home.llmPolicyBanner}
+            <span className="relative z-10 flex items-center gap-3 leading-none transition group-hover:text-white px-3 py-1">
+              <span className="tracking-normal text-center">
+                {t.home.llmPolicyBanner}
+              </span>
             </span>
             <span className="absolute inset-0 -z-10 bg-gradient-to-r from-emerald-500/30 via-sky-500/30 to-purple-500/30 opacity-0 transition group-hover:opacity-100" aria-hidden />
           </Link>
