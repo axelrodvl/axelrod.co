@@ -11,7 +11,7 @@ type LlmTagsProps = {
   linkClassName?: string;
 };
 
-const DEFAULT_LINK_CLASS = "rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white";
+const DEFAULT_LINK_CLASS = "rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white transition hover:border-emerald-300/70";
 const DEFAULT_WRAPPER_CLASS = "inline-flex";
 type WrapperElement = keyof JSX.IntrinsicElements;
 
