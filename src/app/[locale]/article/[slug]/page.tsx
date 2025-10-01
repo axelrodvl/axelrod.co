@@ -6,6 +6,7 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary, locales } from "@/lib/i18n";
 import { Markdown } from "@/components/markdown";
 import { LikeButton } from "@/components/like-button";
+import { LlmTags } from "@/components/llm-tags";
 import { readArticle, readArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 
@@ -91,16 +92,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               variant="compact"
               wrapper="li"
             />
-            {llmTagsTranslated.map((tag) => (
-              <li key={`${params.slug}-llm-${tag}`}>
-                <Link
-                  href={`/${params.locale}/llm-disclosure`}
-                  className="block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                >
-                  {tag}
-                </Link>
-              </li>
-            ))}
+            <LlmTags
+              locale={params.locale}
+              tags={llmTagsTranslated}
+              entityId={params.slug}
+              wrapper="li"
+              linkClassName="block"
+            />
             {tagsList.map((tag) => (
               <li
                 key={`${params.slug}-${tag}`}
@@ -139,16 +137,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 </h3>
                 {(nextArticle.tagsList.length > 0 || nextArticle.llmTagsTranslated.length > 0) && (
                   <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                    {nextArticle.llmTagsTranslated?.map((tag) => (
-                      <li key={`${nextArticle.slug}-llm-${tag}`}>
-                        <Link
-                          href={`/${params.locale}/llm-disclosure`}
-                          className="block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                        >
-                          {tag}
-                        </Link>
-                      </li>
-                    ))}
+                    <LlmTags
+                      locale={params.locale}
+                      tags={nextArticle.llmTagsTranslated}
+                      entityId={nextArticle.slug}
+                      wrapper="li"
+                      linkClassName="block"
+                    />
                     {nextArticle.tagsList.map((tag) => (
                       <li
                         key={`${nextArticle.slug}-${tag}`}
@@ -182,16 +177,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 </h3>
                 {(previousArticle.tagsList.length > 0 || previousArticle.llmTagsTranslated.length > 0) && (
                   <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                    {previousArticle.llmTagsTranslated?.map((tag) => (
-                      <li key={`${previousArticle.slug}-llm-${tag}`}>
-                        <Link
-                          href={`/${params.locale}/llm-disclosure`}
-                          className="block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                        >
-                          {tag}
-                        </Link>
-                      </li>
-                    ))}
+                    <LlmTags
+                      locale={params.locale}
+                      tags={previousArticle.llmTagsTranslated}
+                      entityId={previousArticle.slug}
+                      wrapper="li"
+                      linkClassName="block"
+                    />
                     {previousArticle.tagsList.map((tag) => (
                       <li
                         key={`${previousArticle.slug}-${tag}`}

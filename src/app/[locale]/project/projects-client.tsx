@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { LikeButton } from "@/components/like-button";
+import { LlmTags } from "@/components/llm-tags";
 
 type ProjectSummary = {
   name: string;
@@ -205,15 +206,7 @@ export default function ProjectsClient({
                         variant="compact"
                         wrapper="span"
                       />
-                      {llmTags.map((tag) => (
-                        <Link
-                          key={`${project.slug}-llm-${tag}`}
-                          href={`/${locale}/llm-disclosure`}
-                          className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                        >
-                          {tag}
-                        </Link>
-                      ))}
+                      <LlmTags locale={locale} tags={llmTags} entityId={project.slug} />
                       {project.tags.map((tag) => (
                         <span
                           key={`${project.slug}-${tag}`}

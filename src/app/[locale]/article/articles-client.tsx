@@ -6,6 +6,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 import { formatDate } from "@/lib/utils";
 import { LikeButton } from "@/components/like-button";
+import { LlmTags } from "@/components/llm-tags";
 
 type ArticleSummary = {
   slug: string;
@@ -212,15 +213,7 @@ export default function ArticlesClient({
                         variant="compact"
                         wrapper="span"
                       />
-                      {llmTags.map((tag) => (
-                        <Link
-                          key={`${article.slug}-llm-${tag}`}
-                          href={`/${locale}/llm-disclosure`}
-                          className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                        >
-                          {tag}
-                        </Link>
-                      ))}
+                      <LlmTags locale={locale} tags={llmTags} entityId={article.slug} />
                       {article.tagsList.map((tag) => (
                         <span
                           key={`${article.slug}-${tag}`}

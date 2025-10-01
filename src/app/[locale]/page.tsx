@@ -4,6 +4,7 @@ import { getDictionary } from "@/lib/i18n";
 import { readArticles, readProjects } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 import { LikeButton } from "@/components/like-button";
+import { LlmTags } from "@/components/llm-tags";
 
 type HomePageProps = {
   params: {
@@ -127,15 +128,7 @@ export default function HomePage({ params }: HomePageProps) {
                               variant="compact"
                               wrapper="span"
                             />
-                            {llmTags.map((tag) => (
-                              <Link
-                                key={`${project.name}-llm-${tag}`}
-                                href={`/${locale}/llm-disclosure`}
-                                className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                              >
-                                {tag}
-                              </Link>
-                            ))}
+                            <LlmTags locale={locale} tags={llmTags} entityId={project.slug} wrapper="span" />
                             {project.tags.map((tag) => (
                               <span
                                 key={`${project.name}-${tag}`}
@@ -209,15 +202,7 @@ export default function HomePage({ params }: HomePageProps) {
                               variant="compact"
                               wrapper="span"
                             />
-                            {llmTags.map((tag) => (
-                              <Link
-                                key={`${article.slug}-llm-${tag}`}
-                                href={`/${locale}/llm-disclosure`}
-                                className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                              >
-                                {tag}
-                              </Link>
-                            ))}
+                            <LlmTags locale={locale} tags={llmTags} entityId={article.slug} wrapper="span" />
                             {article.tagsList.map((tag) => (
                               <span
                                 key={`${article.slug}-${tag}`}
