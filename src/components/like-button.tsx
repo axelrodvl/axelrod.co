@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { MouseEvent, useCallback, useEffect, useMemo, useState } from "react";
 
 import { locales } from "@/lib/i18n";
