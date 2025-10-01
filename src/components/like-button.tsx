@@ -184,7 +184,7 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
           className={
             variant === "compact"
               ? "text-lg leading-none text-emerald-200"
-              : "flex h-9 w-9 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-200 transition group-hover:bg-emerald-400/40 group-hover:text-emerald-100"
+              : "flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400 text-emerald-950 text-2xl leading-none transition group-hover:bg-emerald-300 group-hover:text-emerald-900"
           }
         >
           {"\u2665"}
