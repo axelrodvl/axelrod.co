@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readArticles, readProjects } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
+import { LikeButton } from "@/components/like-button";
 
 type HomePageProps = {
   params: {
@@ -92,7 +93,7 @@ export default function HomePage({ params }: HomePageProps) {
               {projects.map((project) => (
                 <li
                   key={project.name}
-                  className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:-translate-y-1 hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
+                  className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
                 >
                   <a
                     href={project.link}
@@ -115,24 +116,33 @@ export default function HomePage({ params }: HomePageProps) {
                       }
 
                       return (
-                        <ul className="mt-4 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                          {llmTags.map((tag) => (
-                            <li
-                              key={`${project.name}-llm-${tag}`}
-                              className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                            >
-                              {tag}
-                            </li>
-                          ))}
-                          {project.tags.map((tag) => (
-                            <li
-                              key={`${project.name}-${tag}`}
-                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                            >
-                              {tag}
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="mt-4">
+                          <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                            <LikeButton
+                              namespace="project"
+                              locale={locale}
+                              slug={project.slug}
+                              variant="compact"
+                              wrapper="span"
+                            />
+                            {llmTags.map((tag) => (
+                              <span
+                                key={`${project.name}-llm-${tag}`}
+                                className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                            {project.tags.map((tag) => (
+                              <span
+                                key={`${project.name}-${tag}`}
+                                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
                       );
                     })()}
                   </a>
@@ -183,24 +193,33 @@ export default function HomePage({ params }: HomePageProps) {
                           }
 
                           return (
-                            <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                              {llmTags.map((tag) => (
-                                <li
-                                  key={`${article.slug}-llm-${tag}`}
-                                  className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                                >
-                                  {tag}
-                                </li>
-                              ))}
-                              {article.tagsList.map((tag) => (
-                                <li
-                                  key={`${article.slug}-${tag}`}
-                                  className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                                >
-                                  {tag.toUpperCase()}
-                                </li>
-                              ))}
-                            </ul>
+                            <div className="mt-2">
+                              <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                                <LikeButton
+                                  namespace="article"
+                                  locale={locale}
+                                  slug={article.slug}
+                                  variant="compact"
+                                  wrapper="span"
+                                />
+                                {llmTags.map((tag) => (
+                                  <span
+                                    key={`${article.slug}-llm-${tag}`}
+                                    className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                                {article.tagsList.map((tag) => (
+                                  <span
+                                    key={`${article.slug}-${tag}`}
+                                    className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                                  >
+                                    {tag.toUpperCase()}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
                           );
                         })()}
                       </div>

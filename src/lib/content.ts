@@ -12,6 +12,7 @@ export type Project = {
   name: string;
   link: string;
   description: string;
+  slug: string;
   tags: string[];
   llmTags: string[];
   llmTagsTranslated: string[];
@@ -51,14 +52,18 @@ export function readProjects(locale: string): Project[] {
     .map((entry) => entry.trim())
     .filter(Boolean);
 
-  return entries.map((entry) => {
+  return entries.map((entry, index) => {
     const { data } = matter(`---\n${entry}\n---\n`);
     const llmTagLocales = buildLlmTags(data);
+    const explicitSlug = typeof data.slug === "string" ? data.slug : undefined;
+    const rawSlugSource = explicitSlug && explicitSlug.trim().length > 0 ? explicitSlug : data.name ?? "";
+    const slug = createSlug(rawSlugSource) || `project-${index + 1}`;
 
     return {
       name: data.name ?? "",
       link: data.link ?? "#",
       description: data.description ?? "",
+      slug,
       tags: normaliseTags(data.tags),
       llmTags: llmTagLocales.map((tag) => tag.en),
       llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
@@ -140,6 +145,18 @@ function normaliseTags(input: unknown): string[] {
 
   return [];
 }
+
+function createSlug(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export { createSlug };
 
 function parseMarkdown(raw: string) {
   const trimmed = raw.trimStart();

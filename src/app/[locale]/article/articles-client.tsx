@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { formatDate } from "@/lib/utils";
+import { LikeButton } from "@/components/like-button";
 
 type ArticleSummary = {
   slug: string;
@@ -198,24 +199,33 @@ export default function ArticlesClient({
                     }
 
                     return (
-                      <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                        {llmTags.map((tag) => (
-                          <li
-                            key={`${article.slug}-llm-${tag}`}
-                            className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                          >
-                            {tag}
-                          </li>
-                        ))}
-                        {article.tagsList.map((tag) => (
-                          <li
-                            key={`${article.slug}-${tag}`}
-                            className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                          >
-                            {tag.toUpperCase()}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="mt-2">
+                        <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                          <LikeButton
+                            namespace="article"
+                            locale={locale}
+                            slug={article.slug}
+                            variant="compact"
+                            wrapper="span"
+                          />
+                          {llmTags.map((tag) => (
+                            <span
+                              key={`${article.slug}-llm-${tag}`}
+                              className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {article.tagsList.map((tag) => (
+                            <span
+                              key={`${article.slug}-${tag}`}
+                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                            >
+                              {tag.toUpperCase()}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     );
                   })()}
                 </div>

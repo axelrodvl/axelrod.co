@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
+import { LikeButton } from "@/components/like-button";
+
 type ProjectSummary = {
   name: string;
   link: string;
   description: string;
+  slug: string;
   tags: string[];
   llmTags: string[];
   llmTagsTranslated: string[];
@@ -189,24 +192,33 @@ export default function ProjectsClient({
                     }
 
                     return (
-                      <ul className="mt-2 flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                        {llmTags.map((tag) => (
-                          <li
-                            key={`${project.name}-llm-${tag}`}
-                            className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                          >
-                            {tag}
-                          </li>
-                        ))}
-                        {project.tags.map((tag) => (
-                          <li
-                            key={`${project.name}-${tag}`}
-                            className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                          >
-                            {tag.toUpperCase()}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="mt-2">
+                        <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                          <LikeButton
+                            namespace="project"
+                            locale={locale}
+                            slug={project.slug}
+                            variant="compact"
+                            wrapper="span"
+                          />
+                          {llmTags.map((tag) => (
+                            <span
+                              key={`${project.slug}-llm-${tag}`}
+                              className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {project.tags.map((tag) => (
+                            <span
+                              key={`${project.slug}-${tag}`}
+                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                            >
+                              {tag.toUpperCase()}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     );
                   })()}
                 </div>

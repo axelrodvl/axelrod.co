@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary, locales } from "@/lib/i18n";
 import { Markdown } from "@/components/markdown";
+import { LikeButton } from "@/components/like-button";
 import { readArticle, readArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 
@@ -82,7 +83,14 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           </h1>
         </div>
         {(tagsList.length > 0 || llmTagsTranslated.length > 0) && (
-          <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
+          <ul className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+            <LikeButton
+              namespace="article"
+              locale={params.locale}
+              slug={params.slug}
+              variant="compact"
+              wrapper="li"
+            />
             {llmTagsTranslated.map((tag) => (
               <li
                 key={`${params.slug}-llm-${tag}`}
