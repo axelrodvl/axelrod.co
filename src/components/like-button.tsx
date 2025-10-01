@@ -2,6 +2,8 @@
 
 import { MouseEvent, useCallback, useEffect, useMemo, useState } from "react";
 
+import { locales } from "@/lib/i18n";
+
 type LikeNamespace = "article" | "project";
 
 type WrapperElement = keyof JSX.IntrinsicElements;
@@ -63,7 +65,11 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
   const [error, setError] = useState<string | null>(null);
   const [isLiked, setIsLiked] = useState<boolean | null>(null);
 
-  const storageKey = useMemo(() => `like:${namespace}:${locale}:${slug}`, [locale, namespace, slug]);
+  const storageKey = useMemo(() => `like:${namespace}:${slug}`, [namespace, slug]);
+  const legacyStorageKeys = useMemo(
+    () => locales.map((value) => `like:${namespace}:${value}:${slug}`),
+    [namespace, slug]
+  );
 
   const canInteract = likes !== null && isLiked !== null && !isPending;
 
@@ -91,12 +97,31 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem(storageKey);
-      setIsLiked(stored === "1");
+
+      if (stored === "1") {
+        setIsLiked(true);
+        return;
+      }
+
+      const legacyStored = legacyStorageKeys.find((key) => window.localStorage.getItem(key) === "1");
+
+      if (legacyStored) {
+        setIsLiked(true);
+        window.localStorage.setItem(storageKey, "1");
+        legacyStorageKeys.forEach((key) => {
+          if (key !== legacyStored) {
+            window.localStorage.removeItem(key);
+          }
+        });
+        return;
+      }
+
+      setIsLiked(false);
     } catch (localStorageError) {
       console.error(localStorageError);
       setIsLiked(false);
     }
-  }, [storageKey]);
+  }, [legacyStorageKeys, storageKey]);
 
   const handleClick = useCallback((event?: MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault();
@@ -128,8 +153,14 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
         try {
           if (nextLiked) {
             window.localStorage.setItem(storageKey, "1");
+            legacyStorageKeys.forEach((key) => {
+              window.localStorage.removeItem(key);
+            });
           } else {
             window.localStorage.removeItem(storageKey);
+            legacyStorageKeys.forEach((key) => {
+              window.localStorage.removeItem(key);
+            });
           }
         } catch (localStorageError) {
           console.error(localStorageError);
@@ -147,7 +178,7 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
       .finally(() => {
         setIsPending(false);
       });
-  }, [canInteract, isLiked, likes, locale, namespace, slug, storageKey]);
+  }, [canInteract, isLiked, likes, legacyStorageKeys, locale, namespace, slug, storageKey]);
 
   const formatLocale = useMemo(() => (locale === "ru" ? "ru-RU" : "en-GB"), [locale]);
 

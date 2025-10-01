@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-import { isLocale } from "./i18n";
+import { isLocale, locales } from "./i18n";
 
 const ROOT_PATH = process.cwd();
 const LIKES_DATA_PATH = path.join(ROOT_PATH, "data", "likes");
@@ -33,13 +33,29 @@ function getNamespacePath(namespace: LikeNamespace) {
   return path.join(LIKES_DATA_PATH, namespace);
 }
 
-function getLikeFilePath(namespace: LikeNamespace, locale: string, slug: string) {
+function getSharedLikeFilePath(namespace: LikeNamespace, slug: string) {
+  return path.join(getNamespacePath(namespace), `${slug}.json`);
+}
+
+function getLegacyLikeFilePath(namespace: LikeNamespace, locale: string, slug: string) {
   return path.join(getNamespacePath(namespace), locale, `${slug}.json`);
 }
 
-async function ensureLocaleDirectory(namespace: LikeNamespace, locale: string) {
-  const target = path.join(getNamespacePath(namespace), locale);
-  await fs.mkdir(target, { recursive: true });
+async function ensureNamespaceDirectory(namespace: LikeNamespace) {
+  await fs.mkdir(getNamespacePath(namespace), { recursive: true });
+}
+
+async function fileExists(filePath: string) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException)?.code === "ENOENT") {
+      return false;
+    }
+
+    throw error;
+  }
 }
 
 type LikeFile = {
@@ -65,6 +81,20 @@ async function readLikeFile(filePath: string): Promise<number> {
   }
 }
 
+async function readCombinedLikes(namespace: LikeNamespace, slug: string): Promise<number> {
+  const sharedPath = getSharedLikeFilePath(namespace, slug);
+
+  if (await fileExists(sharedPath)) {
+    return readLikeFile(sharedPath);
+  }
+
+  const aggregated = await Promise.all(
+    locales.map((locale) => readLikeFile(getLegacyLikeFilePath(namespace, locale, slug)))
+  );
+
+  return aggregated.reduce((total, value) => total + value, 0);
+}
+
 async function writeLikeFile(filePath: string, likes: number) {
   const payload: LikeFile = { likes };
   await fs.writeFile(filePath, `${JSON.stringify(payload)}\n`, "utf8");
@@ -75,8 +105,7 @@ async function getLikes(namespace: LikeNamespace, locale: string, slug: string):
   assertValidLocale(locale);
   assertValidSlug(slug);
 
-  const filePath = getLikeFilePath(namespace, locale, slug);
-  return readLikeFile(filePath);
+  return readCombinedLikes(namespace, slug);
 }
 
 async function incrementLikes(namespace: LikeNamespace, locale: string, slug: string): Promise<number> {
@@ -84,10 +113,10 @@ async function incrementLikes(namespace: LikeNamespace, locale: string, slug: st
   assertValidLocale(locale);
   assertValidSlug(slug);
 
-  await ensureLocaleDirectory(namespace, locale);
-  const filePath = getLikeFilePath(namespace, locale, slug);
+  await ensureNamespaceDirectory(namespace);
+  const filePath = getSharedLikeFilePath(namespace, slug);
 
-  const current = await readLikeFile(filePath);
+  const current = await readCombinedLikes(namespace, slug);
   const next = current + 1;
   await writeLikeFile(filePath, next);
 
@@ -99,10 +128,10 @@ async function decrementLikes(namespace: LikeNamespace, locale: string, slug: st
   assertValidLocale(locale);
   assertValidSlug(slug);
 
-  await ensureLocaleDirectory(namespace, locale);
-  const filePath = getLikeFilePath(namespace, locale, slug);
+  await ensureNamespaceDirectory(namespace);
+  const filePath = getSharedLikeFilePath(namespace, slug);
 
-  const current = await readLikeFile(filePath);
+  const current = await readCombinedLikes(namespace, slug);
   const next = Math.max(current - 1, 0);
   await writeLikeFile(filePath, next);
 
