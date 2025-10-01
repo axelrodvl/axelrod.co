@@ -173,57 +173,60 @@ export default function ProjectsClient({
       <ul className="space-y-5">
         {filteredProjects.map((project) => (
           <li key={project.name}>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noreferrer"
-              className="group block rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="space-y-2">
-                  <h2 className="text-lg font-semibold text-white">{project.name}</h2>
-                  <p className="text-sm leading-relaxed text-white/60">{project.description}</p>
-                  {(() => {
-                    const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
-                    const hasAny = llmTags.length > 0 || project.tags.length > 0;
-
-                    if (!hasAny) {
-                      return null;
-                    }
-
-                    return (
-                      <div className="mt-2">
-                        <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                          <LikeButton
-                            namespace="project"
-                            locale={locale}
-                            slug={project.slug}
-                            variant="compact"
-                            wrapper="span"
-                          />
-                          {llmTags.map((tag) => (
-                            <span
-                              key={`${project.slug}-llm-${tag}`}
-                              className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                          {project.tags.map((tag) => (
-                            <span
-                              key={`${project.slug}-${tag}`}
-                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                            >
-                              {tag.toUpperCase()}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })()}
+            <div className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="block"
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="space-y-2">
+                    <h2 className="text-lg font-semibold text-white">{project.name}</h2>
+                    <p className="text-sm leading-relaxed text-white/60">{project.description}</p>
+                  </div>
                 </div>
-              </div>
-            </a>
+              </a>
+              {(() => {
+                const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
+                const hasAny = llmTags.length > 0 || project.tags.length > 0;
+
+                if (!hasAny) {
+                  return null;
+                }
+
+                return (
+                  <div className="mt-3">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                      <LikeButton
+                        namespace="project"
+                        locale={locale}
+                        slug={project.slug}
+                        variant="compact"
+                        wrapper="span"
+                      />
+                      {llmTags.map((tag) => (
+                        <Link
+                          key={`${project.slug}-llm-${tag}`}
+                          href={`/${locale}/llm-disclosure`}
+                          className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                        >
+                          {tag}
+                        </Link>
+                      ))}
+                      {project.tags.map((tag) => (
+                        <span
+                          key={`${project.slug}-${tag}`}
+                          className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                        >
+                          {tag.toUpperCase()}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
           </li>
         ))}
       </ul>

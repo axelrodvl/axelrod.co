@@ -92,11 +92,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               wrapper="li"
             />
             {llmTagsTranslated.map((tag) => (
-              <li
-                key={`${params.slug}-llm-${tag}`}
-                className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-              >
-                {tag}
+              <li key={`${params.slug}-llm-${tag}`}>
+                <Link
+                  href={`/${params.locale}/llm-disclosure`}
+                  className="block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                >
+                  {tag}
+                </Link>
               </li>
             ))}
             {tagsList.map((tag) => (
@@ -138,11 +140,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 {(nextArticle.tagsList.length > 0 || nextArticle.llmTagsTranslated.length > 0) && (
                   <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
                     {nextArticle.llmTagsTranslated?.map((tag) => (
-                      <li
-                        key={`${nextArticle.slug}-llm-${tag}`}
-                        className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                      >
-                        {tag}
+                      <li key={`${nextArticle.slug}-llm-${tag}`}>
+                        <Link
+                          href={`/${params.locale}/llm-disclosure`}
+                          className="block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                        >
+                          {tag}
+                        </Link>
                       </li>
                     ))}
                     {nextArticle.tagsList.map((tag) => (
@@ -179,11 +183,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 {(previousArticle.tagsList.length > 0 || previousArticle.llmTagsTranslated.length > 0) && (
                   <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
                     {previousArticle.llmTagsTranslated?.map((tag) => (
-                      <li
-                        key={`${previousArticle.slug}-llm-${tag}`}
-                        className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                      >
-                        {tag}
+                      <li key={`${previousArticle.slug}-llm-${tag}`}>
+                        <Link
+                          href={`/${params.locale}/llm-disclosure`}
+                          className="block rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                        >
+                          {tag}
+                        </Link>
                       </li>
                     ))}
                     {previousArticle.tagsList.map((tag) => (

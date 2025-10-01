@@ -95,18 +95,20 @@ export default function HomePage({ params }: HomePageProps) {
                   key={project.name}
                   className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
                 >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex h-full flex-col"
-                  >
-                    <h3 className="text-lg font-semibold text-white">
-                      {project.name}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-white/60">
-                      {project.description}
-                    </p>
+                  <div className="flex h-full flex-col">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex flex-1 flex-col"
+                    >
+                      <h3 className="text-lg font-semibold text-white">
+                        {project.name}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-white/60">
+                        {project.description}
+                      </p>
+                    </a>
                     {(() => {
                       const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
                       const hasAny = llmTags.length > 0 || project.tags.length > 0;
@@ -126,12 +128,13 @@ export default function HomePage({ params }: HomePageProps) {
                               wrapper="span"
                             />
                             {llmTags.map((tag) => (
-                              <span
+                              <Link
                                 key={`${project.name}-llm-${tag}`}
+                                href={`/${locale}/llm-disclosure`}
                                 className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
                               >
                                 {tag}
-                              </span>
+                              </Link>
                             ))}
                             {project.tags.map((tag) => (
                               <span
@@ -145,7 +148,7 @@ export default function HomePage({ params }: HomePageProps) {
                         </div>
                       );
                     })()}
-                  </a>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -167,64 +170,67 @@ export default function HomePage({ params }: HomePageProps) {
             <ul className="mt-3 space-y-5">
               {articles.map((article) => (
                 <li key={article.slug}>
-                  <Link
-                    href={`/${locale}/article/${article.slug}`}
-                    className="group block rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
-                  >
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="space-y-2">
-                        <div>
-                          <time
-                            dateTime={article.publishedAt.toISOString()}
-                            className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
-                          >
-                            {formatDate(article.publishedAt, locale === "ru" ? "ru-RU" : "en-GB")}
-                          </time>
-                          <h3 className="mt-1 text-lg font-semibold text-white">
-                            {article.title}
-                          </h3>
+                  <div className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]">
+                    <Link
+                      href={`/${locale}/article/${article.slug}`}
+                      className="block"
+                    >
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="space-y-2">
+                          <div>
+                            <time
+                              dateTime={article.publishedAt.toISOString()}
+                              className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
+                            >
+                              {formatDate(article.publishedAt, locale === "ru" ? "ru-RU" : "en-GB")}
+                            </time>
+                            <h3 className="mt-1 text-lg font-semibold text-white">
+                              {article.title}
+                            </h3>
+                          </div>
                         </div>
-                        {(() => {
-                          const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
-                          const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
-
-                          if (!hasAny) {
-                            return null;
-                          }
-
-                          return (
-                            <div className="mt-2">
-                              <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                                <LikeButton
-                                  namespace="article"
-                                  locale={locale}
-                                  slug={article.slug}
-                                  variant="compact"
-                                  wrapper="span"
-                                />
-                                {llmTags.map((tag) => (
-                                  <span
-                                    key={`${article.slug}-llm-${tag}`}
-                                    className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                                {article.tagsList.map((tag) => (
-                                  <span
-                                    key={`${article.slug}-${tag}`}
-                                    className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                                  >
-                                    {tag.toUpperCase()}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          );
-                        })()}
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                    {(() => {
+                      const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
+                      const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
+
+                      if (!hasAny) {
+                        return null;
+                      }
+
+                      return (
+                        <div className="mt-3">
+                          <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                            <LikeButton
+                              namespace="article"
+                              locale={locale}
+                              slug={article.slug}
+                              variant="compact"
+                              wrapper="span"
+                            />
+                            {llmTags.map((tag) => (
+                              <Link
+                                key={`${article.slug}-llm-${tag}`}
+                                href={`/${locale}/llm-disclosure`}
+                                className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                              >
+                                {tag}
+                              </Link>
+                            ))}
+                            {article.tagsList.map((tag) => (
+                              <span
+                                key={`${article.slug}-${tag}`}
+                                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                              >
+                                {tag.toUpperCase()}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
                 </li>
               ))}
             </ul>

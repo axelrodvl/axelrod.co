@@ -173,64 +173,67 @@ export default function ArticlesClient({
       <ul className="space-y-5">
         {filteredArticles.map((article) => (
           <li key={article.slug}>
-            <Link
-              href={`/${locale}/article/${article.slug}`}
-              className="group block rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="space-y-2">
-                  <div>
-                    <time
-                      dateTime={article.publishedAt}
-                      className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
-                    >
-                      {formatDate(new Date(article.publishedAt), locale === "ru" ? "ru-RU" : "en-GB")}
-                    </time>
-                    <h2 className="mt-1 text-lg font-semibold text-white">
-                      {article.title}
-                    </h2>
+            <div className="group rounded-3xl border border-white/10 bg-black/40 p-6 shadow-[0_0_40px_rgba(16,185,129,0.05)] transition hover:border-emerald-400/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]">
+              <Link
+                href={`/${locale}/article/${article.slug}`}
+                className="block"
+              >
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="space-y-2">
+                    <div>
+                      <time
+                        dateTime={article.publishedAt}
+                        className="text-xs font-medium uppercase tracking-[0.3em] text-white/40"
+                      >
+                        {formatDate(new Date(article.publishedAt), locale === "ru" ? "ru-RU" : "en-GB")}
+                      </time>
+                      <h2 className="mt-1 text-lg font-semibold text-white">
+                        {article.title}
+                      </h2>
+                    </div>
                   </div>
-                  {(() => {
-                    const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
-                    const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
-
-                    if (!hasAny) {
-                      return null;
-                    }
-
-                    return (
-                      <div className="mt-2">
-                        <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                          <LikeButton
-                            namespace="article"
-                            locale={locale}
-                            slug={article.slug}
-                            variant="compact"
-                            wrapper="span"
-                          />
-                          {llmTags.map((tag) => (
-                            <span
-                              key={`${article.slug}-llm-${tag}`}
-                              className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                          {article.tagsList.map((tag) => (
-                            <span
-                              key={`${article.slug}-${tag}`}
-                              className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                            >
-                              {tag.toUpperCase()}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })()}
                 </div>
-              </div>
-            </Link>
+              </Link>
+              {(() => {
+                const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
+                const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
+
+                if (!hasAny) {
+                  return null;
+                }
+
+                return (
+                  <div className="mt-3">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
+                      <LikeButton
+                        namespace="article"
+                        locale={locale}
+                        slug={article.slug}
+                        variant="compact"
+                        wrapper="span"
+                      />
+                      {llmTags.map((tag) => (
+                        <Link
+                          key={`${article.slug}-llm-${tag}`}
+                          href={`/${locale}/llm-disclosure`}
+                          className="rounded-full border border-white/40 bg-white/10 px-3 py-1 text-white"
+                        >
+                          {tag}
+                        </Link>
+                      ))}
+                      {article.tagsList.map((tag) => (
+                        <span
+                          key={`${article.slug}-${tag}`}
+                          className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
+                        >
+                          {tag.toUpperCase()}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
           </li>
         ))}
       </ul>
