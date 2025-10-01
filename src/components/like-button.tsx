@@ -46,12 +46,26 @@ async function postLike(namespace: LikeNamespace, locale: string, slug: string, 
   return data.likes;
 }
 
+async function deleteLike(namespace: LikeNamespace, locale: string, slug: string, signal?: AbortSignal) {
+  const response = await fetch(buildLikesUrl(namespace, locale, slug), { method: "DELETE", signal });
+
+  if (!response.ok) {
+    throw new Error(`Failed to remove like: ${response.status}`);
+  }
+
+  const data = (await response.json()) as LikeResponse;
+  return data.likes;
+}
+
 export function LikeButton({ namespace, locale, slug, className, variant = "default", wrapper = "div" }: LikeButtonProps) {
   const [likes, setLikes] = useState<number | null>(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLiked, setIsLiked] = useState<boolean | null>(null);
 
-  const canInteract = likes !== null && !isPending;
+  const storageKey = useMemo(() => `like:${namespace}:${locale}:${slug}`, [locale, namespace, slug]);
+
+  const canInteract = likes !== null && isLiked !== null && !isPending;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -74,6 +88,16 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
     };
   }, [locale, namespace, slug]);
 
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(storageKey);
+      setIsLiked(stored === "1");
+    } catch (localStorageError) {
+      console.error(localStorageError);
+      setIsLiked(false);
+    }
+  }, [storageKey]);
+
   const handleClick = useCallback((event?: MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault();
     event?.stopPropagation();
@@ -82,29 +106,48 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
       return;
     }
 
-    const optimistic = likes + 1;
-    setLikes(optimistic);
+    const previousLikes = likes;
+    const previousLiked = isLiked;
+    const nextLiked = !previousLiked;
+    const optimisticLikes = previousLiked ? Math.max((likes ?? 0) - 1, 0) : (likes ?? 0) + 1;
+
+    setLikes(optimisticLikes);
+    setIsLiked(nextLiked);
     setIsPending(true);
 
     const controller = new AbortController();
 
-    postLike(namespace, locale, slug, controller.signal)
+    const request = nextLiked
+      ? postLike(namespace, locale, slug, controller.signal)
+      : deleteLike(namespace, locale, slug, controller.signal);
+
+    request
       .then((value) => {
         setLikes(value);
         setError(null);
+        try {
+          if (nextLiked) {
+            window.localStorage.setItem(storageKey, "1");
+          } else {
+            window.localStorage.removeItem(storageKey);
+          }
+        } catch (localStorageError) {
+          console.error(localStorageError);
+        }
       })
       .catch((postError) => {
         if (controller.signal.aborted) {
           return;
         }
         console.error(postError);
-        setError("Не удалось сохранить лайк");
-        setLikes((previous) => (previous == null ? null : previous - 1));
+        setError(nextLiked ? "Не удалось сохранить лайк" : "Не удалось убрать лайк");
+        setLikes(previousLikes);
+        setIsLiked(previousLiked);
       })
       .finally(() => {
         setIsPending(false);
       });
-  }, [canInteract, likes, locale, namespace, slug]);
+  }, [canInteract, isLiked, likes, locale, namespace, slug, storageKey]);
 
   const formatLocale = useMemo(() => (locale === "ru" ? "ru-RU" : "en-GB"), [locale]);
 
@@ -134,7 +177,7 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
         disabled={!canInteract}
         className={`${baseClasses} ${styles}`}
         aria-live="polite"
-        aria-label="Поставить лайк"
+        aria-label={isLiked ? "Убрать лайк" : "Поставить лайк"}
       >
         <span
           aria-hidden="true"

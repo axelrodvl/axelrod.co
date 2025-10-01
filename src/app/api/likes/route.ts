@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import {
+  decrementArticleLikes,
+  decrementProjectLikes,
   getArticleLikes,
   getProjectLikes,
   incrementArticleLikes,
@@ -81,6 +83,26 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Failed to update likes", error);
     return buildErrorResponse("Failed to update likes.", 500);
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const result = getParams(searchParams);
+
+    if ("error" in result) {
+      return result.error;
+    }
+
+    const likes = result.namespace === "article"
+      ? await decrementArticleLikes(result.locale, result.slug)
+      : await decrementProjectLikes(result.locale, result.slug);
+
+    return NextResponse.json({ likes });
+  } catch (error) {
+    console.error("Failed to remove like", error);
+    return buildErrorResponse("Failed to remove like.", 500);
   }
 }
 

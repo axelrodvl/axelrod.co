@@ -94,6 +94,21 @@ async function incrementLikes(namespace: LikeNamespace, locale: string, slug: st
   return next;
 }
 
+async function decrementLikes(namespace: LikeNamespace, locale: string, slug: string): Promise<number> {
+  assertValidNamespace(namespace);
+  assertValidLocale(locale);
+  assertValidSlug(slug);
+
+  await ensureLocaleDirectory(namespace, locale);
+  const filePath = getLikeFilePath(namespace, locale, slug);
+
+  const current = await readLikeFile(filePath);
+  const next = Math.max(current - 1, 0);
+  await writeLikeFile(filePath, next);
+
+  return next;
+}
+
 export function isLikeNamespace(value: string): value is LikeNamespace {
   return (NAMESPACES as readonly string[]).includes(value);
 }
@@ -112,5 +127,13 @@ export async function getProjectLikes(locale: string, slug: string): Promise<num
 
 export async function incrementProjectLikes(locale: string, slug: string): Promise<number> {
   return incrementLikes("project", locale, slug);
+}
+
+export async function decrementArticleLikes(locale: string, slug: string): Promise<number> {
+  return decrementLikes("article", locale, slug);
+}
+
+export async function decrementProjectLikes(locale: string, slug: string): Promise<number> {
+  return decrementLikes("project", locale, slug);
 }
 
