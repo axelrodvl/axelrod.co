@@ -31,6 +31,11 @@ export default async function RootLayout({
       <head>
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
+        <script
+          defer
+          src="https://umami.axelrod.co/script.js"
+          data-website-id="2419f5e2-6cef-4dbf-ae2e-aa704c1fda37"
+        ></script>
       </head>
       <body className={`${plexMono.variable} antialiased`}>
         <div className="noise" aria-hidden />
