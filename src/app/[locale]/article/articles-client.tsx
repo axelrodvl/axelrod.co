@@ -15,6 +15,7 @@ type ArticleSummary = {
   publishedAt: string;
   llmTags: string[];
   llmTagsTranslated: string[];
+  likes: number;
 };
 
 type ArticlesClientProps = {
@@ -212,6 +213,7 @@ export default function ArticlesClient({
                         slug={article.slug}
                         variant="compact"
                         wrapper="span"
+                        initialLikes={article.likes}
                       />
                       <LlmTags locale={locale} tags={llmTags} entityId={article.slug} />
                       {article.tagsList.map((tag) => (

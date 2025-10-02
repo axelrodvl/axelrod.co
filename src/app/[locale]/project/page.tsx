@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readProjects } from "@/lib/content";
+import { getProjectLikes } from "@/lib/likes";
 import ProjectsClient from "./projects-client";
 
 type ProjectsPageProps = {
@@ -13,10 +14,22 @@ type ProjectsPageProps = {
   };
 };
 
-export default function ProjectsPage({ params, searchParams }: ProjectsPageProps) {
+export default async function ProjectsPage({ params, searchParams }: ProjectsPageProps) {
   const { locale } = params;
   const t = getDictionary(locale);
-  const projects = readProjects(locale);
+  const projectEntries = readProjects(locale);
+  const projects = await Promise.all(
+    projectEntries.map(async (project) => ({
+      name: project.name,
+      link: project.link,
+      description: project.description,
+      slug: project.slug,
+      tags: project.tags,
+      llmTags: project.llmTags,
+      llmTagsTranslated: project.llmTagsTranslated,
+      likes: await getProjectLikes(locale, project.slug),
+    })),
+  );
   const initialTag = typeof searchParams?.tag === "string" ? searchParams.tag : undefined;
 
   return (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readArticles } from "@/lib/content";
+import { getArticleLikes } from "@/lib/likes";
 import ArticlesClient from "./articles-client";
 
 type ArticlesPageProps = {
@@ -14,17 +15,21 @@ type ArticlesPageProps = {
   };
 };
 
-export default function ArticlesPage({ params, searchParams }: ArticlesPageProps) {
+export default async function ArticlesPage({ params, searchParams }: ArticlesPageProps) {
   const { locale } = params;
   const t = getDictionary(locale);
-  const articles = readArticles(locale).map((article) => ({
-    slug: article.slug,
-    title: article.title,
-    tagsList: article.tagsList,
-    publishedAt: article.publishedAt.toISOString(),
-    llmTags: article.llmTags,
-    llmTagsTranslated: article.llmTagsTranslated,
-  }));
+  const articleEntries = readArticles(locale);
+  const articles = await Promise.all(
+    articleEntries.map(async (article) => ({
+      slug: article.slug,
+      title: article.title,
+      tagsList: article.tagsList,
+      publishedAt: article.publishedAt.toISOString(),
+      llmTags: article.llmTags,
+      llmTagsTranslated: article.llmTagsTranslated,
+      likes: await getArticleLikes(locale, article.slug),
+    })),
+  );
   const initialTag = typeof searchParams?.tag === "string" ? searchParams.tag : undefined;
 
   return (

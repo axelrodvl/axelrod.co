@@ -16,6 +16,7 @@ type LikeButtonProps = {
   className?: string;
   variant?: "compact" | "default";
   wrapper?: WrapperElement;
+  initialLikes?: number;
 };
 
 type LikeResponse = {
@@ -60,8 +61,16 @@ async function deleteLike(namespace: LikeNamespace, locale: string, slug: string
   return data.likes;
 }
 
-export function LikeButton({ namespace, locale, slug, className, variant = "default", wrapper = "div" }: LikeButtonProps) {
-  const [likes, setLikes] = useState<number | null>(null);
+export function LikeButton({
+  namespace,
+  locale,
+  slug,
+  className,
+  variant = "default",
+  wrapper = "div",
+  initialLikes,
+}: LikeButtonProps) {
+  const [likes, setLikes] = useState<number | null>(initialLikes ?? null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLiked, setIsLiked] = useState<boolean | null>(null);
@@ -75,6 +84,10 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
   const canInteract = likes !== null && isLiked !== null && !isPending;
 
   useEffect(() => {
+    if (initialLikes != null) {
+      return;
+    }
+
     const controller = new AbortController();
 
     fetchLikes(namespace, locale, slug, controller.signal)
@@ -93,7 +106,7 @@ export function LikeButton({ namespace, locale, slug, className, variant = "defa
     return () => {
       controller.abort();
     };
-  }, [locale, namespace, slug]);
+  }, [initialLikes, locale, namespace, slug]);
 
   useEffect(() => {
     try {

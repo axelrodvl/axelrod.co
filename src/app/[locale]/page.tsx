@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readArticles, readProjects } from "@/lib/content";
+import { getArticleLikes, getProjectLikes } from "@/lib/likes";
 import { formatDate } from "@/lib/utils";
 import { LikeButton } from "@/components/like-button";
 import { LlmTags } from "@/components/llm-tags";
@@ -12,11 +13,26 @@ type HomePageProps = {
   };
 };
 
-export default function HomePage({ params }: HomePageProps) {
+export default async function HomePage({ params }: HomePageProps) {
   const { locale } = params;
   const t = getDictionary(locale);
-  const projects = readProjects(locale).slice(0, 6);
-  const articles = readArticles(locale).slice(0, 6);
+  const projectEntries = readProjects(locale).slice(0, 6);
+  const articleEntries = readArticles(locale).slice(0, 6);
+
+  const [projects, articles] = await Promise.all([
+    Promise.all(
+      projectEntries.map(async (project) => ({
+        ...project,
+        likes: await getProjectLikes(locale, project.slug),
+      })),
+    ),
+    Promise.all(
+      articleEntries.map(async (article) => ({
+        ...article,
+        likes: await getArticleLikes(locale, article.slug),
+      })),
+    ),
+  ]);
 
   return (
     <div className="relative bg-[#040609] text-[#e4f1ff]">
@@ -127,6 +143,7 @@ export default function HomePage({ params }: HomePageProps) {
                               slug={project.slug}
                               variant="compact"
                               wrapper="span"
+                              initialLikes={project.likes}
                             />
                             <LlmTags locale={locale} tags={llmTags} entityId={project.slug} wrapper="span" />
                             {project.tags.map((tag) => (
@@ -201,6 +218,7 @@ export default function HomePage({ params }: HomePageProps) {
                               slug={article.slug}
                               variant="compact"
                               wrapper="span"
+                              initialLikes={article.likes}
                             />
                             <LlmTags locale={locale} tags={llmTags} entityId={article.slug} wrapper="span" />
                             {article.tagsList.map((tag) => (

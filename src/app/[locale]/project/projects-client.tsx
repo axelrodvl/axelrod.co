@@ -15,6 +15,7 @@ type ProjectSummary = {
   tags: string[];
   llmTags: string[];
   llmTagsTranslated: string[];
+  likes: number;
 };
 
 type ProjectsClientProps = {
@@ -205,6 +206,7 @@ export default function ProjectsClient({
                         slug={project.slug}
                         variant="compact"
                         wrapper="span"
+                        initialLikes={project.likes}
                       />
                       <LlmTags locale={locale} tags={llmTags} entityId={project.slug} />
                       {project.tags.map((tag) => (
