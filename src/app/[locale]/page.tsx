@@ -6,6 +6,7 @@ import { getArticleLikes, getProjectLikes } from "@/lib/likes";
 import { formatDate } from "@/lib/utils";
 import { LikeButton } from "@/components/like-button";
 import { LlmTags } from "@/components/llm-tags";
+import { SectionHeader } from "@/components/section-header";
 
 type HomePageProps = {
   params: {
@@ -94,18 +95,11 @@ export default async function HomePage({ params }: HomePageProps) {
             <span className="absolute inset-0 -z-10 bg-gradient-to-r from-emerald-500/30 via-sky-500/30 to-purple-500/30 opacity-0 transition group-hover:opacity-100" aria-hidden />
           </Link>
           <section className="relative">
-            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
-              <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
-                {t.home.sections.projects.title}
-              </h2>
-              <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden />
-              <Link
-                href={`/${locale}/project`}
-                className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-              >
-                {t.home.sections.projects.cta}
-              </Link>
-            </div>
+            <SectionHeader
+              title={t.home.sections.projects.title}
+              ctaLabel={t.home.sections.projects.cta}
+              href={`/${locale}/project`}
+            />
             <ul className="mt-3 grid gap-5 md:grid-cols-2">
               {projects.map((project) => (
                 <li
@@ -165,18 +159,11 @@ export default async function HomePage({ params }: HomePageProps) {
           </section>
 
           <section className="relative">
-            <div className="sticky top-[60px] z-20 flex flex-wrap items-center gap-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
-              <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
-                {t.home.sections.articles.title}
-              </h2>
-              <span className="hidden h-px flex-1 bg-white/10 sm:block" aria-hidden />
-              <Link
-                href={`/${locale}/article`}
-                className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-              >
-                {t.home.sections.articles.cta}
-              </Link>
-            </div>
+            <SectionHeader
+              title={t.home.sections.articles.title}
+              ctaLabel={t.home.sections.articles.cta}
+              href={`/${locale}/article`}
+            />
             <ul className="mt-3 space-y-5">
               {articles.map((article) => (
                 <li key={article.slug}>

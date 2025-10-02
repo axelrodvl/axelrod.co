@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import { LikeButton } from "@/components/like-button";
 import { LlmTags } from "@/components/llm-tags";
+import { SectionHeader } from "@/components/section-header";
 
 type ArticleSummary = {
   slug: string;
@@ -108,21 +109,12 @@ export default function ArticlesClient({
 
   return (
     <main>
-      <div className="sticky top-[60px] z-20 mb-4 border-b border-white/10 bg-black/60/80 bg-opacity-60 px-6 py-5 backdrop-blur-sm">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="text-xl font-semibold uppercase tracking-[0.4em] text-emerald-300/90 sm:text-2xl">
-              {labels.stickyTitle}
-            </h2>
-          </div>
-          <Link
-            href={homeHref}
-            className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-          >
-            {labels.backToHome}
-          </Link>
-        </div>
-      </div>
+      <SectionHeader
+        title={labels.stickyTitle}
+        ctaLabel={labels.backToHome}
+        href={homeHref}
+        className="mb-4"
+      />
       {tags.length > 0 && (
         <div className="mb-8 space-y-4 py-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
