@@ -119,11 +119,11 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         namespace="article"
         locale={params.locale}
         slug={params.slug}
-        className="mt-8 flex justify-center"
+        className="mt-6 flex justify-center"
       />
 
       {(previousArticle || nextArticle) && (
-        <nav className="mt-6 grid gap-4 pt-8 sm:grid-cols-2">        
+        <nav className="mt-6 grid gap-4 sm:grid-cols-2">        
           {nextArticle && (
             <Link
               href={`/${params.locale}/article/${nextArticle.slug}`}
