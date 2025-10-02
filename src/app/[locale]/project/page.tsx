@@ -1,8 +1,8 @@
-import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 import { readProjects } from "@/lib/content";
 import { getProjectLikes } from "@/lib/likes";
+import { PageHeader } from "@/components/page-header";
 import ProjectsClient from "./projects-client";
 
 type ProjectsPageProps = {
@@ -34,20 +34,12 @@ export default async function ProjectsPage({ params, searchParams }: ProjectsPag
 
   return (
     <div className="mx-auto max-w-4xl space-y-10">
-      <header className="border-b border-white/10 pb-8">
-        <Link
-          href={`/${locale}`}
-          className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-        >
-          {t.projects.backToHome}
-        </Link>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          {t.projects.title}
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/60">
-          {t.projects.description}
-        </p>
-      </header>
+      <PageHeader
+        backHref={`/${locale}`}
+        backLabel={t.projects.backToHome}
+        title={t.projects.title}
+        description={t.projects.description}
+      />
 
       <ProjectsClient
         locale={locale}

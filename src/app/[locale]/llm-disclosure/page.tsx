@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
+import { PageHeader } from "@/components/page-header";
 
 type LlmDisclosurePageProps = {
   params: {
@@ -15,18 +15,14 @@ export default function LlmDisclosurePage({ params }: LlmDisclosurePageProps) {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-8 mb-4 text-white/90">
-      <header>
-        <Link
-          href={`/${locale}`}
-          className="text-xs font-medium uppercase tracking-[0.3em] text-white/40 transition hover:text-emerald-300/90"
-        >
-          {disclosure.backToHome}
-        </Link>
-        <div className="mt-4 space-y-4">
-          <h1 className="text-3xl font-semibold text-white">{disclosure.title}</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/60">{disclosure.intro}</p>
-        </div>
-      </header>
+      <PageHeader
+        backHref={`/${locale}`}
+        backLabel={disclosure.backToHome}
+        title={disclosure.title}
+        description={disclosure.intro}
+        titleClassName="text-3xl font-semibold text-white"
+        contentClassName="mt-4 space-y-4"
+      />
 
       <section className="space-y-4">
         <ul className="space-y-4">
