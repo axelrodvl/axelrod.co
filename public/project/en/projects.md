@@ -6,6 +6,14 @@ llm-usage: 100
 
 ---
 
+name: axelrod.co
+link: https://github.com/axelrodvl/axelrod.co
+description: Platform of this blog
+tags: Vibe Coding, Cursor, LLM, NextJS, TypeScript
+llm-usage: 90
+
+---
+
 name: Telegram MCP Server
 link: https://github.com/axelrodvl/telegram-mcp-server
 description: MCP connector for sending LLM outputs to Telegram.
