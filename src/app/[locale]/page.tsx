@@ -4,9 +4,8 @@ import { getDictionary } from "@/lib/i18n";
 import { readArticles, readProjects } from "@/lib/content";
 import { getArticleLikes, getProjectLikes } from "@/lib/likes";
 import { formatDate } from "@/lib/utils";
-import { LikeButton } from "@/components/like-button";
-import { LlmTags } from "@/components/llm-tags";
 import { SectionHeader } from "@/components/section-header";
+import { Tags } from "@/components/tags";
 
 type HomePageProps = {
   params: {
@@ -122,33 +121,21 @@ export default async function HomePage({ params }: HomePageProps) {
                     </a>
                     {(() => {
                       const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
-                      const hasAny = llmTags.length > 0 || project.tags.length > 0;
 
-                      if (!hasAny) {
+                      if (llmTags.length === 0 && project.tags.length === 0) {
                         return null;
                       }
 
                       return (
                         <div className="mt-4">
-                          <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                            <LikeButton
-                              namespace="project"
-                              locale={locale}
-                              slug={project.slug}
-                              variant="compact"
-                              wrapper="span"
-                              initialLikes={project.likes}
-                            />
-                            <LlmTags locale={locale} tags={llmTags} entityId={project.slug} wrapper="span" />
-                            {project.tags.map((tag) => (
-                              <span
-                                key={`${project.name}-${tag}`}
-                                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
+                          <Tags
+                            namespace="project"
+                            locale={locale}
+                            slug={project.slug}
+                            llmTags={llmTags}
+                            tags={project.tags}
+                            initialLikes={project.likes}
+                          />
                         </div>
                       );
                     })()}
@@ -190,33 +177,21 @@ export default async function HomePage({ params }: HomePageProps) {
                     </Link>
                     {(() => {
                       const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
-                      const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
 
-                      if (!hasAny) {
+                      if (llmTags.length === 0 && article.tagsList.length === 0) {
                         return null;
                       }
 
                       return (
                         <div className="mt-3">
-                          <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                            <LikeButton
-                              namespace="article"
-                              locale={locale}
-                              slug={article.slug}
-                              variant="compact"
-                              wrapper="span"
-                              initialLikes={article.likes}
-                            />
-                            <LlmTags locale={locale} tags={llmTags} entityId={article.slug} wrapper="span" />
-                            {article.tagsList.map((tag) => (
-                              <span
-                                key={`${article.slug}-${tag}`}
-                                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                              >
-                                {tag.toUpperCase()}
-                              </span>
-                            ))}
-                          </div>
+                          <Tags
+                            namespace="article"
+                            locale={locale}
+                            slug={article.slug}
+                            llmTags={llmTags}
+                            tags={article.tagsList}
+                            initialLikes={article.likes}
+                          />
                         </div>
                       );
                     })()}

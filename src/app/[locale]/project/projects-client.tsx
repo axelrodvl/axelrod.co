@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { LikeButton } from "@/components/like-button";
-import { LlmTags } from "@/components/llm-tags";
 import { SectionHeader } from "@/components/section-header";
+import { Tags } from "@/components/tags";
+
 
 type ProjectSummary = {
   name: string;
@@ -183,33 +183,21 @@ export default function ProjectsClient({
               </a>
               {(() => {
                 const llmTags = locale === "ru" ? project.llmTagsTranslated : project.llmTags;
-                const hasAny = llmTags.length > 0 || project.tags.length > 0;
 
-                if (!hasAny) {
+                if (llmTags.length === 0 && project.tags.length === 0) {
                   return null;
                 }
 
                 return (
                   <div className="mt-3">
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                      <LikeButton
-                        namespace="project"
-                        locale={locale}
-                        slug={project.slug}
-                        variant="compact"
-                        wrapper="span"
-                        initialLikes={project.likes}
-                      />
-                      <LlmTags locale={locale} tags={llmTags} entityId={project.slug} />
-                      {project.tags.map((tag) => (
-                        <span
-                          key={`${project.slug}-${tag}`}
-                          className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                        >
-                          {tag.toUpperCase()}
-                        </span>
-                      ))}
-                    </div>
+                    <Tags
+                      namespace="project"
+                      locale={locale}
+                      slug={project.slug}
+                      llmTags={llmTags}
+                      tags={project.tags}
+                      initialLikes={project.likes}
+                    />
                   </div>
                 );
               })()}
@@ -220,5 +208,3 @@ export default function ProjectsClient({
     </main>
   );
 }
-
-

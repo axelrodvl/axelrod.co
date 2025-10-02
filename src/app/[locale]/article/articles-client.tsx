@@ -5,9 +5,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { formatDate } from "@/lib/utils";
-import { LikeButton } from "@/components/like-button";
-import { LlmTags } from "@/components/llm-tags";
 import { SectionHeader } from "@/components/section-header";
+import { Tags } from "@/components/tags";
+
 
 type ArticleSummary = {
   slug: string;
@@ -190,33 +190,21 @@ export default function ArticlesClient({
               </Link>
               {(() => {
                 const llmTags = locale === "ru" ? article.llmTagsTranslated : article.llmTags;
-                const hasAny = llmTags.length > 0 || article.tagsList.length > 0;
 
-                if (!hasAny) {
+                if (llmTags.length === 0 && article.tagsList.length === 0) {
                   return null;
                 }
 
                 return (
                   <div className="mt-3">
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-                      <LikeButton
-                        namespace="article"
-                        locale={locale}
-                        slug={article.slug}
-                        variant="compact"
-                        wrapper="span"
-                        initialLikes={article.likes}
-                      />
-                      <LlmTags locale={locale} tags={llmTags} entityId={article.slug} />
-                      {article.tagsList.map((tag) => (
-                        <span
-                          key={`${article.slug}-${tag}`}
-                          className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                        >
-                          {tag.toUpperCase()}
-                        </span>
-                      ))}
-                    </div>
+                    <Tags
+                      namespace="article"
+                      locale={locale}
+                      slug={article.slug}
+                      llmTags={llmTags}
+                      tags={article.tagsList}
+                      initialLikes={article.likes}
+                    />
                   </div>
                 );
               })()}

@@ -6,7 +6,7 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary, locales } from "@/lib/i18n";
 import { Markdown } from "@/components/markdown";
 import { LikeButton } from "@/components/like-button";
-import { LlmTags } from "@/components/llm-tags";
+import { Tags } from "@/components/tags";
 import { readArticle, readArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 
@@ -83,32 +83,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             {frontmatter.title}
           </h1>
         </div>
-        {(tagsList.length > 0 || llmTagsTranslated.length > 0) && (
-          <ul className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide">
-            <LikeButton
-              namespace="article"
-              locale={params.locale}
-              slug={params.slug}
-              variant="compact"
-              wrapper="li"
-            />
-            <LlmTags
-              locale={params.locale}
-              tags={llmTagsTranslated}
-              entityId={params.slug}
-              wrapper="li"
-              linkClassName="block"
-            />
-            {tagsList.map((tag) => (
-              <li
-                key={`${params.slug}-${tag}`}
-                className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-        )}
+        <Tags
+          namespace="article"
+          locale={params.locale}
+          slug={params.slug}
+          llmTags={llmTagsTranslated}
+          tags={tagsList}
+        />
       </header>
 
       <Markdown baseImagePath={`/article/image/${params.slug}/`}>
@@ -142,25 +123,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 <h3 className="mt-1 text-lg font-semibold text-white">
                   {nextArticle.title}
                 </h3>
-                {(nextArticle.tagsList.length > 0 || nextArticle.llmTagsTranslated.length > 0) && (
-                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                    <LlmTags
-                      locale={params.locale}
-                      tags={nextArticle.llmTagsTranslated}
-                      entityId={nextArticle.slug}
-                      wrapper="li"
-                      linkClassName="block"
-                    />
-                    {nextArticle.tagsList.map((tag) => (
-                      <li
-                        key={`${nextArticle.slug}-${tag}`}
-                        className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <Tags
+                  namespace="article"
+                  locale={params.locale}
+                  slug={nextArticle.slug}
+                  llmTags={nextArticle.llmTagsTranslated}
+                  tags={nextArticle.tagsList}
+                />
               </div>
             </Link>
           )}
@@ -182,25 +151,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 <h3 className="mt-1 text-lg font-semibold text-white">
                   {previousArticle.title}
                 </h3>
-                {(previousArticle.tagsList.length > 0 || previousArticle.llmTagsTranslated.length > 0) && (
-                  <ul className="flex flex-wrap gap-2 text-xs font-medium uppercase tracking-wide">
-                    <LlmTags
-                      locale={params.locale}
-                      tags={previousArticle.llmTagsTranslated}
-                      entityId={previousArticle.slug}
-                      wrapper="li"
-                      linkClassName="block"
-                    />
-                    {previousArticle.tagsList.map((tag) => (
-                      <li
-                        key={`${previousArticle.slug}-${tag}`}
-                        className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-3 py-1 text-emerald-300/80"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <Tags
+                  namespace="article"
+                  locale={params.locale}
+                  slug={previousArticle.slug}
+                  llmTags={previousArticle.llmTagsTranslated}
+                  tags={previousArticle.tagsList}
+                />
               </div>
             </Link>
           )}
