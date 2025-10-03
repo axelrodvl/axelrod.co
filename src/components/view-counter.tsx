@@ -1,5 +1,6 @@
 "use client";
 
+import type { JSX } from "react";
 import { useEffect, useMemo, useState } from "react";
 
 import { getDictionary, isLocale } from "@/lib/i18n";
