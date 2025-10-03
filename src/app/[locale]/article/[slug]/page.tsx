@@ -7,6 +7,8 @@ import { getDictionary, locales } from "@/lib/i18n";
 import { Markdown } from "@/components/markdown";
 import { LikeButton } from "@/components/like-button";
 import { Tags } from "@/components/tags";
+import { ViewTracker } from "@/components/view-tracker";
+import { ViewCounter } from "@/components/view-counter";
 import { readArticle, readArticles } from "@/lib/content";
 import { formatDate } from "@/lib/utils";
 
@@ -68,6 +70,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <article className="mx-auto max-w-3xl space-y-8">
+      <ViewTracker namespace="article" locale={params.locale} slug={params.slug} />
       <header className="space-y-4 pb-6">
         <Link
           href={`/${params.locale}/article`}
@@ -83,6 +86,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             {frontmatter.title}
           </h1>
         </div>
+        <ViewCounter namespace="article" locale={params.locale} slug={params.slug} className="text-xs uppercase tracking-[0.3em] text-white/50" wrapper="p" />
         <Tags
           namespace="article"
           locale={params.locale}

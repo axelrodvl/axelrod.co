@@ -21,8 +21,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const headersList = await headers();
-  const pathname = headersList.get("x-invoke-path") ?? "";
-  const [, potentialLocale] = pathname.split("/");
+  const invokePath = headersList.get("x-invoke-path") ?? "";
+  const [, potentialLocale] = invokePath.split("/");
   const locale = isLocale(potentialLocale) ? potentialLocale : defaultLocale;
   const meta = getMetadata(locale);
 

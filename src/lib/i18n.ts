@@ -63,6 +63,10 @@ const translations: Record<Locale, {
       description: string;
     }[];
   };
+  viewCounter: {
+    label: string;
+    error: string;
+  };
 }> = {
   en: {
     header: {
@@ -142,6 +146,10 @@ const translations: Record<Locale, {
         },
       ]
     },
+    viewCounter: {
+      label: "views",
+      error: "Failed to load views",
+    },
   },
   ru: {
     header: {
@@ -220,6 +228,10 @@ const translations: Record<Locale, {
           description: "Исходный материал мой, LLM использовалась только для перевода на другой язык.",
         },
       ]
+    },
+    viewCounter: {
+      label: "просмотров",
+      error: "Не удалось загрузить просмотры",
     },
   },
 };
