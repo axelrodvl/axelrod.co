@@ -69,7 +69,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const t = getDictionary(params.locale);
 
   return (
-    <article className="mx-auto max-w-3xl space-y-8">
+    <article className="mx-auto max-w-4xl space-y-10">
       <ViewTracker namespace="article" locale={params.locale} slug={params.slug} />
       <header className="space-y-4 pb-6">
         <Link
