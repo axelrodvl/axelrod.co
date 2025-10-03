@@ -37,6 +37,29 @@ export function ViewCounter({
   const dictionary = getDictionary(dictionaryLocale);
 
   const formatLocale = useMemo(() => (dictionaryLocale === "ru" ? "ru-RU" : "en-GB"), [dictionaryLocale]);
+  const viewLabel = useMemo(() => {
+    if (dictionaryLocale !== "ru" || views == null) {
+      return dictionary.viewCounter.label;
+    }
+
+    const lastTwoDigits = Math.abs(views) % 100;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
+      return "просмотров";
+    }
+
+    const lastDigit = lastTwoDigits % 10;
+
+    if (lastDigit === 1) {
+      return "просмотр";
+    }
+
+    if ([2, 3, 4].includes(lastDigit)) {
+      return "просмотра";
+    }
+
+    return "просмотров";
+  }, [dictionaryLocale, dictionary.viewCounter.label, views]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -89,7 +112,7 @@ export function ViewCounter({
   return (
     <Wrapper className={className}>
       <span className="text-xs uppercase tracking-[0.3em] text-white/60">
-        {views.toLocaleString(formatLocale)} {dictionary.viewCounter.label}
+        {views.toLocaleString(formatLocale)} {viewLabel}
       </span>
     </Wrapper>
   );
