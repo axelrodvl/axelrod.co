@@ -14,7 +14,7 @@ export default function LlmDisclosurePage({ params }: LlmDisclosurePageProps) {
   const disclosure = dictionary.llmDisclosure;
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-8 mb-4 text-white/90">
+    <div className="mx-auto flex max-w-4xl flex-col gap-8 mb-4 text-white/90">
       <PageHeader
         backHref={`/${locale}`}
         backLabel={disclosure.backToHome}
