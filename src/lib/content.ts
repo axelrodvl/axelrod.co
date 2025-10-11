@@ -24,6 +24,7 @@ type ArticleFrontmatter = {
   tags?: string;
   "llm-usage"?: number;
   "llm-translation"?: boolean;
+  published?: boolean;
 };
 
 export type Article = ArticleFrontmatter & {
@@ -83,6 +84,9 @@ export function readArticles(locale: string): Article[] {
   return files
     .map(({ file, content }) => {
       const { data } = parseMarkdown(content);
+      if (isExplicitlyFalse(data.published)) {
+        return null;
+      }
       const publishedAt = parseDate(data.date ?? "01.01.1970");
 
       const llmTagLocales = buildLlmTags(data);
@@ -98,6 +102,7 @@ export function readArticles(locale: string): Article[] {
         llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
       } satisfies Article;
     })
+    .filter((article): article is Article => article !== null)
     .sort((a, b) => Number(b.publishedAt) - Number(a.publishedAt));
 }
 
@@ -110,6 +115,9 @@ export function readArticle(locale: string, slug: string): ArticleDetail | null 
 
   const raw = fs.readFileSync(fullPath, "utf8");
   const { data, content } = parseMarkdown(raw);
+  if (isExplicitlyFalse(data.published)) {
+    return null;
+  }
   const publishedAt = parseDate(data.date ?? "01.01.1970");
 
   const llmTagLocales = buildLlmTags(data);
@@ -261,6 +269,18 @@ function isTruthy(value: unknown): boolean {
 
   if (typeof value === "string") {
     return value.trim().toLowerCase() === "true";
+  }
+
+  return false;
+}
+
+function isExplicitlyFalse(value: unknown): boolean {
+  if (typeof value === "boolean") {
+    return value === false;
+  }
+
+  if (typeof value === "string") {
+    return value.trim().toLowerCase() === "false";
   }
 
   return false;
