@@ -81,29 +81,31 @@ export function readArticles(locale: string): Article[] {
       content: fs.readFileSync(path.join(ARTICLES_PATH, locale, file), "utf8"),
     }));
 
-  return files
-    .map(({ file, content }) => {
-      const { data } = parseMarkdown(content);
-      if (isExplicitlyFalse(data.published)) {
-        return null;
-      }
-      const publishedAt = parseDate(data.date ?? "01.01.1970");
+  const articles = files.reduce<Article[]>((acc, { file, content }) => {
+    const { data } = parseMarkdown(content);
+    if (isExplicitlyFalse(data.published)) {
+      return acc;
+    }
+    const publishedAt = parseDate(data.date ?? "01.01.1970");
 
-      const llmTagLocales = buildLlmTags(data);
+    const llmTagLocales = buildLlmTags(data);
 
-      return {
-        title: data.title ?? file,
-        date: data.date ?? "01.01.1970",
-        tags: data.tags ?? "",
-        tagsList: normaliseTags(data.tags),
-        slug: file.replace(/\.md$/, ""),
-        publishedAt,
-        llmTags: llmTagLocales.map((tag) => tag.en),
-        llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
-      } satisfies Article;
-    })
-    .filter((article): article is Article => article !== null)
-    .sort((a, b) => Number(b.publishedAt) - Number(a.publishedAt));
+    const article: Article = {
+      title: data.title ?? file,
+      date: data.date ?? "01.01.1970",
+      tags: data.tags ?? "",
+      tagsList: normaliseTags(data.tags),
+      slug: file.replace(/\.md$/, ""),
+      publishedAt,
+      llmTags: llmTagLocales.map((tag) => tag.en),
+      llmTagsTranslated: llmTagLocales.map((tag) => getTagByLocale(tag, locale)),
+    };
+
+    acc.push(article);
+    return acc;
+  }, []);
+
+  return articles.sort((a, b) => Number(b.publishedAt) - Number(a.publishedAt));
 }
 
 export function readArticle(locale: string, slug: string): ArticleDetail | null {
