@@ -50,6 +50,7 @@ export default async function LocaleLayout({
         <div className="mx-auto max-w-4xl px-6 py-6 text-[10px] uppercase tracking-[0.4em] text-white/40">
           <p>© {new Date().getFullYear()} {dictionary.footer.name}</p>
           <p className="mt-2 text-white/30">{dictionary.footer.tagline}</p>
+          <p className="mt-2 text-white/30">{dictionary.footer.tagline2}</p>
         </div>
       </footer>
     </div>
