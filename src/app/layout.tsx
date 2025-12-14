@@ -34,7 +34,7 @@ export default async function RootLayout({
         <script
           defer
           src="https://umami.axelrod.co/script.js"
-          data-website-id="2419f5e2-6cef-4dbf-ae2e-aa704c1fda37"
+          data-website-id="a7801efa-9b1d-416c-bbab-9c645094793f"
         ></script>
       </head>
       <body className={`${plexMono.variable} antialiased`}>
