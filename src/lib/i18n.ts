@@ -98,7 +98,7 @@ const translations: Record<Locale, {
     footer: {
       name: "Vadim Axelrod",
       tagline:
-        "Proudly hosted from my closet on an old Android smartphone running AftermarketOS.",
+        "Proudly hosted from my closet on an old Android smartphone running postmarketOS.",
       tagline2:
         "gpt-5-codex created this entire website, and all it received in return was a fleeting mention in the footer.",
     },
@@ -182,7 +182,7 @@ const translations: Record<Locale, {
     },
     footer: {
       name: "Вадим Аксельрод",
-      tagline: "С гордостью хостится из моего шкафа на старом Android смартфоне под управлением AftermarketOS.",
+      tagline: "С гордостью хостится из моего шкафа на старом Android смартфоне под управлением postmarketOS.",
       tagline2:
         "gpt-5-codex сделал весь этот сайт и получил за это лишь короткое упоминание в футере.",
     },
