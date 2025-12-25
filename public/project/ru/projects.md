@@ -1,7 +1,7 @@
-name: CarCare [ALPHA]
-link: https://cars.axelrod.co/
-description: Автомобильная энциклопедия и менеджмент вашего автомобиля
-tags: Vibe Coding, Cursor, LLM, React
+name: Can I Afford It?
+link: https://can-i-afford-it.axelrod.co
+description: Фнинасовый калькулятор
+tags: Vibe Coding, Antigravity, LLM
 llm-usage: 100
 
 ---
