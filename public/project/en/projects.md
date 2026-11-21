@@ -8,7 +8,7 @@ llm-usage: 100
 
 name: Nimbus
 link: https://github.com/axelrodvl/nimbus
-description: Self-hosted web music player: MusicBrainz metadata, streamed straight from torrents
+description: "Self-hosted web music player: MusicBrainz metadata, streamed straight from torrents"
 tags: Vibe Coding, Claude, LLM, Rust, React, Vite, bun, PostgreSQL
 llm-usage: 100
 

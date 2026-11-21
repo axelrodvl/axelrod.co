@@ -8,7 +8,7 @@ llm-usage: 100
 
 name: Nimbus
 link: https://github.com/axelrodvl/nimbus
-description: Self-hosted веб-плеер: метаданные из MusicBrainz, стриминг прямо из торрентов
+description: "Self-hosted веб-плеер: метаданные из MusicBrainz, стриминг прямо из торрентов"
 tags: Vibe Coding, Claude, LLM, Rust, React, Vite, bun, PostgreSQL
 llm-usage: 100
 
