@@ -1,3 +1,19 @@
+name: Alfa Equip.kz
+link: https://alfa-equip.kz
+description: Корпоративный сайт-каталог с CRM для поставщика промышленного оборудования
+tags: Vibe Coding, Claude, LLM, Java, GraalVM, NextJS, bun, PostgreSQL
+llm-usage: 100
+
+---
+
+name: Nimbus
+link: https://github.com/axelrodvl/nimbus
+description: Self-hosted веб-плеер: метаданные из MusicBrainz, стриминг прямо из торрентов
+tags: Vibe Coding, Claude, LLM, Rust, React, Vite, bun, PostgreSQL
+llm-usage: 100
+
+---
+
 name: Can I Afford It?
 link: https://can-i-afford-it.axelrod.co
 description: Фнинасовый калькулятор
